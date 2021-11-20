@@ -84,10 +84,6 @@ const PicForm = props => {
         console.log(session)
     }, [session])
 
-    // const saveFile = (e) => {
-    //     setCompletedCrop(e.target.files[0]);
-    //     setPicName(e.target.files[0].name);
-    // };
 
 
     // const uploadCrop = e =>{
