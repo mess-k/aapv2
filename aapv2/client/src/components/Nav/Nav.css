@@ -1,0 +1,28 @@
+.Nav{
+    max-width:100%;
+    max-height: 120px;
+    background-color: #93d5fc;
+    display: flex;
+    box-shadow: 2px 1px 3px #618faa;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Nav a {
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+    font-family: Helvetica, sans-serif;
+    /* height: auto; */
+    text-align: center;
+    margin-right: 10px;
+}
+
+.Nav img {
+    display: flex;
+    max-height: 30%;
+    max-width: 30%;
+}

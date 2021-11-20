@@ -1,0 +1,12 @@
+.profileCard {
+margin: auto;
+max-width: 80%;
+display: flex;
+flex-direction: column;
+
+align-items: center;
+}
+
+.canvas {
+    margin-top: 10px;
+}
