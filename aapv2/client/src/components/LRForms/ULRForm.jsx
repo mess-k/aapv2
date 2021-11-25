@@ -1,12 +1,20 @@
 import React from 'react';
+import FlashMessage from  "react-flash-message"
 
 const ULRForm = props => {
 
-    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue} = props;
+    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,errors,pwErrors,flash} = props;
 
     return (
         <div className="logreg d-flex justify-content-evenly">
             <div>
+                { flash &&  
+                    <div className="flash">
+                        <FlashMessage duration={10000}>
+                            <strong>Registration successful,try logging in!</strong>
+                        </FlashMessage>
+                    </div>
+                }
                 <h1>User Registration</h1>
                 <form onSubmit={handleSubmit} className="card col-20">
                     <label htmlFor="name">First Name:</label>
@@ -16,9 +24,6 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.firstName}
                     />
-                    {/* <span className="text-danger">
-                        {errors.firstName ? errors.firstName.message: ""}
-                    </span> */}
                     <label htmlFor="name">Last Name:</label>
                     <input 
                         type="text" 
@@ -26,9 +31,6 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.lastName}
                     />
-                    {/* <span className="text-danger">
-                        {errors.lastName ? errors.lastName.message: ""}
-                    </span> */}
                     <label htmlFor="name">Email:</label>
                     <input 
                         type="text" 
@@ -36,9 +38,9 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.email}
                     />
-                    {/* <span className="text-danger">
-                        {errors.email ? errors.email.message: ""}
-                    </span> */}
+                    <span className="text-danger">
+                        {errors ? errors: ""}
+                    </span>
                     <label htmlFor="name">Password:</label>
                     <input 
                         type="password" 
@@ -46,9 +48,6 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.password}
                     />
-                    {/* <span className="text-danger">
-                        {errors.password ? errors.password.message: ""}
-                    </span> */}
                     <label htmlFor="name">Confirm Password:</label>
                     <input 
                         type="password" 
@@ -56,9 +55,9 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.confirmPassword}
                     />
-                    {/* <span className="text-danger">
-                        {errors.confirmPassword ? errors.confirmPassword.message: ""}
-                    </span> */}
+                    <span className="text-danger" duration={5000}>
+                        {pwErrors ? pwErrors: ""}
+                    </span>
                     <input type="submit" value={submitValue} className="btn btn-info"/>
                 </form>
             </div>

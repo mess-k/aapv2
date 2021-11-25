@@ -7,18 +7,18 @@ const SLRForm = props => {
     return (
         <div className="logreg d-flex justify-content-evenly">
             <div>
-                <h1>User Registration</h1>
+                <h1>Shelter Registration</h1>
                 <form onSubmit={handleSubmit} className="card col-20">
                     <label htmlFor="name">Shelter Name:</label>
                     <input 
                         type="text" 
                         name="shelterName" 
                         onChange={handleInputChange}
-                        value={inputs.firstName}
+                        value={inputs.shelterName}
                     />
-                    <span className="text-danger">
+                    {/* <span className="text-danger">
                         {errors.firstName ? errors.firstName.message: ""}
-                    </span>
+                    </span> */}
                     <label htmlFor="name">Email:</label>
                     <input 
                         type="text" 
@@ -26,9 +26,9 @@ const SLRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.email}
                     />
-                    <span className="text-danger">
+                    {/* <span className="text-danger">
                         {errors.email ? errors.email.message: ""}
-                    </span>
+                    </span> */}
                     <label htmlFor="name">Password:</label>
                     <input 
                         type="password" 
@@ -36,9 +36,9 @@ const SLRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.password}
                     />
-                    <span className="text-danger">
+                    {/* <span className="text-danger">
                         {errors.password ? errors.password.message: ""}
-                    </span>
+                    </span> */}
                     <label htmlFor="name">Confirm Password:</label>
                     <input 
                         type="password" 
@@ -46,14 +46,14 @@ const SLRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.confirmPassword}
                     />
-                    <span className="text-danger">
+                    {/* <span className="text-danger">
                         {errors.confirmPassword ? errors.confirmPassword.message: ""}
-                    </span>
+                    </span> */}
                     <input type="submit" value={submitValue} className="btn btn-info"/>
                 </form>
             </div>
             <div className="log">
-                <h1>User Login</h1>
+                <h1>Shelter Login</h1>
                 <form onSubmit={handleLogin} className="card mb-100">
                     <label htmlFor="name">Email:</label>
                         <input 

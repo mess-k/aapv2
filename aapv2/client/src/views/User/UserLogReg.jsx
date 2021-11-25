@@ -18,22 +18,14 @@ const UserLogReg = props => {
         password:"",
         confirmPassword:""
     })
-    // const [errors,setErrors] = useState({
-    //     firstName: "",
-    //     lastName: "",
-    //     email: "",
-    //     password:""
-    // })
+    const [errors,setErrors] = useState()
     const [log,setLog] = useState({
         email: "",
         password:""
     })
-    // const [logErrors,setLogErrors] = useState({
-    //     email: "",
-    //     password:""
-    // })
-
+    const [pwErrors,setPwErrors] = useState(false)
     const [loginStatus, setLoginStatus] = useState([]);
+    const [flash,setFlash]  = useState(false)
 
 
     const handleChange = e =>{
@@ -53,10 +45,17 @@ const UserLogReg = props => {
         e.preventDefault();
 
         axios.post("http://localhost:8000/api/user/register",user)
-            .then(res => console.log("something"))
-        .catch(err => {
-            console.log(err)
-        })
+            .then((res) => {
+                if(res.data.message || res.data.pwMessage){
+                    // navigate("/")
+                    setErrors(res.data.message)
+                    setPwErrors(res.data.pwMessage)
+                }
+                if(!res.data.message && !res.data.pwMessage){
+                    setFlash(true)
+                    navigate('/')
+                }
+            })
     };
     const handleLogin = e =>{
         e.preventDefault();
@@ -80,6 +79,9 @@ const UserLogReg = props => {
             <div>
                 <UserForm
                 inputs={user}
+                flash={flash}
+                pwErrors={pwErrors}
+                errors={errors}
                 logInputs={log}
                 title="Create User"
                 submitValue="Register"

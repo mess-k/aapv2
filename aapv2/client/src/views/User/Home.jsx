@@ -9,16 +9,14 @@ axios.defaults.withCredentials = true;
 
 
 const Home = props => {
+    
     const [session, setSession] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                // console.log(res.data.loggedIn)
-                // console.log(res.data.user)
                 setSession(res.data.user[0]);
-                // console.log(session)
             }
         });
     }, [props]);

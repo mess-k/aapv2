@@ -96,6 +96,58 @@ router.post("/login", (req, res) => {
     );
 });
 
+//////////////////////UPDATE/////////////////////
+
+router.put("/edit", (req,res) => {
+    const shelterName = req.body.shelterName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword
+
+    if (req.session.user){
+        db.query(
+            "SELECT * FROM shelters WHERE id = ?", 
+            req.session.user[0].id, (err,result) => {
+                if (err) {
+                    res.send({ err: err })
+                    console.log("email exists");
+                }
+                if(result.length > 0 ){
+                    if (password == confirmPassword) {
+                        bcrypt.hash(password, saltRounds, (err, hash) => {
+                            if (err) {
+                                console.log("after hash before query");
+                            }
+                            db.query(
+                                "UPDATE shelters SET shelter_name=?, last_name=?, email=?, password=? WHERE id = ?;",[shelterName,lastName,email,hash,req.session.user[0].id],
+                                (err, results)=>{
+                                    if(err){
+                                    console.log(err)
+                                    res.send(results)
+                                    }
+                                    if(results){
+                                        db.query(
+                                            "SELECT * FROM shelters WHERE id = ?",req.session.user[0].id, (err,results)=>{
+                                                if(err){
+                                                }
+                                                req.session.user = results;
+                                                console.log(results);
+                                                res.send(result);
+                                            }
+                                        )
+                                    }
+                                }
+                            )
+                        })
+                    }
+                }
+            }
+        )
+    }else{
+        console.log("no match")
+    }
+})
+
 
 
 

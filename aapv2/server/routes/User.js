@@ -11,14 +11,9 @@ const db = require("../config/db");
 const path = require('path')
 const bodyParser = require('body-parser');
 const cors = require("cors");
-
-
-
-
+const { response } = require("express");
 
 router.use(cookieParser());
-
-
 
 router.use(
     session({
@@ -32,7 +27,6 @@ router.use(
     })
 );
 
-
 ////////////////////////REGISTER///////////////////////////////
 
 router.post("/register", (req,res)=>{
@@ -42,32 +36,35 @@ router.post("/register", (req,res)=>{
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword
 
-db.query(
-    "SELECT * FROM users WHERE email = ?",
-    email,(err,result) => {
-        if (err) {
-            res.send({ err: err })
-            console.log("email exists");
-        }
-        if(result.length <= 0 ){
-            if (password == confirmPassword) {
-                bcrypt.hash(password, saltRounds, (err, hash) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                    
-                    db.query(
-                        "INSERT INTO users (first_name,last_name,email,password) VALUES (?,?,?,?)",[firstName,lastName,email,hash],
-                        (err, results)=>{
-                            console.log(err)
-                            res.send(results)
-                        }
+    db.query(
+        "SELECT * FROM users WHERE email = ?",
+        email,(err,result) => {
+            if (result.length>0) {
+                res.send({message:"This email is already associated with another account" })
+            }
+            if(result.length <= 0 ){
+                if (password != confirmPassword){
+                    res.send({pwMessage:"Passwords do not match" })
+                }
+                if (password == confirmPassword) {
+                    bcrypt.hash(password, saltRounds, (err, hash) => {
+                        db.query(
+                            "INSERT INTO users (first_name,last_name,email,password) VALUES (?,?,?,?)",[firstName,lastName,email,hash],
+                            (err, results)=>{
+                                // console.log(err)
+                                if(results){
+                                    req.session.user = results;
+                                    res.send(results)
+                                }
+                                
+                            }
                         )
                     })
                 }
             }
-            })
-        });
+        }
+    )
+});
 
 router.get("/login", (req, res) => {
     if (req.session.user) {
@@ -166,10 +163,10 @@ router.put("/edit", (req,res) => {
 
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, './public/images/')     // './public/images/' directory name where save the file
+        callBack(null, '../../aapv2/client/public/images')     
     },
     filename: (req, file, callBack) => {
-        callBack(null, file.fieldname + '-' + path.extname(file.originalname))
+        callBack(null, `${file.originalname}`)
     }
 })
 
@@ -177,9 +174,8 @@ var upload = multer({
     storage: storage
 });
 
-router.put ("/edit/uploadPic", upload.single('image'), (req,res) => {
-    const proPic = req.body.profilepic
-    // const imgsrc = 'http://localhost:3000/upload' + req.file.filename
+router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
+    const imgsrc = "/images/"+req.file.filename
 
     if (req.session.user){
         db.query(
@@ -187,19 +183,16 @@ router.put ("/edit/uploadPic", upload.single('image'), (req,res) => {
             req.session.user[0].id, (err,results) => {
                 if (err) {
                     res.send({ err: err })
-                    console.log("email exists");
                 }
-                console.log(results)
                 if(results.length > 0 ){
                     console.log("working!")
                     db.query(
-                        "UPDATE users SET img_url=? WHERE id = ?;",[proPic,req.session.user[0].id],(err,result)=>{
+                        "UPDATE users SET img_url=? WHERE id = ?;",[imgsrc,req.session.user[0].id],(err,result)=>{
                             if(err){
                                 console.log("something wrong with image upload")
                             }
                             if(result){
                                         req.session.user = results;
-                                        console.log("here")
                                         console.log(result);
                                         console.log(results);
                                         res.send(result);
