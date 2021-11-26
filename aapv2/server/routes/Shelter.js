@@ -6,8 +6,12 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-
+const multer = require('multer')
 const db = require("../config/db");
+const path = require('path')
+const bodyParser = require('body-parser');
+const cors = require("cors");
+const { response } = require("express");
 
 router.use(cookieParser());
 
@@ -23,13 +27,14 @@ router.use(
     })
 );
 
-
+///////////////////////////REGISTER///////////////////////////////
 
 router.post("/register", (req,res)=>{
     const shelterName = req.body.shelterName;
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword
+
 
 db.query(
     "SELECT * FROM shelters WHERE email = ?",
@@ -48,8 +53,10 @@ db.query(
                     db.query(
                         "INSERT INTO shelters (name,email,password) VALUES (?,?,?)",[shelterName,email,hash],
                         (err, results)=>{
-                            console.log(err)
-                            res.send(results)
+                                    if(results){
+                                    req.session.user = results;
+                                    res.send(results)
+                                }
                         }
                         )
                     })
@@ -66,6 +73,8 @@ router.get("/login", (req, res) => {
     }
 });
 
+//////////////////////////LOGIN/////////////////////////////
+
 router.post("/login", (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -74,10 +83,9 @@ router.post("/login", (req, res) => {
         "SELECT * FROM shelters WHERE email = ?;",
         email,
         (err, result) => {
-        if (err) {
-        res.send({ err: err });
-        }
-
+            if (result.length<=0) {
+                res.send({ message: "No account associated with this email" });
+                }
         if (result.length > 0) {
             bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
@@ -85,29 +93,26 @@ router.post("/login", (req, res) => {
                 console.log(req.session.shelter);
                 res.send(result);
             } else {
-                res.send ({ message: "Wrong email/password combination!" });
+                res.send ({ EPMessage: "Wrong email/password combination!" });
             }
         });
-        } else {
-            console.log("No account associated with this email")
-            res.send({ message: "No account associated with this email" });
-        }
-    }
+        }}
     );
 });
 
 //////////////////////UPDATE/////////////////////
 
 router.put("/edit", (req,res) => {
+    
     const shelterName = req.body.shelterName;
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword
 
-    if (req.session.user){
+    if (req.session.shelter){
         db.query(
             "SELECT * FROM shelters WHERE id = ?", 
-            req.session.user[0].id, (err,result) => {
+            req.session.shelter[0].id, (err,result) => {
                 if (err) {
                     res.send({ err: err })
                     console.log("email exists");
@@ -119,7 +124,7 @@ router.put("/edit", (req,res) => {
                                 console.log("after hash before query");
                             }
                             db.query(
-                                "UPDATE shelters SET shelter_name=?, last_name=?, email=?, password=? WHERE id = ?;",[shelterName,lastName,email,hash,req.session.user[0].id],
+                                "UPDATE shelters SET name=?, email=?, password=? WHERE id = ?;",[shelterName,email,hash,req.session.shelter[0].id],
                                 (err, results)=>{
                                     if(err){
                                     console.log(err)
@@ -127,10 +132,10 @@ router.put("/edit", (req,res) => {
                                     }
                                     if(results){
                                         db.query(
-                                            "SELECT * FROM shelters WHERE id = ?",req.session.user[0].id, (err,results)=>{
+                                            "SELECT * FROM shelters WHERE id = ?",req.session.shelter[0].id, (err,results)=>{
                                                 if(err){
                                                 }
-                                                req.session.user = results;
+                                                req.session.shelter = results;
                                                 console.log(results);
                                                 res.send(result);
                                             }
@@ -149,6 +154,47 @@ router.put("/edit", (req,res) => {
 })
 
 
+var storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, '../../aapv2/client/public/images/Shelter/ShelterPic')     
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, `${file.originalname}`)
+    }
+})
 
+var upload = multer({
+    storage: storage
+});
+
+router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
+    const imgsrc = "/images/Shelter/ShelterPic/"+req.file.filename
+
+    if (req.session.shelter){
+        db.query(
+            "SELECT * FROM shelters WHERE id = ?", 
+            req.session.shelter[0].id, (err,results) => {
+                if (err) {
+                    res.send({ err: err })
+                }
+                if(results.length > 0 ){
+                    db.query(
+                        "UPDATE shelters SET img_url=? WHERE id = ?;",[imgsrc,req.session.shelter[0].id],(err,result)=>{
+                            if(err){
+                                console.log("something wrong with image upload")
+                            }
+                            if(result){
+                                        req.session.shelter = results;
+                                        console.log(result);
+                                        console.log(results);
+                                        res.send(result);
+                            }
+                        }
+                    )
+                }
+            }
+        )
+    }
+})
 
 module.exports = router;

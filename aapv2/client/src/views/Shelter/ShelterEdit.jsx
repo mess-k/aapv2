@@ -2,14 +2,14 @@ import React from 'react';
 import axios from "axios";
 import {useState,useEffect} from  "react";
 import Nav from "../../components/Nav/Nav"
-import UPEdit from "../../components/HomePage/EPEdit"
+import SPEdit from "../../components/Dashboard/SPEdit"
 import { navigate } from '@reach/router';
 
 axios.defaults.withCredentials = true;
 
 
-const Edit = props => {
-    const [user,setUser] = useState({
+const ShelterEdit = props => {
+    const [shelter,setShelter] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -20,8 +20,8 @@ const Edit = props => {
     const [session, setSession] = useState([])
 
     const handleChange = e =>{
-        setUser({
-            ...user,
+        setShelter({
+            ...shelter,
             [e.target.name]: e.target.value
         })
     };
@@ -29,10 +29,10 @@ const Edit = props => {
     const handleSubmit = e =>{
         e.preventDefault();
 
-        axios.put("http://localhost:8000/api/user/edit",user)
+        axios.put("http://localhost:8000/api/shelter/edit",shelter)
             .then((res) => {
                 if(res){
-                    navigate("/home")
+                    navigate("/dashboard")
                 }
             })
         .catch(err => {
@@ -41,12 +41,12 @@ const Edit = props => {
     };
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/login`)
+        axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
                 // console.log(res.data.loggedIn)
-                // console.log(res.data.user)
-                setSession([res.data.user[0]]);
+                // console.log(res.data.Shelter)
+                setSession([res.data.shelter[0]]);
                 // console.log(session)
             }
             else{
@@ -60,9 +60,9 @@ const Edit = props => {
     return (
         <>
             <Nav/>
-            <UPEdit
-            inputs={user}
-            title="Update User"
+            <SPEdit
+            inputs={shelter}
+            title="Update Shelter"
             handleInputChange={handleChange}
             handleSubmit={handleSubmit}
             session={session}
@@ -71,4 +71,4 @@ const Edit = props => {
     );
 }
 
-export default Edit;
+export default ShelterEdit;

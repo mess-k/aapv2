@@ -3,14 +3,14 @@ import FlashMessage from  "react-flash-message"
 
 const ULRForm = props => {
 
-    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,errors,pwErrors,flash} = props;
+    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,errors,pwErrors,flash,LEPErr,logErr} = props;
 
     return (
         <div className="logreg d-flex justify-content-evenly">
             <div>
                 { flash &&  
                     <div className="flash">
-                        <FlashMessage duration={10000}>
+                        <FlashMessage duration={20000}>
                             <strong>Registration successful,try logging in!</strong>
                         </FlashMessage>
                     </div>
@@ -55,7 +55,7 @@ const ULRForm = props => {
                         onChange={handleInputChange}
                         value={inputs.confirmPassword}
                     />
-                    <span className="text-danger" duration={5000}>
+                    <span className="text-danger">
                         {pwErrors ? pwErrors: ""}
                     </span>
                     <input type="submit" value={submitValue} className="btn btn-info"/>
@@ -71,6 +71,9 @@ const ULRForm = props => {
                             onChange={handleLogChange}
                             value={logInputs.email}
                         />
+                        <span className="text-danger">
+                        {logErr ? logErr: ""}
+                        </span> 
                         <label htmlFor="name">Password:</label>
                         <input 
                             type="password" 
@@ -78,6 +81,9 @@ const ULRForm = props => {
                             onChange={handleLogChange}
                             value={logInputs.confirmPassword}
                         /> 
+                        <span className="text-danger">
+                        {LEPErr ? LEPErr: ""}
+                        </span>
                         <input type="submit" value="Login" className="btn btn-info"/>
                 </form> 
             </div>

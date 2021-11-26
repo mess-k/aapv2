@@ -17,19 +17,17 @@ const ShelterLogReg = props => {
         password: "",
         confirmPassword:""
     })
-    // const [errors,setErrors] = useState({
-    //     shelterName: "",
-    //     email: "",
-    //     password:""
-    // })
+    
     const [log,setLog] = useState({
         email: "",
         password:""
     })
-    // const [logErrors,setLogErrors] = useState({
-    //     email: "",
-    //     password:""
-    // })
+    const [errors,setErrors] = useState();
+    const [pwErrors,setPwErrors] = useState(false);
+    const[logErr,setLogErr] = useState(false);
+    const[lPErr,setLPErr] = useState(false);
+
+    const [flash,setFlash]  = useState(false)
 
     const [loginStatus, setLoginStatus] = useState([]);
 
@@ -51,23 +49,33 @@ const ShelterLogReg = props => {
         e.preventDefault();
 
         axios.post("http://localhost:8000/api/shelter/register",shelter)
-            .then(res => console.log("something"))
-        .catch(err => {
-            console.log(err)
+            .then(res => {
+                if(res.data.message || res.data.pwMessage){
+                    // navigate("/")
+                    setErrors(res.data.message)
+                    setPwErrors(res.data.pwMessage)
+                }
+                if(!res.data.message && !res.data.pwMessage){
+                    setFlash(true)
+                    setErrors(false)
+                    setPwErrors(false)
+                    navigate('/')
+                }
         })
     };
     const handleLogin = e =>{
         e.preventDefault();
 
         axios.post("http://localhost:8000/api/shelter/login",log)
-            .then(res => {
-                if(!res.data.message){
-                    navigate("/dashboard")
-                    setLoginStatus(res.data.user)
-                }
-            })
-        .catch(err => {
-            console.log(err.message)
+        .then(res => {
+            if(res.data.message || res.data.EPMessage){
+                setLogErr(res.data.message)
+                setLPErr(res.data.EPMessage)
+            }
+            if(!res.data.message && !res.data.EPMessage){
+                setLoginStatus(res.data.user)
+                navigate("/dashboard")
+            }
         })
     };
 
@@ -78,6 +86,11 @@ const ShelterLogReg = props => {
             <div>
                 <ShelterForm
                 inputs={shelter}
+                flash={flash}
+                errors={errors}
+                pwErrors={pwErrors}
+                logErr={logErr}
+                LEPErr={lPErr}
                 logInputs={log}
                 title="Create Shelter"
                 submitValue="Register"

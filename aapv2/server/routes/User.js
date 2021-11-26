@@ -51,7 +51,6 @@ router.post("/register", (req,res)=>{
                         db.query(
                             "INSERT INTO users (first_name,last_name,email,password) VALUES (?,?,?,?)",[firstName,lastName,email,hash],
                             (err, results)=>{
-                                // console.log(err)
                                 if(results){
                                     req.session.user = results;
                                     res.send(results)
@@ -72,7 +71,6 @@ router.get("/login", (req, res) => {
     } else {
         res.send({ loggedIn: false });
     }
-
 });
 
 /////////////////////////////////LOGIN/////////////////////////////
@@ -85,10 +83,9 @@ router.post("/login", (req, res) => {
         "SELECT * FROM users WHERE email = ?;",
         email,
         (err, result) => {
-        if (err) {
-        res.send({ err: err });
+            if (result.length<=0) {
+            res.send({ message: "No account associated with this email" });
         }
-
         if (result.length > 0) {
             bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
@@ -96,14 +93,10 @@ router.post("/login", (req, res) => {
                 console.log(req.session.user);
                 res.send(result);
             } else {
-                res.send ({ message: "Wrong email/password combination!" });
+                res.send ({ EPMessage: "Wrong email/password combination!" });
             }
             });
-            } else {
-                console.log("No account associated with this email")
-                res.send({ message: "No account associated with this email" });
-            }
-        }
+        }}
     );
 });
 
@@ -122,7 +115,7 @@ router.put("/edit", (req,res) => {
             req.session.user[0].id, (err,result) => {
                 if (err) {
                     res.send({ err: err })
-                    console.log("email exists");
+                    console.log("email asscoicated with another account");
                 }
                 if(result.length > 0 ){
                     if (password == confirmPassword) {
@@ -185,7 +178,6 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                     res.send({ err: err })
                 }
                 if(results.length > 0 ){
-                    console.log("working!")
                     db.query(
                         "UPDATE users SET img_url=? WHERE id = ?;",[imgsrc,req.session.user[0].id],(err,result)=>{
                             if(err){

@@ -2,7 +2,7 @@ import React from 'react';
 
 const SLRForm = props => {
 
-    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,errors} = props;
+    const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,logErr,LEPErr} = props;
 
     return (
         <div className="logreg d-flex justify-content-evenly">
@@ -62,6 +62,9 @@ const SLRForm = props => {
                             onChange={handleLogChange}
                             value={logInputs.email}
                         />
+                        <span className="text-danger">
+                        {logErr ? logErr: ""}
+                        </span> 
                         <label htmlFor="name">Password:</label>
                         <input 
                             type="password" 
@@ -69,6 +72,9 @@ const SLRForm = props => {
                             onChange={handleLogChange}
                             value={logInputs.confirmPassword}
                         /> 
+                        <span className="text-danger">
+                            {LEPErr ? LEPErr: ""}
+                        </span>
                         <input type="submit" value="Login" className="btn btn-info"/>
                 </form> 
             </div>

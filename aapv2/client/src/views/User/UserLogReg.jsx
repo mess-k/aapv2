@@ -18,14 +18,17 @@ const UserLogReg = props => {
         password:"",
         confirmPassword:""
     })
-    const [errors,setErrors] = useState()
     const [log,setLog] = useState({
         email: "",
         password:""
     })
-    const [pwErrors,setPwErrors] = useState(false)
-    const [loginStatus, setLoginStatus] = useState([]);
+    const [errors,setErrors] = useState();
+    const [pwErrors,setPwErrors] = useState(false);
+    const[logErr,setLogErr] = useState(false);
+    const[lPErr,setLPErr] = useState(false);
+
     const [flash,setFlash]  = useState(false)
+    const [loginStatus, setLoginStatus] = useState([]);
 
 
     const handleChange = e =>{
@@ -53,6 +56,8 @@ const UserLogReg = props => {
                 }
                 if(!res.data.message && !res.data.pwMessage){
                     setFlash(true)
+                    setErrors(false)
+                    setPwErrors(false)
                     navigate('/')
                 }
             })
@@ -62,7 +67,11 @@ const UserLogReg = props => {
 
         axios.post("http://localhost:8000/api/user/login",log)
             .then(res => {
-                if(!res.data.message){
+                if(res.data.message || res.data.EPMessage){
+                    setLogErr(res.data.message)
+                    setLPErr(res.data.EPMessage)
+                }
+                if(!res.data.message && !res.data.EPMessage){
                     setLoginStatus(res.data.user)
                     navigate("/home")
                 }
@@ -80,8 +89,10 @@ const UserLogReg = props => {
                 <UserForm
                 inputs={user}
                 flash={flash}
-                pwErrors={pwErrors}
                 errors={errors}
+                pwErrors={pwErrors}
+                logErr={logErr}
+                LEPErr={lPErr}
                 logInputs={log}
                 title="Create User"
                 submitValue="Register"

@@ -5,9 +5,11 @@ import {Router} from "@reach/router";
 import Home from "./views/User/Home";
 import UEdit from "./views/User/Edit";
 import UserLogReg from './views/User/UserLogReg';
-import ShelterLogReg from "./views/Shelter/ShelterLogReg"
-import Dashboard from "./views/Shelter/Dashboard"
-import ProPic from "./views/User/UploadProPic"
+import ShelterLogReg from "./views/Shelter/ShelterLogReg";
+import Dashboard from "./views/Shelter/Dashboard";
+import ProPic from "./views/User/UploadProPic";
+import SPEdit from './views/Shelter/ShelterEdit';
+import SProPic from "./views/Shelter/UploadShelterPic"
 // import HL from "./components/HomeLogo"
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
       <ShelterLogReg path="/shelter"/>
       <Dashboard path="/dashboard"/>
       <UEdit path="/UPEdit"/>
+      <SPEdit path="/SPEdit/:id"/>
       <ProPic path="/upload"/>
+      <SProPic path="/sUpload"/>
     </Router>
     </>
   );

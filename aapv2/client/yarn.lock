@@ -10043,10 +10043,10 @@
   dependencies:
     "prop-types" "^15.7.2"
 
-"react-image-crop@^9.0.4":
-  "integrity" "sha512-+pdmTxZaYrf0HBrmkmVYOW3TeeEh/pPxIcXYjDmmx1IblxiLbuRTlEUG9o7fTxsNwWL1i5ZazBjxrNUK13ji+w=="
-  "resolved" "https://registry.npmjs.org/react-image-crop/-/react-image-crop-9.0.4.tgz"
-  "version" "9.0.4"
+"react-image-crop@^9.0.5":
+  "integrity" "sha512-J5lbsBMI36GsbkRHXNEo95OjwpxfkUBrEl9Oxb7z5mDC7iamySXYKhkv9QoidkfmI9e8Vj7q3SgNCVfuZHQMQw=="
+  "resolved" "https://registry.npmjs.org/react-image-crop/-/react-image-crop-9.0.5.tgz"
+  "version" "9.0.5"
   dependencies:
     "clsx" "^1.1.1"
 

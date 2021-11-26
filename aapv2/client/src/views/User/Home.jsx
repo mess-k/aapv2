@@ -10,7 +10,7 @@ axios.defaults.withCredentials = true;
 
 const Home = props => {
     
-    const [session, setSession] = useState([])
+    const [session, setSession] = useState()
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -20,8 +20,6 @@ const Home = props => {
             }
         });
     }, [props]);
-
-
 
 
     return (
