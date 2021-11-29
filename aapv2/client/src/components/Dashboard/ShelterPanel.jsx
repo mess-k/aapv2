@@ -16,7 +16,7 @@ const ShelterPanel = props => {
                 setSession([res.data.shelter[0]]);
             }
         });
-    }, [session]);
+    }, [props]);
 
     return (
         !session.loggedIn ?
@@ -25,11 +25,12 @@ const ShelterPanel = props => {
                 session.map((s,k) => {
                     return (
                         <div className="card" key = {k}>
-                            <img src={process.env.PUBLIC_URL+`${s.img_url}`} alt="" />
+                            <img src={process.env.PUBLIC_URL+`${s.img_url}`} alt="" className="pannelpic"/>
                         <div className="container">
                             <h4>{s.name}</h4>
                             <Link to={`/SPEdit/${s.id}`}>Edit Profie</Link>
                             <Link to="/sUpload">Upload profile picture</Link>
+                            <Link to="/createprofile">Create a profile</Link>
                         </div>
                         </div>
                         )

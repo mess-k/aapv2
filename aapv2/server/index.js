@@ -26,6 +26,8 @@ const userRoute = require("./routes/User");
 app.use("/api/user", userRoute)
 const shelterRoute = require("./routes/Shelter")
 app.use("/api/shelter", shelterRoute)
+const profileRoute = require("./routes/Profile")
+app.use("/api/profile", profileRoute)
 
 
 

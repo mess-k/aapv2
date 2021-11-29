@@ -10,6 +10,7 @@ import Dashboard from "./views/Shelter/Dashboard";
 import ProPic from "./views/User/UploadProPic";
 import SPEdit from './views/Shelter/ShelterEdit';
 import SProPic from "./views/Shelter/UploadShelterPic"
+import CreateProfile from './views/Shelter/CreateProfile'
 // import HL from "./components/HomeLogo"
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <SPEdit path="/SPEdit/:id"/>
       <ProPic path="/upload"/>
       <SProPic path="/sUpload"/>
+      <CreateProfile path="/createprofile"/>
     </Router>
     </>
   );

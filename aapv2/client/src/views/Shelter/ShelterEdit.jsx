@@ -53,7 +53,7 @@ const ShelterEdit = props => {
                 console.log("fail")
             }
         });
-    }, [session]);
+    }, [props]);
 
 
 

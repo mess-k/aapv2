@@ -16,6 +16,7 @@ const Dashboard = props => {
         .then((res) => {
             if (res.data.loggedIn === true) {
                 setSession(res.data.shelter[0]);
+                console.log(session)
             }
         });
     }, [props]);
