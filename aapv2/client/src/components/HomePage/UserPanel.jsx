@@ -18,7 +18,7 @@ const UserPanel = props => {
     }, [session]);
 
     return (
-        !session.loggedIn ?
+        session ?
         <div>
             {
                 session.map((s,k) => {

@@ -67,7 +67,13 @@ db.query(
 
 router.get("/login", (req, res) => {
     if (req.session.shelter) {
-        res.send({ loggedIn: true, shelter: req.session.shelter });
+        const SID = req.session.shelter[0].id;
+        db.query(
+            "SELECT * FROM profiles WHERE uploader_id=?",SID,(err,response)=>{
+                profiles = response
+                res.send({ loggedIn: true, shelter: req.session.shelter,profiles });
+            }
+        )
     } else {
         res.send({ loggedIn: false });
     }
@@ -194,6 +200,27 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                 }
             }
         )
+    }
+})
+
+
+///////////////////////////FIND/////////////////////////////
+
+router.get("/find", (req,res)=>{
+    if (req.session.shelter){
+        const SID = req.session.shelter[0].id;
+        console.log(SID)
+        db.query(
+            "SELECT * FROM profiles WHERE uploader_id=?",SID,(err,result)=>{
+                if(result){
+                    res.send(result)
+                    console.log
+                }
+            }
+        )
+    }
+    else{
+        console.log("problem  209")
     }
 })
 

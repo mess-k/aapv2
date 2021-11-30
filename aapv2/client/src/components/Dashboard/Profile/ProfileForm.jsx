@@ -42,9 +42,10 @@ const ProfileForm = props =>{
                                 <div className="in">
                                     <label htmlFor="type">Type:</label>
                                     <select name="type" value={inputs.type} onChange={handleChange} className="inputs">
-                                        <option>Cat</option>
-                                        <option>Dog</option>
-                                        <option>Other</option>
+                                        <option value="" onChange={handleChange}></option>
+                                        <option value="cat" onChange={handleChange}>Cat</option>
+                                        <option value="dog" onChange={handleChange}>Dog</option>
+                                        <option value="other" onChange={handleChange}>Other</option>
                                     </select>
                                     <label htmlFor="name">Name:</label>
                                     <input 
@@ -65,9 +66,9 @@ const ProfileForm = props =>{
                                     <label htmlFor="description">Description:</label>
                                     <textarea
                                         type="text"
-                                        name="description"
+                                        name="desc"
                                         onChange={handleChange}
-                                        value={inputs.description}
+                                        value={inputs.desc}
                                         rows="5"
                                         className="inputs"
                                     />
@@ -96,7 +97,12 @@ const ProfileForm = props =>{
                                     />
                                 </div>
                                 </div>
-                                    {/* <input type="hidden" name="shelter"  value={s.id}/> */}
+                                    <input
+                                        type="hidden" 
+                                        name="shelter"  
+                                        value={s.id}
+                                        ref={x => {x = `${s.id}`}}
+                                        />
                                     <input type="submit" value="Create!" className="btn btn-info"/>
                             </form>
                         </div> 

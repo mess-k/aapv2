@@ -73,7 +73,7 @@ const ShelterLogReg = props => {
                 setLPErr(res.data.EPMessage)
             }
             if(!res.data.message && !res.data.EPMessage){
-                setLoginStatus(res.data.user)
+                setLoginStatus(res.data.shelter)
                 navigate("/dashboard")
             }
         })

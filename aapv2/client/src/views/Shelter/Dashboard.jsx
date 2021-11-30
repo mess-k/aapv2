@@ -4,6 +4,7 @@ import SNav from "../../components/Nav/SNav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
 import SP from "../../components/Dashboard/ShelterPanel"
+import PP from "../../components/Dashboard/Profile/ProfilePannel"
 
 axios.defaults.withCredentials = true;
 
@@ -16,7 +17,6 @@ const Dashboard = props => {
         .then((res) => {
             if (res.data.loggedIn === true) {
                 setSession(res.data.shelter[0]);
-                console.log(session)
             }
         });
     }, [props]);
@@ -28,7 +28,10 @@ const Dashboard = props => {
             <SP
             session={session}
             />
-        </>
+            <PP
+            session={session}
+            />
+        </> 
     );
 }
 

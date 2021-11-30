@@ -19,7 +19,7 @@ const ShelterPanel = props => {
     }, [props]);
 
     return (
-        !session.loggedIn ?
+        session ?
         <div>
             {
                 session.map((s,k) => {

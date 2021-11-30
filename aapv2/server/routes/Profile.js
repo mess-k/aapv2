@@ -48,7 +48,7 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     const name = req.body.name;
     const type = req.body.type;
     const age = req.body.age;
-    const desc = req.body.description
+    const desc = req.body.desc
     const pic = "/images/PetProfile/"+req.file.filename
     
 
@@ -66,8 +66,17 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     )
 })
 
+///////////////////////////FIND/////////////////////////////
 
-
+router.get("/find", (req,res)=>{
+    if (req.session.shelter){
+        const SID = req.session.shelter.id;
+        console.log(SID)
+    }
+    else{
+        console.log("help")
+    }
+})
 
 
 module.exports = router;

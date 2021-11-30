@@ -19,9 +19,11 @@ const CreateProfile = props => {
     })
     
     const handleChange = e =>{
+        e.preventDefault()
         setProfile({
             ...profile,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            shelter: session[0].id
         })
         console.log(profile)
     };
@@ -132,11 +134,10 @@ const CreateProfile = props => {
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
-        })
+            })
             .then((res) => {
                     navigate("/dashboard")
                     console.log(profile)
-                
             })
         .catch(err => {
             console.log(err)
