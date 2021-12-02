@@ -1,8 +1,7 @@
 .pannelpic {
     border-radius: 50%/50%; 
-    /* padding: px; */
     margin: 5px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);
     border: 3px solid #93d5fc;
-    border-radius: 5px
+    /* border-radius: 5px */
 }

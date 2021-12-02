@@ -1,13 +1,14 @@
 import React from 'react';
-import "./css/Nav.css";
+import "./css/SPNav.css";
 import logo from "../../img/logo.png"
 
 const Nav = props => {
 
+
     return (
         <>
-        <div className="Nav">
-            <a href="/home"><img src={logo} alt="" className="NavImg"/></a>
+        <div className="SPNav">
+            <a href="/dashboard"><img src={logo} alt="" className="NavImg" /></a>
             <a href="/login">Logout</a>
         </div>
         </>

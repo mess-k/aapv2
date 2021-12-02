@@ -12,6 +12,7 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const { response } = require("express");
+const { profile } = require("console");
 
 router.use(cookieParser());
 
@@ -69,13 +70,16 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
 ///////////////////////////FIND/////////////////////////////
 
 router.get("/find", (req,res)=>{
-    if (req.session.shelter){
-        const SID = req.session.shelter.id;
-        console.log(SID)
-    }
-    else{
-        console.log("help")
-    }
+    const proID = req.query.id
+    console.log(proID)
+    db.query(
+        "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
+            if(result){
+                res.send(result)
+                console.log(result)
+            }
+        }
+    )
 })
 
 

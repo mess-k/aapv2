@@ -8,26 +8,26 @@ import axios from "axios";
 
 const ProfileForm = props =>{
 
-    const [session, setSession] = useState([])
+    // const [session, setSession] = useState([])
 
 
-    const {handleChange,inputs,handleSubmit,onSelectFile,upImg,onLoad,setCrop,crop,onCropComplete,previewCanvasRef} = props;
+    const {session,handleChange,inputs,handleSubmit,onSelectFile,upImg,onLoad,setCrop,crop,onCropComplete,previewCanvasRef} = props;
 
 
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/shelter/login`)
-        .then((res) => {
-            if (res.data.loggedIn === true) {
-                // console.log(res.data.loggedIn)
-                // console.log(res.data.Shelter)
-                setSession([res.data.shelter[0]]);
-                // console.log(session)
-            }
-            else{
-                console.log("fail")
-            }
-        });
-    }, [props]);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/shelter/login`)
+    //     .then((res) => {
+    //         if (res.data.loggedIn === true) {
+    //             // console.log(res.data.loggedIn)
+    //             // console.log(res.data.Shelter)
+    //             setSession([res.data.shelter[0]]);
+    //             // console.log(session)
+    //         }
+    //         else{
+    //             console.log("fail")
+    //         }
+    //     });
+    // }, [props]);
 
     return(
         session ?
@@ -43,9 +43,9 @@ const ProfileForm = props =>{
                                     <label htmlFor="type">Type:</label>
                                     <select name="type" value={inputs.type} onChange={handleChange} className="inputs">
                                         <option value="" onChange={handleChange}></option>
-                                        <option value="cat" onChange={handleChange}>Cat</option>
-                                        <option value="dog" onChange={handleChange}>Dog</option>
-                                        <option value="other" onChange={handleChange}>Other</option>
+                                        <option value="Cat" onChange={handleChange}>Cat</option>
+                                        <option value="Dog" onChange={handleChange}>Dog</option>
+                                        <option value="Other" onChange={handleChange}>Other</option>
                                     </select>
                                     <label htmlFor="name">Name:</label>
                                     <input 

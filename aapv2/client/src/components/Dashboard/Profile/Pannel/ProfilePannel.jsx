@@ -31,18 +31,15 @@ const ProfilePannel = props => {
             {
                 profiles.map((p,k) => {
                     return (
-                            <div className="singlepro" key = {k}>
-                                <Link to={`/pet/profile/${p.id}`}>
-                                <a href="/">
-                                    <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="profilepannelpic"/>
-                                    <h6>{p.name}</h6>
-                                </a>
-                                </Link>
-                                
-                            </div>
-                        )
-                    })
-                }
+                        <div className="singlepro" key = {k}>
+                            <Link to={`/pet/profile/${p.id}`}>
+                                <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="profilepannelpic"/>
+                                <h6>{p.name}</h6>
+                            </Link>
+                        </div>
+                    )
+                })
+            }
             </div>
         : <h1>User logged out!</h1>
     )

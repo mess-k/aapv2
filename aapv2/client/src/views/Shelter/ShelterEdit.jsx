@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {useState,useEffect} from  "react";
 import Nav from "../../components/Nav/Nav"
-import SPEdit from "../../components/Dashboard/SPEdit"
+import SPEdit from "../../components/Dashboard/Shelter/Edit/SPEdit"
 import { navigate } from '@reach/router';
 
 axios.defaults.withCredentials = true;
@@ -54,8 +54,6 @@ const ShelterEdit = props => {
             }
         });
     }, [props]);
-
-
 
     return (
         <>

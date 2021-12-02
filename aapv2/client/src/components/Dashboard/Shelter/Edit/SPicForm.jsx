@@ -1,13 +1,14 @@
+import { navigate } from '@reach/router';
 import axios from 'axios';
 import React from 'react';
-import { useState, useRef, useEffect } from  "react";
+import { useState, useRef } from  "react";
 import ReactCrop from 'react-image-crop';
 // import { navigate } from '@reach/router';
 
 const pixelRatio = 1.0;
 
 const SPicForm = props => {
-    const {session} = props;
+    const [session, setSession] = useState([])
     const [upImg, setUpImg] = useState();
     const[filenName, setFileName] = useState()
     const imgRef = useRef(null);
@@ -15,9 +16,6 @@ const SPicForm = props => {
     const [crop, setCrop] = useState({ unit: "%", width: 30, aspect: 1 / 1 });
     const croppedImage = useRef(null);
 
-    useEffect(() => {
-        console.log(session)
-    }, [session])
 
     const onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -93,7 +91,8 @@ const SPicForm = props => {
 
         axios.put("http://localhost:8000/api/shelter/edit/uploadPic",formData)
             .then(res=> {
-                window.location.reload()
+                setSession(res.data.final)
+                navigate('/dashboard')
             })
             .catch(err =>{
             console.log(err)

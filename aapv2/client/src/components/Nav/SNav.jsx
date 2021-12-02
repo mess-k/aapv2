@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Nav.css";
+import "./css/Nav.css";
 import logo from "../../img/logo.png"
 // import {useState, useEffect} from "react"
 
@@ -14,7 +14,7 @@ const Nav = props => {
     return (
         <>
         <div className="Nav">
-            <a href="/dashboard"><img src={logo} alt="" /></a>
+            <a href="/dashboard"><img src={logo} alt="" className="NavImg" /></a>
             <a href="/login">Logout</a>
         </div>
         </>

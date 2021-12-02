@@ -24,7 +24,7 @@ const UserPanel = props => {
                 session.map((s,k) => {
                     return (
                         <div className="card" key = {k}>
-                            <img src={process.env.PUBLIC_URL+`${s.img_url}`} alt="" />
+                            <img src={process.env.PUBLIC_URL+`${s.img_url}`} alt="" className="userpic"/>
                         <div className="container">
                             <h4><b>{s.first_name}</b> <b>{s.last_name}</b></h4>
                             <Link to={`/UPEdit/${s.id}`}>

@@ -6,12 +6,16 @@
     border-radius: 5px;
 }
 
-img {
-    border-radius: 5px 5px 0 0;
-}
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
+}
+
+.userpic{
+    border-radius: 50%/50%;
+    margin: 5px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);
+    border: 3px solid #93d5fc;
 }

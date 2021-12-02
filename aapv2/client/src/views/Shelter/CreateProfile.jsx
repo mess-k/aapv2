@@ -2,8 +2,9 @@ import React from 'react';
 import axios from "axios";
 import SNav from "../../components/Nav/SNav"
 import { useState, useRef, useEffect } from  "react";
-import ProForm from "../../components/Dashboard/Profile/ProfileForm"
+import ProForm from "../../components/Dashboard/Profile/ProfileForm/ProfileForm"
 import { navigate } from '@reach/router';
+import Page from "../../Style/PageBody"
 
 
 const CreateProfile = props => {
@@ -121,14 +122,12 @@ const CreateProfile = props => {
     const handleSubmit = e =>{
         e.preventDefault();
         const formData = new FormData();
-        console.log(profile.shelter)
         formData.append("profilepic", croppedImage.current, croppedImage.current.name);
         formData.append("shelter", profile.shelter)
-
         formData.append("name", profile.name)
         formData.append("age", profile.age)
         formData.append("type", profile.type)
-        formData.append("description", profile.description)
+        formData.append("desc", profile.desc)
 
         axios.post("http://localhost:8000/api/profile/createprofile",formData,{
             headers:{
@@ -148,6 +147,8 @@ const CreateProfile = props => {
     return (
         <>
         <SNav/>
+        <Page>
+        </Page>
         <ProForm
         session={session}
         handleChange={handleChange}

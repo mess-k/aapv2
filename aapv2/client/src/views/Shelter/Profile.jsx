@@ -1,42 +1,48 @@
 import React from 'react';
+// import {Router} from "@reach/router";
+import SPNav from "../../components/Nav/SPNav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
-import SNav from '../../components/Nav/SNav';
-import SPicForm from '../../components/Dashboard/Shelter/Edit/SPicForm';
-// import ReactCrop from 'react-image-crop';
-// import { navigate } from '@reach/router';
-import 'react-image-crop/dist/ReactCrop.css';
+import Pro from "../../components/Dashboard/Profile/Page/ProflieBody"
 import Page from "../../Style/PageBody"
 
 axios.defaults.withCredentials = true;
 
-const UploadShelterPic = props => {
 
+const Profile = props => {
     const [session, setSession] = useState([])
+    const [profile, setProfile] = useState()
 
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                // console.log(res.data.loggedIn)
-                // console.log(res.data.shelter)
                 setSession(res.data.shelter[0]);
-                // console.log(session)
             }
         });
     }, [props]);
 
+    useEffect(() => {
+        const profileID = props.id
+        axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})
+        .then((res) => {
+            setProfile([res.data[0]])
+        });
+    }, [props]);
+
+
     return (
         <>
-            <SNav/>
+            <SPNav/>
             <Page>
             </Page>
-            <SPicForm
+            <Pro
+            profile={profile}
             session={session}
             />
-        </>
+        </> 
     );
 }
 
-export default UploadShelterPic;
+export default Profile;

@@ -21,9 +21,6 @@ router.use(
         secret: `${sessionKey}`,
         resave: false,
         saveUninitialized: false,
-        cookie: {
-        expires: 60 * 60 * 24,
-        },
     })
 );
 
@@ -190,10 +187,13 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                                 console.log("something wrong with image upload")
                             }
                             if(result){
-                                        req.session.shelter = results;
-                                        console.log(result);
-                                        console.log(results);
-                                        res.send(result);
+                                db.query(
+                                    "SELECT * FROM shelters WHERE id = ?", req.session.shelter[0].id, (err,final) => {
+                                        req.session.shelter = final;
+                                        console.log(final);
+                                        res.send(final);
+                                    }
+                                )
                             }
                         }
                     )
@@ -214,7 +214,7 @@ router.get("/find", (req,res)=>{
             "SELECT * FROM profiles WHERE uploader_id=?",SID,(err,result)=>{
                 if(result){
                     res.send(result)
-                    console.log
+                    console.log(result)
                 }
             }
         )
