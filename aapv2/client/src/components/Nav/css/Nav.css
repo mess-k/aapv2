@@ -20,12 +20,11 @@
     font-family: Helvetica, sans-serif;
     text-align: center;
     margin-right: 10px;
-    padding-top: 10px;
 }
 
 .NavImg {
     display: flex;
-    height: 30%;
+
     width: 20%;
-    padding-top: 10px;
+
 }

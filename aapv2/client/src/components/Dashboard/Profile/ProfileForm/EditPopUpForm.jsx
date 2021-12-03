@@ -29,8 +29,10 @@ const PopUpWrapper = styled.div`
     overflow:hidden;
 `;
 const PopUpContent = styled.div`
+    width:950px;
+    margin:auto;
     display: flex;
-    flex-direction: column;
+    flex-wrap:wrap;
     justify-content: center;
     align-items: center;
     postion:  relative:
@@ -39,25 +41,45 @@ const PopUpContent = styled.div`
     p {
         margin-bottom: 1rem;
     }
-    upproform{
-        postion: relative:
-        display:flex;
-    }
-    .uppic {
-        max-width:400px;
-        height: 100px;
+    form{
+        height:400px;
+        display:flex
+        flex-wrap:wrap;
     }
     .upbox{
-        height: 100%;
-        width: 100%;
+        width:100%;
+        height:700px;
     }
-    button {
-        padding: 10px 24px;
-        background: #141414;
-        color: #fff;
-        border: none;
+    .upinfo{
+        height:700px;
+        display:flex;
+        align-items:center;
+        justify-content:space-evenly;
+    }
+    .uptext{
+        width:50%;
+        display:flex;
+        flex-direction:column;
+        margin:auto;
+    }
+    .uppic{
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        width:50%;
+    }
+    .ReactCrop{
+        height:250px
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: contain;
     }
 `;
+
 const EditPopUpForm = props => {
     const {profile,session} = props
     const [updatePro, setUpdatePro] = useState({
@@ -185,99 +207,91 @@ const EditPopUpForm = props => {
     return(
         <>
             <Background>
-                <PopUpWrapper>
-                    <PopUpContent>
-                        <div>
-                        {
-                            profile ?
-                            <div>
-                                {
-                                profile.map((s,k) =>{
-                                    return(
-                                        <div className="upproform" key = {k}>
-                                            <h1 className="d-flex justify-content-center">Create a profile for a pet</h1>
-                                                <form onSubmit={submitEdit} className="upbox">                   
-                                                    <label htmlFor="type">Type:</label>
-                                                    <select name="type" value={updatePro.type} onChange={handleChange} className="">
-                                                        <option value="" onChange={handleChange}></option>
-                                                        <option value="Cat" onChange={handleChange}>Cat</option>
-                                                        <option value="Dog" onChange={handleChange}>Dog</option>
-                                                        <option value="Other" onChange={handleChange}>Other</option>
-                                                    </select>
-                                                    <label htmlFor="name">Name:</label>
-                                                    <input 
-                                                        type="text"
-                                                        name="name"
-                                                        placeholder={s.name}
-                                                        onChange={handleChange}
-                                                        value={updatePro.name}
-                                                        className="inputs"
+                {
+                    profile.map((s,k) =>{
+                        return(
+                        <PopUpWrapper>
+                            <h1>Create a profile for a pet</h1>
+                                <form onSubmit={submitEdit} key={k}>  
+                                <PopUpContent>
+                                    <div className="upbox">
+                                        <div className="upinfo">
+                                            <div className="uptext">
+                                                <label htmlFor="type">Type:</label>
+                                                <select name="type" value={updatePro.type} onChange={handleChange} className="">
+                                                    <option value="" onChange={handleChange}></option>
+                                                    <option value="Cat" onChange={handleChange}>Cat</option>
+                                                    <option value="Dog" onChange={handleChange}>Dog</option>
+                                                    <option value="Other" onChange={handleChange}>Other</option>
+                                                </select>
+                                                <label htmlFor="name">Name:</label>
+                                                <input 
+                                                    type="text"
+                                                    name="name"
+                                                    placeholder={s.name}
+                                                    onChange={handleChange}
+                                                    value={updatePro.name}
+                                                    className="inputs"
+                                                />
+                                                <label htmlFor="age">Age:</label>
+                                                <input 
+                                                    type="text"
+                                                    name="age"
+                                                    onChange={handleChange}
+                                                    value={updatePro.age}
+                                                    className="inputs"
+                                                />
+                                                <label htmlFor="description">Description:</label>
+                                                <textarea
+                                                    type="text"
+                                                    name="desc"
+                                                    onChange={handleChange}
+                                                    value={updatePro.desc}
+                                                    rows="5"
+                                                    className="inputs"
+                                                />
+                                            </div>
+                                            <div className="uppic">
+                                                <input 
+                                                    type="file" 
+                                                    name="image" 
+                                                    accept="image/*" 
+                                                    multiple={false} 
+                                                    onChange={onSelectFile} 
+                                                    
                                                     />
-                                                    <label htmlFor="age">Age:</label>
-                                                    <input 
-                                                        type="text"
-                                                        name="age"
-                                                        onChange={handleChange}
-                                                        value={updatePro.age}
-                                                        className="inputs"
-                                                    />
-                                                    <label htmlFor="description">Description:</label>
-                                                    <textarea
-                                                        type="text"
-                                                        name="desc"
-                                                        onChange={handleChange}
-                                                        value={updatePro.desc}
-                                                        rows="5"
-                                                        className="inputs"
-                                                    />
-                                                <div className="uppic">
-                                                    <label htmlFor="pic">Picture:</label>
-                                                    <input 
-                                                        type="file" 
-                                                        name="image" 
-                                                        accept="image/*" 
-                                                        multiple={false} 
-                                                        onChange={onSelectFile} 
-                                                        
-                                                    />
-                                                    <div>
-                                                    <ReactCrop
-                                                        name="image"
-                                                        src={upImg}
-                                                        onImageLoaded={onLoad}
-                                                        crop={crop}
-                                                        onChange={(c) => setCrop(c)}
-                                                        onComplete={onCropComplete}
+                                                <ReactCrop
+                                                    name="image"
+                                                    src={upImg}
+                                                    onImageLoaded={onLoad}
+                                                    crop={crop}
+                                                    onChange={(c) => setCrop(c)}
+                                                    onComplete={onCropComplete}
                                                     />
                                                 <label htmlFor="name">Preview:</label>
-                                                    <canvas
-                                                        className="preview"
-                                                        ref={previewCanvasRef}
+                                                <canvas
+                                                    className="preview"
+                                                    ref={previewCanvasRef}
                                                     />
-                                                    </div>
-                                                    <div>
-                                                    </div>
-                                                </div>
-                                                    <input
-                                                        type="hidden" 
-                                                        name="shelter"  
-                                                        value={s.id}
-                                                        ref={x => {x = `${s.id}`}}
-                                                        />
-                                                    <input type="submit" value="Create!" className="btn btn-info"/>
-                                                    </form>
-                                                </div> 
-                                            )
-                                        }
-                                    )
-                                }
-                            </div>: null
-                        }
-                    </div>
-                </PopUpContent>
-            </PopUpWrapper>
-        </Background>
-    </>
+                                                <input
+                                                    type="hidden" 
+                                                    name="shelter"  
+                                                    value={s.id}
+                                                    ref={x => {x = `${s.id}`}}
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Create!" className="btn btn-info"/>
+                                        </div>
+                                    </div>
+                                </PopUpContent>
+                            </form>
+                        </PopUpWrapper>
+                    )
+                })}
+            </Background>
+        </>
     )
 }
 
