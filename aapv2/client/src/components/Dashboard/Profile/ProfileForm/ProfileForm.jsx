@@ -1,33 +1,12 @@
 import React from "react"
 import "./Proform.css"
 import ReactCrop from 'react-image-crop';
-import {useState,useEffect} from 'react'
-import axios from "axios";
 
 
 
 const ProfileForm = props =>{
-
-    // const [session, setSession] = useState([])
-
-
     const {session,handleChange,inputs,handleSubmit,onSelectFile,upImg,onLoad,setCrop,crop,onCropComplete,previewCanvasRef} = props;
 
-
-    // useEffect(() => {
-    //     axios.get(`http://localhost:8000/api/shelter/login`)
-    //     .then((res) => {
-    //         if (res.data.loggedIn === true) {
-    //             // console.log(res.data.loggedIn)
-    //             // console.log(res.data.Shelter)
-    //             setSession([res.data.shelter[0]]);
-    //             // console.log(session)
-    //         }
-    //         else{
-    //             console.log("fail")
-    //         }
-    //     });
-    // }, [props]);
 
     return(
         session ?

@@ -60,7 +60,14 @@ const PopUpContent = styled.div`
         width:50%;
         display:flex;
         flex-direction:column;
+        
         margin:auto;
+        canvas{
+            margin:auto;
+            width:200px;
+            height:200px;
+            border-radius:50%/50%;
+        }
     }
     .uppic{
         height:100%;
@@ -68,22 +75,19 @@ const PopUpContent = styled.div`
         flex-direction:column;
         align-items:center;
         width:50%;
-    }
-    .ReactCrop{
-        height:250px
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-size: contain;
+        .ReactCrop{
+            max-width:100%;
+            max-height:100%;
+            margin:auto;
+            
+        }
     }
 `;
 
 const EditPopUpForm = props => {
     const {profile,session} = props
     const [updatePro, setUpdatePro] = useState({
-        shelter:"",
+        id:"",
         name:"",
         age:"",
         type:"",
@@ -182,13 +186,13 @@ const EditPopUpForm = props => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("profilepic", croppedImage.current, croppedImage.current.name);
-        formData.append("shelter", updatePro.shelter)
+        formData.append("id", updatePro.id)
         formData.append("name", updatePro.name)
         formData.append("age", updatePro.age)
         formData.append("type", updatePro.type)
         formData.append("desc", updatePro.desc)
 
-        axios.post("http://localhost:8000/api/profile/createprofile",formData,{
+        axios.post("http://localhost:8000/api/profile/update",formData,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -250,6 +254,10 @@ const EditPopUpForm = props => {
                                                     rows="5"
                                                     className="inputs"
                                                 />
+                                                <label htmlFor="name">Preview:</label>
+                                                <canvas
+                                                    ref={previewCanvasRef}
+                                                />
                                             </div>
                                             <div className="uppic">
                                                 <input 
@@ -261,21 +269,16 @@ const EditPopUpForm = props => {
                                                     
                                                     />
                                                 <ReactCrop
-                                                    name="image"
+                                                    // name="image"
                                                     src={upImg}
                                                     onImageLoaded={onLoad}
                                                     crop={crop}
                                                     onChange={(c) => setCrop(c)}
                                                     onComplete={onCropComplete}
                                                     />
-                                                <label htmlFor="name">Preview:</label>
-                                                <canvas
-                                                    className="preview"
-                                                    ref={previewCanvasRef}
-                                                    />
                                                 <input
                                                     type="hidden" 
-                                                    name="shelter"  
+                                                    name="id"  
                                                     value={s.id}
                                                     ref={x => {x = `${s.id}`}}
                                                     />
