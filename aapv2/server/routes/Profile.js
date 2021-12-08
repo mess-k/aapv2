@@ -84,15 +84,38 @@ router.get("/find", (req,res)=>{
 
 /////////////////////////UPDATE////////////////////////////////////
 
-router.post("/update", upload.single('profilepic'),(req,res)=>{
+
+router.post("/update", (req,res) => {
+    const pro_id = req.body.id;
+    const name = req.body.name;
+    const type = req.body.type;
+    const age = req.body.age;
+    const desc = req.body.desc
+    db.query(
+        "SELECT * FROM profiles WHERE id=?",[pro_id],(err,result)=>{
+            if(err){
+                console.log({err:err})
+            }
+            if(result){
+                db.query(
+                    "UPDATE profiles SET name=?, age=?, type=?, description=? WHERE id=?",[name,age,type,desc,pro_id],(err,response)=>{
+                        if(response)
+                        res.send("success!")
+                    }
+                )
+            }
+        }
+    )
+
+})
+
+router.post("/update/w/pic", upload.single('profilepic'),(req,res)=>{
     const pro_id = req.body.id;
     const name = req.body.name;
     const type = req.body.type;
     const age = req.body.age;
     const desc = req.body.desc
     const pic = "/images/PetProfile/"+req.file.filename
-    
-
     
     db.query(
         "SELECT * FROM profiles WHERE id=?",[pro_id],(err,result)=>{

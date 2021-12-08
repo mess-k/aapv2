@@ -35,7 +35,7 @@ const Dashboard = props => {
             session={session}
             />
         </> 
-    );
+);
 }
 
 export default Dashboard;

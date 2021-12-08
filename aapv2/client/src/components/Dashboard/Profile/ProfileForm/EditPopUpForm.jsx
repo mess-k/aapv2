@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { useState, useRef, useEffect } from  "react";
+import { useState, useRef } from  "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
 import ReactCrop from 'react-image-crop';
@@ -87,12 +87,12 @@ const PopUpContent = styled.div`
 const EditPopUpForm = props => {
     const {profile,session} = props
     const [updatePro, setUpdatePro] = useState({
-        id:"",
-        name:"",
-        age:"",
-        type:"",
-        desc:"",
-        img_url:""
+        id:`${props.profile[0].id}`,
+        name:`${props.profile[0].name}`,
+        age:`${props.profile[0].age}`,
+        type:`${props.profile[0].type}`,
+        desc:`${props.profile[0].description}`,
+        img_url:`${props.profile[0].img_url}`
     })
     const [upImg, setUpImg] = useState();
     const[filenName, setFileName] = useState()
@@ -182,31 +182,38 @@ const EditPopUpForm = props => {
 
     const submitEdit = e =>{
         e.preventDefault()
-        const proID = props.profile[0].id 
         e.preventDefault();
         const formData = new FormData();
-        formData.append("profilepic", croppedImage.current, croppedImage.current.name);
-        formData.append("id", updatePro.id)
-        formData.append("name", updatePro.name)
-        formData.append("age", updatePro.age)
-        formData.append("type", updatePro.type)
-        formData.append("desc", updatePro.desc)
-
-        axios.post("http://localhost:8000/api/profile/update",formData,{
-            headers:{
-                'Content-Type': 'multipart/form-data'
-            }
+        if(croppedImage.current && croppedImage.current.name){
+            console.log("hmm")
+            formData.append("profilepic", croppedImage.current, croppedImage.current.name);
+            formData.append("id", updatePro.id)
+            formData.append("name", updatePro.name)
+            formData.append("age", updatePro.age)
+            formData.append("type", updatePro.type)
+            formData.append("desc", updatePro.desc)
+            axios.post("http://localhost:8000/api/profile/update/w/pic",formData,{
+                headers:{
+                    'Content-Type': 'multipart/form-data'
+                }
+                })
+                .then((res) => {
+                        navigate("/dashboard")
+                        console.log(profile)
+                })
+            .catch(err => {
+                console.log(err)
             })
-            .then((res) => {
-                    navigate("/dashboard")
-                    console.log(profile)
-            })
-        .catch(err => {
-            console.log(err)
-        })
+        }
+        else{
+            console.log(updatePro)
+            axios.post("http://localhost:8000/api/profile/update",updatePro)
+                .then(res => {
+                    navigate(`/pet/profile/${updatePro.id}`)
+                })
+            
+        }
     }
-    
-
 
     return(
         <>
@@ -214,8 +221,8 @@ const EditPopUpForm = props => {
                 {
                     profile.map((s,k) =>{
                         return(
-                        <PopUpWrapper>
-                            <h1>Create a profile for a pet</h1>
+                        <PopUpWrapper  key={k}>
+                            <h1>Update {s.name}'s profile </h1>
                                 <form onSubmit={submitEdit} key={k}>  
                                 <PopUpContent>
                                     <div className="upbox">
@@ -263,6 +270,7 @@ const EditPopUpForm = props => {
                                                 <input 
                                                     type="file" 
                                                     name="image" 
+                                                    placeholder={s.img_url}
                                                     accept="image/*" 
                                                     multiple={false} 
                                                     onChange={onSelectFile} 
