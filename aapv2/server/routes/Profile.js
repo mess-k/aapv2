@@ -123,8 +123,12 @@ router.post("/update/w/pic", upload.single('profilepic'),(req,res)=>{
                 console.log({err:err})
             }
             if(result){
-                res.send(result)
-                console.log(result)
+                db.query(
+                    "UPDATE profiles SET name=?, age=?, type=?, description=?, img_url=? WHERE id=?",[name,age,type,desc,pic,pro_id],(err,response)=>{
+                        if(response)
+                        res.send("success!")
+                    }
+                )
             }
         }
     )

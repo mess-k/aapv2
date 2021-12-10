@@ -51,6 +51,10 @@
     width: 40%;
 }
 .createPost{
+    display:flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
     background-color: #ffffff;
     margin: 10px 5px 0px 5px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
@@ -58,4 +62,20 @@
     border-radius: 5px; 
     border: 1px solid rgba(0,0,0,.125);
     padding-left: 10px;
+}
+.postPic  img{
+    max-width: 45px;
+    max-height:45px;
+    border-radius: 50%/50%;;
+    margin: 5px 0px 5px 0px;;
+}
+.createPost .postInput{
+    width:90%;
+    display: flex;
+    margin: auto;
+}
+.createPost .postInput button{
+    text-align: left;
+    width: 100%;
+    border-radius: 20px;
 }

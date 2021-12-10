@@ -16,6 +16,9 @@ const Background = styled.div`
 `;
 
 const PopUpWrapper = styled.div`
+    display:flex;
+    text-align:center;
+    flex-direction:column;
     width: 1000px;
     height: 800px;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);

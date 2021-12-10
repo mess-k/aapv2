@@ -1,22 +1,23 @@
 import React from 'react';
 import "./Profile.css"
 import {useState} from  "react";
-// import axios from "axios";
-import Editpop from "../../Popups/EditProfile"
+import Editpop from "../../Popups/EditProfile/EditProfile"
+import CreatePost from "../../Popups/CreatePost/CreatePost"
+
+
 
 const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
+    const[postPopUp,setPostPopUp] = useState(false)
     const{profile,session} = props
 
-    // useEffect(() => {
-    //     const profileID = props.id
-    //     axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})
-    // }, [props]);
 
     const EditProfileButton = (e)=>{
         setEditPopUp(prev => !prev)
-        console.log(editPopUp)
-        console.log(props)
+    }
+    const createPost = e =>{
+        setPostPopUp(prev => !prev)
+        console.log(postPopUp)
     }
 
     return (
@@ -26,12 +27,16 @@ const Proflie = props => {
                 profile.map((p,k)=>{
                     return(
                         <div className="profile" key={k}>
-                            <div className="profileHeader">
                             <Editpop
                             profile={profile}
                             editPopUp={editPopUp}
                             session={session}
                             />
+                            <CreatePost
+                            profile={profile}
+                            PostPopUp={postPopUp}
+                            />
+                            <div className="profileHeader">
                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="petProfilePic"/>
                                 <h1 className="petName">{p.name}</h1>
                                 <div className="borderBottom"></div>
@@ -60,7 +65,17 @@ const Proflie = props => {
                                     </div>
                                     <div className="rightPannel">
                                         <div className="createPost">
-                                            <h4>post</h4>
+                                            <div className="postPic">
+                                                <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                            </div>
+                                            <div className="postInput">
+                                                <button
+                                                session={session}
+                                                profile={profile}
+                                                onClick={createPost}>
+                                                    Have anything to share?
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                             </div>
