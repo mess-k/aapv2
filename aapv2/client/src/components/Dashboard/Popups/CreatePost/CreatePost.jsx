@@ -48,19 +48,18 @@ const PopUpContent = styled.div`
     }
 `;
 
-
 const CreatePost = (props) =>{
     const{profile,session,PostPopUp} = props
     const [upImg, setUpImg] = useState();
-    const[fileName, setFileName] = useState()
+    const[fileName, setFileName] = useState("")
     const imgRef = useRef(null);
     const [preview, setPreview] = useState(null);
 
     const [post, setPost] = useState({
-        description: "",
+        context: "",
         img_url: "",
-        profile_id: `${profile[0].id}`,
-        shelter_id:  `${session.id}`
+        profile: `${profile[0].id}`,
+        shelter:  `${session.id}`
     })
 
     const handleChange = e =>{
@@ -72,26 +71,30 @@ const CreatePost = (props) =>{
         })
     };
     
-
+    
     
     const onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
-            const reader = new FileReader();
-            reader.addEventListener("load", () => setUpImg(reader.result));
-            reader.readAsDataURL(e.target.files[0]);
+            // const reader = new FileReader();
+            // reader.addEventListener("load", () => setUpImg(reader.result));
+            // reader.readAsDataURL(e.target.files[0]);
+            setUpImg(e.target.files[0])
             setPreview(URL.createObjectURL(e.target.files[0]));
             setFileName(e.target.files[0].name)
         }
     };
 
+    
     const Post = e =>{
         e.preventDefault()
         if(upImg && fileName){
             const formData = new FormData();
-            formData.append("file", upImg);
-            formData.append("fileName", fileName);
-            console.log("working")
-            axios.post("http://localhost:8000/api/profile/update/w/pic",formData,{
+            formData.append("postFile", upImg, fileName);
+            formData.append("context", post.context);
+            formData.append("profile", props.profile[0].id);
+            formData.append("shelter", props.session.id );
+            console.log(props.session.id)
+            axios.post("http://localhost:8000/api/profile/post/w/pic",formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
@@ -121,6 +124,7 @@ const CreatePost = (props) =>{
                         <form onSubmit={Post}>
                             <textarea 
                                 rows="6" 
+                                name="context"
                                 placeholder="What would you like to share?"
                                 onChange={handleChange}
                             >
@@ -133,8 +137,6 @@ const CreatePost = (props) =>{
                             />
                             <img src={preview} alt="" />
                             <input type="submit" value="Post" className="btn btn-info" />
-                            <input type="hidden" name="profile_id"  value={profile[0].id} />
-                            <input type="hidden" name="shelter_id" value={session.id} />
                         </form>
                     </div>
                     </PopUpContent>

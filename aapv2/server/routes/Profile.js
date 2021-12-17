@@ -28,12 +28,13 @@ router.use(
     })
 );
 
+
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
         callBack(null, '../../aapv2/client/public/images/PetProfile')     
     },
     filename: (req, file, callBack) => {
-        callBack(null, `${file.originalname}`+Date.now())
+        callBack(null, `${file.originalname}`+"-"+Date.now())
     }
 })
 
@@ -50,7 +51,7 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     const type = req.body.type;
     const age = req.body.age;
     const desc = req.body.desc
-    const pic = "/images/PetProfile/"+req.file.filename
+    const pic = "/images/PetProfile/"+req.file.fileName
     
 
     
@@ -136,8 +137,22 @@ router.post("/update/w/pic", upload.single('profilepic'),(req,res)=>{
 
 /////////////////////////////////////POST///////////////////////////
 
-router.post("/post/w/pic", upload.single("file"),(req,result) => {
+router.post("/post/w/pic", upload.single("postFile"),(req,result) => {
+    const context = req.body.context
+    const profile = req.body.profile
+    const shelter = req.body.shelter
     const pic = "/images/PetProfile/Post/"+req.file.filename
+
+    db.query(
+        "INSERT INTO posts SET context=?, img_url=?, profile_id=?, shelter_id=?, created_at=?", [context,pic,profile,shelter,STR_TO_DATE()],(err,result)=>{
+            if(result){
+                console.log("HELL YEAH!")
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
 })
 
 
