@@ -33,7 +33,7 @@ var storage = multer.diskStorage({
         callBack(null, '../../aapv2/client/public/images/PetProfile')     
     },
     filename: (req, file, callBack) => {
-        callBack(null, `${file.originalname}`)
+        callBack(null, `${file.originalname}`+Date.now())
     }
 })
 
@@ -132,6 +132,12 @@ router.post("/update/w/pic", upload.single('profilepic'),(req,res)=>{
             }
         }
     )
+})
+
+/////////////////////////////////////POST///////////////////////////
+
+router.post("/post/w/pic", upload.single("file"),(req,result) => {
+    const pic = "/images/PetProfile/Post/"+req.file.filename
 })
 
 

@@ -188,7 +188,6 @@ const EditPopUpForm = props => {
         e.preventDefault();
         const formData = new FormData();
         if(croppedImage.current && croppedImage.current.name){
-            console.log("hmm")
             formData.append("profilepic", croppedImage.current, croppedImage.current.name);
             formData.append("id", updatePro.id)
             formData.append("name", updatePro.name)

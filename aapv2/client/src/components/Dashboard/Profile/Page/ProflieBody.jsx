@@ -34,6 +34,7 @@ const Proflie = props => {
                             />
                             <CreatePost
                             profile={profile}
+                            session={session}
                             PostPopUp={postPopUp}
                             />
                             <div className="profileHeader">
