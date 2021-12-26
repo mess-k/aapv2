@@ -1,8 +1,10 @@
 import  React from "react";
 import styled from "styled-components"
-import { useState, useRef } from  "react";
+import { useState } from  "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
+import moment from "moment"
+import {useSpring,animated } from "react-spring"
 
 
 
@@ -46,13 +48,16 @@ const PopUpContent = styled.div`
         overflow-wrap: break-all; 
         
     }
+    .PostHeader{
+        display:flex;
+        justify-content:space-between;
+    }
 `;
 
 const CreatePost = (props) =>{
-    const{profile,session,PostPopUp} = props
+    const{profile,session,PostPopUp,closePopUp,PopUpRef,createPost} = props
     const [upImg, setUpImg] = useState();
     const[fileName, setFileName] = useState("")
-    const imgRef = useRef(null);
     const [preview, setPreview] = useState(null);
 
     const [post, setPost] = useState({
@@ -75,24 +80,31 @@ const CreatePost = (props) =>{
     
     const onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
-            // const reader = new FileReader();
-            // reader.addEventListener("load", () => setUpImg(reader.result));
-            // reader.readAsDataURL(e.target.files[0]);
             setUpImg(e.target.files[0])
             setPreview(URL.createObjectURL(e.target.files[0]));
             setFileName(e.target.files[0].name)
         }
     };
 
+    const animation = useSpring ({
+        config: {
+            duration:250
+        },
+        opacity: PostPopUp ? 1:0,
+        transform: PostPopUp ? `translateY(0%)` : `translateY(-100%)`
+    })
+
     
     const Post = e =>{
         e.preventDefault()
+        const date = moment().format('YYYY-MM-DD HH:mm:ss')
         if(upImg && fileName){
             const formData = new FormData();
             formData.append("postFile", upImg, fileName);
             formData.append("context", post.context);
             formData.append("profile", props.profile[0].id);
             formData.append("shelter", props.session.id );
+            formData.append("date", date);
             console.log(props.session.id)
             axios.post("http://localhost:8000/api/profile/post/w/pic",formData,{
                 headers:{
@@ -107,19 +119,24 @@ const CreatePost = (props) =>{
                 console.log(err)
             })
         }
+        if(!upImg){
+            
+        }
     }
 
 
     return(
         <>
         {
-            PostPopUp ? 
-            <Background>
+            PostPopUp ? (
+            <Background onclick={createPost} ref={PopUpRef}>
+                <animated.div style={animation}>
                 <PopUpWrapper>
                     <PopUpContent>
                     <div className="postBody">
                         <div className="PostHeader">
                             <img src={process.env.PUBLIC_URL+`${profile[0].img_url}`} className="PostHeader" alt="" />
+                            <button className="btn btn-light" value="x" onClick={createPost}>x</button>
                         </div>
                         <form onSubmit={Post}>
                             <textarea 
@@ -141,8 +158,9 @@ const CreatePost = (props) =>{
                     </div>
                     </PopUpContent>
                 </PopUpWrapper>
+                </animated.div>
             </Background>
-        : !PostPopUp
+        ) : !PostPopUp
         }
         </>
     )

@@ -8189,6 +8189,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"moment@^2.29.1":
+  "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
+  "version" "2.29.1"
+
 "move-concurrently@^1.0.1":
   "integrity" "sha1-viwAX9oy4LKa8fBdfEszIUxwH5I="
   "resolved" "https://registry.npmjs.org/move-concurrently/-/move-concurrently-1.0.1.tgz"
@@ -10195,6 +10200,11 @@
   "version" "1.0.8"
   dependencies:
     "prop-types" "^15.7.2"
+
+"react-icons@^4.3.1":
+  "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
+  "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
+  "version" "4.3.1"
 
 "react-image-crop@^9.0.5":
   "integrity" "sha512-J5lbsBMI36GsbkRHXNEo95OjwpxfkUBrEl9Oxb7z5mDC7iamySXYKhkv9QoidkfmI9e8Vj7q3SgNCVfuZHQMQw=="

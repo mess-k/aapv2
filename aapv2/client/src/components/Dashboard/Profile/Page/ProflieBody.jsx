@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Profile.css"
-import {useState} from  "react";
+import {useState,useRef} from "react";
 import Editpop from "../../Popups/EditProfile/EditProfile"
 import CreatePost from "../../Popups/CreatePost/CreatePost"
 
@@ -19,6 +19,13 @@ const Proflie = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
+    const PopUpRef = useRef();
+    
+    const closePopUp = e =>{
+        if(PopUpRef.current === e.target) {
+            setPostPopUp(false)
+        }
+    }
 
     return (
         profile ? 
@@ -36,6 +43,9 @@ const Proflie = props => {
                             profile={profile}
                             session={session}
                             PostPopUp={postPopUp}
+                            closePopUp={closePopUp}
+                            PopUpRef={PopUpRef}
+                            createPost={createPost}
                             />
                             <div className="profileHeader">
                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="petProfilePic"/>
