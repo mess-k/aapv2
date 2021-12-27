@@ -6,8 +6,6 @@ import { navigate } from "@reach/router";
 import moment from "moment"
 import {useSpring,animated } from "react-spring"
 
-
-
 const Background = styled.div`
     width: 100%;
     height: 100%;
@@ -53,9 +51,8 @@ const PopUpContent = styled.div`
         justify-content:space-between;
     }
 `;
-
 const CreatePost = (props) =>{
-    const{profile,session,PostPopUp,closePopUp,PopUpRef,createPost} = props
+    const{profile,session,PostPopUp,PopUpRef,createPost} = props
     const [upImg, setUpImg] = useState();
     const[fileName, setFileName] = useState("")
     const [preview, setPreview] = useState(null);
@@ -63,8 +60,9 @@ const CreatePost = (props) =>{
     const [post, setPost] = useState({
         context: "",
         img_url: "",
-        profile: `${profile[0].id}`,
-        shelter:  `${session.id}`
+        profile: `${props.profile[0].id}`,
+        shelter:  `${session.id}`,
+        date:""
     })
 
     const handleChange = e =>{
@@ -72,11 +70,12 @@ const CreatePost = (props) =>{
         setPost({
             ...setPost,
             [e.target.name]: e.target.value,
-            
+            profile: `${props.profile[0].id}`,
+            shelter:  `${session.id}`,
+            date: moment().format('YYYY-MM-DD HH:mm:ss')
         })
+        console.log(post)
     };
-    
-    
     
     const onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -94,7 +93,6 @@ const CreatePost = (props) =>{
         transform: PostPopUp ? `translateY(0%)` : `translateY(-100%)`
     })
 
-    
     const Post = e =>{
         e.preventDefault()
         const date = moment().format('YYYY-MM-DD HH:mm:ss')
@@ -120,10 +118,13 @@ const CreatePost = (props) =>{
             })
         }
         if(!upImg){
+            e.preventDefault()
+            console.log(post)
+            axios.post("http://localhost:8000/api/profile/post",(post))
+            .then(res => navigate(`/pet/profile/${props.profile[0].id}`))
             
         }
     }
-
 
     return(
         <>

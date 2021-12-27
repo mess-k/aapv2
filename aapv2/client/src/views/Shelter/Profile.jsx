@@ -31,7 +31,6 @@ const Profile = props => {
         });
     }, [props]);
 
-
     return (
         <>
             <SPNav/>

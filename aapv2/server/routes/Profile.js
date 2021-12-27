@@ -65,21 +65,30 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
                 // console.log(result)
             }
         }
-    )
-})
-
-///////////////////////////FIND/////////////////////////////
-
-router.get("/find", (req,res)=>{
-    const proID = req.query.id
-    console.log(proID)
-    db.query(
-        "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
-            if(result){
-                res.send(result)
-                console.log(result)
+        )
+    })
+    
+    ///////////////////////////FIND/////////////////////////////
+    
+    router.get("/find", (req,res)=>{
+        const proID = req.query.id
+        console.log(proID)
+        db.query(
+            "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
+                if(result){
+                    res.send(result)
+                    console.log(result)
+                }
             }
-        }
+            )
+        })
+
+/////////////////////////////////FIND_POSTS///////////////////////////
+
+router.get("/show.posts", (req,res) =>{
+    const proID = req.query.id
+    db.query(
+        "SELECT * FROM posts where "
     )
 })
 
@@ -129,13 +138,35 @@ router.post("/update/w/pic", upload.single('profilepic'),(req,res)=>{
                         if(response)
                         res.send("success!")
                     }
-                )
+                    )
+                }
+            }
+            )
+        })
+        
+/////////////////////////////////////POST///////////////////////////////////////
+
+router.post("/post",(req,res)=>{
+    const context = req.body.context
+    const profile = req.body.profile
+    const shelter = req.body.shelter
+    const date = req.body.date
+    
+    console.log(date)
+    console.log(profile)
+
+
+    db.query(
+        "INSERT INTO posts SET context=?, profile_id=?, shelter_id=?, created_at=?", [context,profile,shelter,date],(err,result)=>{
+            if(result){
+                console.log("HELL YEAH!")
+            }
+            if(err){
+                console.log(err)
             }
         }
     )
 })
-
-/////////////////////////////////////POST///////////////////////////
 
 router.post("/post/w/pic", upload.single("postFile"),(req,result) => {
     const context = req.body.context
@@ -155,6 +186,8 @@ router.post("/post/w/pic", upload.single("postFile"),(req,result) => {
         }
     )
 })
+
+
 
 
 module.exports = router;

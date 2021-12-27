@@ -1,16 +1,23 @@
 import React from 'react';
 import "./Profile.css"
-import {useState,useRef} from "react";
+import {useState,useRef,useEffect} from "react";
 import Editpop from "../../Popups/EditProfile/EditProfile"
 import CreatePost from "../../Popups/CreatePost/CreatePost"
-
-
+import axios from 'axios';
 
 const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
     const[postPopUp,setPostPopUp] = useState(false)
+    const[posts,setPosts] = useState(false)
     const{profile,session} = props
 
+    useEffect(() => {
+        const profileID = props.profile[0].id
+        axios.get('http://localhost:8000/api/profile/show/posts',{params:{id: profileID}})
+        .then( res => {
+            setPosts(res.data.posts)
+        })
+    },[props])
 
     const EditProfileButton = (e)=>{
         setEditPopUp(prev => !prev)
@@ -87,6 +94,9 @@ const Proflie = props => {
                                                     Have anything to share?
                                                 </button>
                                             </div>
+                                        </div>
+                                        <div className="posts">
+                                            
                                         </div>
                                     </div>
                             </div>
