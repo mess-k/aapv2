@@ -61,7 +61,7 @@ const CreatePost = (props) =>{
         context: "",
         img_url: "",
         profile: `${props.profile[0].id}`,
-        shelter:  `${session.id}`,
+        shelter:  `${props.profile[0].uploader_id}`,
         date:""
     })
 
@@ -71,10 +71,9 @@ const CreatePost = (props) =>{
             ...setPost,
             [e.target.name]: e.target.value,
             profile: `${props.profile[0].id}`,
-            shelter:  `${session.id}`,
+            shelter:  `${props.profile[0].uploader_id}`,
             date: moment().format('YYYY-MM-DD HH:mm:ss')
         })
-        console.log(post)
     };
     
     const onSelectFile = (e) => {
@@ -110,8 +109,7 @@ const CreatePost = (props) =>{
                 }
                 })
                 .then((res) => {
-                        navigate("/dashboard")
-                        console.log(profile)
+                    window.location.replace(`/pet/profile/${props.profile[0].id}`)
                 })
             .catch(err => {
                 console.log(err)
@@ -121,7 +119,7 @@ const CreatePost = (props) =>{
             e.preventDefault()
             console.log(post)
             axios.post("http://localhost:8000/api/profile/post",(post))
-            .then(res => navigate(`/pet/profile/${props.profile[0].id}`))
+            .then(res => window.location.replace(`/pet/profile/${props.profile[0].id}`))
             
         }
     }

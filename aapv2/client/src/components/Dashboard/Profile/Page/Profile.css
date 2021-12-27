@@ -30,7 +30,6 @@
     display: flex;
     justify-content: center;
     background-color: #e8e8e8;
-    height: 100vh;
     display: flex;
 }
 .leftPannel{
@@ -78,4 +77,27 @@
     text-align: left;
     width: 100%;
     border-radius: 20px;
+}
+.posts{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffffff;
+    margin: 10px 5px 5px 5px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    border-radius: 5px; 
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 10px;
+}
+.postpic img{
+    max-width: 45px;
+    max-height:45px;
+    border-radius: 50%/50%;;
+    margin: 5px 0px 5px 0px;;
+}
+.postimg img{
+    align-items: center;
+    max-width: 100%;
+    max-height: 100%;
 }

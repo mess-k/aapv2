@@ -34,13 +34,25 @@ var storage = multer.diskStorage({
         callBack(null, '../../aapv2/client/public/images/PetProfile')     
     },
     filename: (req, file, callBack) => {
-        callBack(null, `${file.originalname}`+"-"+Date.now())
+        callBack(null, Date.now()+`${file.originalname}`)
     }
 })
-
 var upload = multer({
     storage: storage
 });
+
+var postStorage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, '../../aapv2/client/public/images/PetProfile/Post')     
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, Date.now()+`${file.originalname}`)
+    }
+})
+var postUpload = multer({
+    storage: postStorage
+});
+
 
 
 ////////////////////CREATE///////////////
@@ -85,10 +97,14 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
 
 /////////////////////////////////FIND_POSTS///////////////////////////
 
-router.get("/show.posts", (req,res) =>{
+router.get("/show/posts", (req,res) =>{
     const proID = req.query.id
     db.query(
-        "SELECT * FROM posts where "
+        "SELECT * FROM posts where profile_id=? ORDER BY id DESC",[proID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+        }
     )
 })
 
@@ -168,7 +184,7 @@ router.post("/post",(req,res)=>{
     )
 })
 
-router.post("/post/w/pic", upload.single("postFile"),(req,result) => {
+router.post("/post/w/pic", postUpload.single("postFile"),(req,result) => {
     const context = req.body.context
     const profile = req.body.profile
     const shelter = req.body.shelter

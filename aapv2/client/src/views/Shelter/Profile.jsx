@@ -11,7 +11,8 @@ axios.defaults.withCredentials = true;
 
 const Profile = props => {
     const [session, setSession] = useState([])
-    const [profile, setProfile] = useState()
+    const [profile, setProfile] = useState([])
+    const[posts,setPosts] = useState([false])
 
 
     useEffect(() => {
@@ -31,6 +32,14 @@ const Profile = props => {
         });
     }, [props]);
 
+    useEffect(() => {
+        const profileID = props.id
+        axios.get('http://localhost:8000/api/profile/show/posts',{params:{id: profileID}})
+        .then( res => {
+            setPosts(res.data)
+        })
+    },[props])
+
     return (
         <>
             <SPNav/>
@@ -39,6 +48,7 @@ const Profile = props => {
             <Pro
             profile={profile}
             session={session}
+            posts={posts}
             />
         </> 
     );

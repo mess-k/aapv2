@@ -8,16 +8,8 @@ import axios from 'axios';
 const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
     const[postPopUp,setPostPopUp] = useState(false)
-    const[posts,setPosts] = useState(false)
-    const{profile,session} = props
+    const{profile,session,posts} = props
 
-    useEffect(() => {
-        const profileID = props.profile[0].id
-        axios.get('http://localhost:8000/api/profile/show/posts',{params:{id: profileID}})
-        .then( res => {
-            setPosts(res.data.posts)
-        })
-    },[props])
 
     const EditProfileButton = (e)=>{
         setEditPopUp(prev => !prev)
@@ -76,8 +68,6 @@ const Proflie = props => {
                                                 >
                                                     Edit
                                                 </button>
-                                                <>
-                                                </>
                                             </div>
                                         </div>
                                     </div>
@@ -95,9 +85,30 @@ const Proflie = props => {
                                                 </button>
                                             </div>
                                         </div>
-                                        <div className="posts">
-                                            
-                                        </div>
+                                        {
+                                        posts ?
+                                        <div className="postPannel">
+                                            {
+                                                posts.map((post,y) =>{
+                                                    return(
+                                                        <div className="posts" key={y}>
+                                                            <div className="postpic">
+                                                                <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                                            </div>
+                                                            <div className="postcontext">
+                                                                <p>
+                                                                    {post.context}
+                                                                </p>
+                                                            </div>
+                                                            <div className="postimg">
+                                                                <img src={process.env.PUBLIC_URL+`${post.img_url}`} alt="" />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>: !posts
+                                        }
                                     </div>
                             </div>
                         </div>
