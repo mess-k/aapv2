@@ -8,7 +8,7 @@ import ReactCrop from 'react-image-crop';
 const pixelRatio = 1.0;
 
 const SPicForm = props => {
-    const [session, setSession] = useState([])
+    const {session} = props
     const [upImg, setUpImg] = useState();
     const[filenName, setFileName] = useState()
     const imgRef = useRef(null);
@@ -91,7 +91,6 @@ const SPicForm = props => {
 
         axios.put("http://localhost:8000/api/shelter/edit/uploadPic",formData)
             .then(res=> {
-                setSession(res.data.final)
                 navigate('/dashboard')
             })
             .catch(err =>{

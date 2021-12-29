@@ -88,7 +88,7 @@ const PopUpContent = styled.div`
 `;
 
 const EditPopUpForm = props => {
-    const {profile,session} = props
+    const {profile} = props
     const [updatePro, setUpdatePro] = useState({
         id:`${props.profile[0].id}`,
         name:`${props.profile[0].name}`,

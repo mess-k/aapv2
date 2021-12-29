@@ -3,26 +3,18 @@ import React from 'react';
 import SPNav from "../../components/Nav/SPNav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
-import Pro from "../../components/Dashboard/Profile/Page/ProflieBody"
+import Pro from "../../components/Profile/Page/ProflieBody"
 import Page from "../../Style/PageBody"
 
 axios.defaults.withCredentials = true;
 
 
 const Profile = props => {
-    const [session, setSession] = useState([])
     const [profile, setProfile] = useState([])
-    const[posts,setPosts] = useState([false])
+    const[posts,setPosts] = useState([])
+    const {session} = props
 
-
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/shelter/login`)
-        .then((res) => {
-            if (res.data.loggedIn === true) {
-                setSession(res.data.shelter[0]);
-            }
-        });
-    }, [props]);
+    console.log(session)
 
     useEffect(() => {
         const profileID = props.id

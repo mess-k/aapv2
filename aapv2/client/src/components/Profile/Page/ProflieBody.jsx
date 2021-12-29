@@ -1,9 +1,9 @@
 import React from 'react';
 import "./Profile.css"
-import {useState,useRef,useEffect} from "react";
-import Editpop from "../../Popups/EditProfile/EditProfile"
-import CreatePost from "../../Popups/CreatePost/CreatePost"
-import axios from 'axios';
+import {useState} from "react";
+import Editpop from "../../Dashboard/Popups/EditProfile/EditProfile"
+import CreatePost from "../../Dashboard/Popups/CreatePost/CreatePost"
+// import axios from 'axios';
 
 const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
@@ -17,13 +17,6 @@ const Proflie = props => {
     const createPost = e =>{
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
-    }
-    const PopUpRef = useRef();
-    
-    const closePopUp = e =>{
-        if(PopUpRef.current === e.target) {
-            setPostPopUp(false)
-        }
     }
 
     return (
@@ -42,8 +35,8 @@ const Proflie = props => {
                             profile={profile}
                             session={session}
                             PostPopUp={postPopUp}
-                            closePopUp={closePopUp}
-                            PopUpRef={PopUpRef}
+                            // closePopUp={closePopUp}
+                            // PopUpRef={PopUpRef}
                             createPost={createPost}
                             />
                             <div className="profileHeader">

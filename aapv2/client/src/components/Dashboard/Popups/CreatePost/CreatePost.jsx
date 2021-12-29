@@ -2,7 +2,6 @@ import  React from "react";
 import styled from "styled-components"
 import { useState } from  "react";
 import axios from "axios";
-import { navigate } from "@reach/router";
 import moment from "moment"
 import {useSpring,animated } from "react-spring"
 
@@ -52,7 +51,7 @@ const PopUpContent = styled.div`
     }
 `;
 const CreatePost = (props) =>{
-    const{profile,session,PostPopUp,PopUpRef,createPost} = props
+    const{profile,PostPopUp,PopUpRef,createPost} = props
     const [upImg, setUpImg] = useState();
     const[fileName, setFileName] = useState("")
     const [preview, setPreview] = useState(null);

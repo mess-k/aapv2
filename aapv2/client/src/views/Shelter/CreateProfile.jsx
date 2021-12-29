@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import SNav from "../../components/Nav/SNav"
 import { useState, useRef, useEffect } from  "react";
-import ProForm from "../../components/Dashboard/Profile/ProfileForm/ProfileForm"
+import ProForm from "../../components/Profile/Form/ProfileForm"
 import { navigate } from '@reach/router';
 import Page from "../../Style/PageBody"
 

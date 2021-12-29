@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const ProfilePannel = props => {
-    const [session, setSession] = useState([])
+    const {session}=props
     const [profiles, setProfiles]=useState([])
 
 
@@ -14,10 +14,7 @@ const ProfilePannel = props => {
         axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession([res.data.shelter[0]]);
                 setProfiles(res.data.profiles)
-                // console.log(session)
-                // console.log(profiles)
             }
         });
     }, [props]);

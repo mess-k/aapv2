@@ -3,12 +3,11 @@ import React from 'react';
 import SNav from "../../components/Nav/SNav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
-import SP from "../../components/Dashboard/Shelter/Pannel/ShelterPanel"
-import PP from "../../components/Dashboard/Profile/Pannel/ProfilePannel"
+import SP from "../../components/Dashboard/Shelter/Page/Dashpage"
+// import PP from "../../components/Profile/Pannel/ProfilePannel.jsx"
 import Page from "../../Style/PageBody"
 
 axios.defaults.withCredentials = true;
-
 
 const Dashboard = props => {
     const [session, setSession] = useState([])
@@ -22,7 +21,6 @@ const Dashboard = props => {
         });
     }, [props]);
 
-
     return (
         <>
             <SNav/>
@@ -31,11 +29,11 @@ const Dashboard = props => {
             <SP
             session={session}   
             />
-            <PP
+            {/* <PP
             session={session}
-            />
+            /> */}
         </> 
-);
+    )
 }
 
 export default Dashboard;
