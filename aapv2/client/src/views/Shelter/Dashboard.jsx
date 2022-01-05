@@ -11,6 +11,19 @@ axios.defaults.withCredentials = true;
 
 const Dashboard = props => {
     const [session, setSession] = useState([])
+    const[posts,setPosts] = useState([])
+    const [profiles, setProfiles]=useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/shelter/login`)
+        .then((res) => {
+            if (res.data.loggedIn === true) {
+                setProfiles(res.data.profiles)
+            }
+        });
+    }, [props]);
+
+    console.log(session)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
@@ -21,13 +34,23 @@ const Dashboard = props => {
         });
     }, [props]);
 
+    useEffect(() => {
+        const shelterID = session.id
+        axios.get('http://localhost:8000/api/shelter/show/posts',{params:{id: shelterID}})
+        .then( res => {
+            setPosts(res.data)
+        })
+    },[session])
+
     return (
         <>
             <SNav/>
             <Page>
             </Page>
             <SP
-            session={session}   
+            posts={posts}
+            session={session}
+            profiles={profiles}
             />
             {/* <PP
             session={session}

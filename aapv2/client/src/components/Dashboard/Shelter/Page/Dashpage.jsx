@@ -1,15 +1,18 @@
 import SP from "../../Shelter/Pannel/ShelterPanel"
 import PP from "../../../Profile/Pannel/ProfilePannel"
-import "../../../Profile/Page/Profile.css"
+import "./Dashpage.css"
 import {useEffect,useState} from  "react";
 import axios from 'axios';
 import {Link} from "@reach/router"
+import ShelterPost from "../../Popups/CreatePost/ShelterPost"
 
 
 
 const Dashpage = props => {
-    const {session} = props
+    const {session,posts} = props
     const [profiles, setProfiles]=useState([])
+    const[postPopUp,setPostPopUp] = useState(false)
+    // const [editShelter, setEditShelter] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
@@ -21,15 +24,30 @@ const Dashpage = props => {
     }, [props]);
 
 
+    // const editShelterButton = e =>{
+    //     setEditShelter(prev => !prev)
+    // }
+
+    const createPost = e =>{
+        setPostPopUp(prev => !prev)
+        console.log(postPopUp)
+    }
+
+
     return(
         session ?  
         <div>
-            <div className="profileHeader">
-                <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" className="petProfilePic"/>
-                <h1 className="petName">{session.name}</h1>
+            <ShelterPost
+            session={session}
+            createPost={createPost}
+            PostPopUp={postPopUp}
+            />
+            <div className="shelterHeader">
+                <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" className="shelterProfilePic"/>
+                <h1 className="shelterName">{session.name}</h1>
                 <div className="borderBottom"></div>
             </div>
-            <div className="profileBody">
+            <div className="shelterBody">
                 <div className="leftPannel">
                     <div className="infoCard">
                         <div className="about">
@@ -38,9 +56,11 @@ const Dashpage = props => {
                         <div className="info">
                             <h4>{session.email}</h4>
                             <button 
+                            session={session}
+                            // editShelter={editShelter}
                             // profile = {profile}
                             className="btn btn-info" 
-                            // onClick={EditProfileButton}
+                            // onClick={editShelterButton}
                             >
                                 Edit
                             </button>
@@ -53,6 +73,7 @@ const Dashpage = props => {
                                     <div className="singlepro" key = {k}>
                                         <Link to={`/pet/profile/${p.id}`}
                                         profiles={profiles}
+                                        session={session}
                                         >
                                             <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="profilepannelpic"/>
                                             <h6>{p.name}</h6>
@@ -70,15 +91,15 @@ const Dashpage = props => {
                         </div>
                         <div className="postInput">
                             <button
-                            // session={session}
+                            session={session}
                             // profile={profile}
-                            // onClick={createPost}
+                            onClick={createPost}
                             >
                                 Have anything to share?
                             </button>
                         </div>
                     </div>
-                    {/* {
+                    {
                     posts ?
                     <div className="postPannel">
                         {
@@ -86,7 +107,7 @@ const Dashpage = props => {
                                 return(
                                     <div className="posts" key={y}>
                                         <div className="postpic">
-                                            <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                            <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
                                         </div>
                                         <div className="postcontext">
                                             <p>
@@ -101,7 +122,7 @@ const Dashpage = props => {
                             })
                         }
                     </div>: !posts
-                    } */}
+                    }
                 </div>
             </div>
         </div>

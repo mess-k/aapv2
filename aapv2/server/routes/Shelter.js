@@ -204,7 +204,7 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
 })
 
 
-///////////////////////////FIND/////////////////////////////
+///////////////////////////FIND  PROFILES/////////////////////////////
 
 router.get("/find", (req,res)=>{
     if (req.session.shelter){
@@ -222,6 +222,19 @@ router.get("/find", (req,res)=>{
     else{
         console.log("problem  209")
     }
+})
+
+////////////////////FIND POSTS///////////////////
+
+router.get("/show/posts", (req,res) =>{
+    const shelterID = req.query.id
+    db.query(
+        "SELECT * FROM posts where shelter_id=? ORDER BY id DESC",[shelterID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+        }
+    )
 })
 
 module.exports = router;
