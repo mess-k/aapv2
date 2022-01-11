@@ -192,7 +192,7 @@ router.post("/post/w/pic", postUpload.single("postFile"),(req,result) => {
     const pic = "/images/PetProfile/Post/"+req.file.filename
 
     db.query(
-        "INSERT INTO posts SET context=?, img_url=?, profile_id=?, shelter_id=?, created_at=?", [context,pic,profile,shelter,date],(err,result)=>{
+        "INSERT INTO posts SET context=?, post_url=?, profile_id=?, shelter_id=?, created_at=?", [context,pic,profile,shelter,date],(err,result)=>{
             if(result){
                 console.log("HELL YEAH!")
             }

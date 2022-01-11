@@ -94,7 +94,7 @@ const Proflie = props => {
                                                                 </p>
                                                             </div>
                                                             <div className="postimg">
-                                                                <img src={process.env.PUBLIC_URL+`${post.img_url}`} alt="" />
+                                                                <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                                             </div>
                                                         </div>
                                                     )

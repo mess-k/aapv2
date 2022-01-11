@@ -1,10 +1,9 @@
-import SP from "../../Shelter/Pannel/ShelterPanel"
-import PP from "../../../Profile/Pannel/ProfilePannel"
 import "./Dashpage.css"
 import {useEffect,useState} from  "react";
 import axios from 'axios';
 import {Link} from "@reach/router"
 import ShelterPost from "../../Popups/CreatePost/ShelterPost"
+import ShelterEdit from "../Edit/SPEdit"
 
 
 
@@ -12,7 +11,7 @@ const Dashpage = props => {
     const {session,posts} = props
     const [profiles, setProfiles]=useState([])
     const[postPopUp,setPostPopUp] = useState(false)
-    // const [editShelter, setEditShelter] = useState(false)
+    const [editShelter, setEditShelter] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
@@ -23,16 +22,14 @@ const Dashpage = props => {
         });
     }, [props]);
 
-
-    // const editShelterButton = e =>{
-    //     setEditShelter(prev => !prev)
-    // }
+    const editShelterButton = e =>{
+        setEditShelter(prev => !prev)
+    }
 
     const createPost = e =>{
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
-
 
     return(
         session ?  
@@ -41,6 +38,11 @@ const Dashpage = props => {
             session={session}
             createPost={createPost}
             PostPopUp={postPopUp}
+            />
+            <ShelterEdit
+            session={[session]}
+            editShelter={editShelter}
+            editShelterButton={editShelterButton}
             />
             <div className="shelterHeader">
                 <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" className="shelterProfilePic"/>
@@ -57,10 +59,10 @@ const Dashpage = props => {
                             <h4>{session.email}</h4>
                             <button 
                             session={session}
-                            // editShelter={editShelter}
+                            editShelter={editShelter}
                             // profile = {profile}
                             className="btn btn-info" 
-                            // onClick={editShelterButton}
+                            onClick={editShelterButton}
                             >
                                 Edit
                             </button>
@@ -107,7 +109,8 @@ const Dashpage = props => {
                                 return(
                                     <div className="posts" key={y}>
                                         <div className="postpic">
-                                            <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
+                                            <img src={post.img_url ? post.img_url : session.img_url} alt="" />
+                                            <h3>{post.name ? post.name : session.name}</h3>
                                         </div>
                                         <div className="postcontext">
                                             <p>
@@ -115,7 +118,7 @@ const Dashpage = props => {
                                             </p>
                                         </div>
                                         <div className="postimg">
-                                            <img src={process.env.PUBLIC_URL+`${post.img_url}`} alt="" />
+                                            <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                         </div>
                                     </div>
                                 )
@@ -126,9 +129,8 @@ const Dashpage = props => {
                 </div>
             </div>
         </div>
-        
         : !session
-        )
+    )
 }
 
 export default Dashpage

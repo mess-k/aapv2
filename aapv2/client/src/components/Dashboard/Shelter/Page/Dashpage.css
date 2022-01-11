@@ -116,6 +116,13 @@
     border: 1px solid rgba(0,0,0,.125);
     padding: 10px;
 }
+.posts .postpic {
+    display: flex;
+}
+.postpic h3{
+    display: flex;
+    align-items: center;
+}
 .postpic img{
     max-width: 45px;
     max-height:45px;

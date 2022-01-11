@@ -1,6 +1,6 @@
 import React from 'react';
 // import {Router} from "@reach/router";
-import SNav from "../../components/Nav/SNav"
+import SNav from "../../components/Nav/SPNav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
 import SP from "../../components/Dashboard/Shelter/Page/Dashpage"
