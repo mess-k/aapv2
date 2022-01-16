@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import { useState, useRef } from  "react";
 import axios from "axios";
-import { navigate } from "@reach/router";
 import ReactCrop from 'react-image-crop';
 
 const Background = styled.div`
@@ -88,13 +87,14 @@ const PopUpContent = styled.div`
 `;
 
 const EditPopUpForm = props => {
-    const {session,editShelter} = props
-    const [updatePro, setUpdatePro] = useState({
-        name:`${session.name}`,
-        email:`${session.email}`,
-        password:`${session.passwprd}`,
-        img_url:`${session.img_url}`
+    const {session} = props
+    const [updateShelter, setUpdateShelter] = useState({
+        name:`${session[0].name}`,
+        email:`${props.session[0].email}`,
+        id:`${props.session[0].id}`,
+        img_url:`${session[0].img_url}`
     })
+
     const [upImg, setUpImg] = useState();
     const[filenName, setFileName] = useState()
     const imgRef = useRef(null);
@@ -171,12 +171,12 @@ const EditPopUpForm = props => {
 
     const handleChange = e =>{
         e.preventDefault()
-        setUpdatePro({
-            ...updatePro,
+        setUpdateShelter({
+            ...updateShelter,
             [e.target.name]: e.target.value,
             
         })
-        console.log(updatePro)
+        console.log(updateShelter)
     };
 
     
@@ -187,121 +187,103 @@ const EditPopUpForm = props => {
         const formData = new FormData();
         if(croppedImage.current && croppedImage.current.name){
             formData.append("profilepic", croppedImage.current, croppedImage.current.name);
-            formData.append("name", updatePro.name)
-            formData.append("age", updatePro.email)
-            formData.append("type", updatePro.password)
-            axios.post("http://localhost:8000/api/shelter/edit/uploadpic",formData,{
+            formData.append("name", updateShelter.name)
+            formData.append("age", updateShelter.email)
+            formData.append("type", updateShelter.password)
+            axios.put("http://localhost:8000/api/shelter/edit/uploadpic",formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
                 })
                 .then((res) => {
-                        navigate("/dashboard")
-                        console.log(session)
+                    window.location.replace(`/dashboard`)
+                    console.log(session)
                 })
             .catch(err => {
                 console.log(err)
             })
         }
         else{
-            console.log(updatePro)
-            axios.post("http://localhost:8000/api/profile/update",updatePro)
+            console.log(updateShelter)
+            axios.put("http://localhost:8000/api/shelter/edit",updateShelter)
                 .then(res => {
-                    navigate(`/pet/profile/${updatePro.id}`)
+                    window.location.replace(`/dashboard`)
                 })
             
         }
     }
 
     return(
-        editShelter?
-        <>
-            <Background>
-                {
-                    props.session.map((s,k) =>{
-                        return(
-                        <PopUpWrapper  key={k}>
-                            <h1>Update {s.name}'s profile </h1>
-                                <form onSubmit={submitEdit} key={k}>  
-                                <PopUpContent>
-                                    <div className="upbox">
-                                        <div className="upinfo">
-                                            <div className="uptext">
-                                                <label htmlFor="type">Type:</label>
-                                                <select name="type" value={updatePro.type} onChange={handleChange} className="">
-                                                    <option value="" onChange={handleChange}></option>
-                                                    <option value="Cat" onChange={handleChange}>Cat</option>
-                                                    <option value="Dog" onChange={handleChange}>Dog</option>
-                                                    <option value="Other" onChange={handleChange}>Other</option>
-                                                </select>
-                                                <label htmlFor="name">Name:</label>
-                                                <input 
-                                                    type="text"
-                                                    name="name"
-                                                    placeholder={s.name}
-                                                    onChange={handleChange}
-                                                    value={updatePro.name}
-                                                    className="inputs"
-                                                />
-                                                <label htmlFor="age">Age:</label>
-                                                <input 
-                                                    type="text"
-                                                    name="age"
-                                                    onChange={handleChange}
-                                                    value={updatePro.age}
-                                                    className="inputs"
-                                                />
-                                                <label htmlFor="description">Description:</label>
-                                                <textarea
-                                                    type="text"
-                                                    name="desc"
-                                                    onChange={handleChange}
-                                                    value={updatePro.desc}
-                                                    rows="5"
-                                                    className="inputs"
-                                                />
-                                                <label htmlFor="name">Preview:</label>
-                                                <canvas
-                                                    ref={previewCanvasRef}
-                                                />
-                                            </div>
-                                            <div className="uppic">
-                                                <input 
-                                                    type="file" 
-                                                    name="image" 
-                                                    placeholder={s.img_url}
-                                                    accept="image/*" 
-                                                    multiple={false} 
-                                                    onChange={onSelectFile} 
-                                                    
-                                                    />
-                                                <ReactCrop
-                                                    // name="image"
-                                                    src={upImg}
-                                                    onImageLoaded={onLoad}
-                                                    crop={crop}
-                                                    onChange={(c) => setCrop(c)}
-                                                    onComplete={onCropComplete}
-                                                    />
-                                                <input
-                                                    type="hidden" 
-                                                    name="id"  
-                                                    value={s.id}
-                                                    ref={x => {x = `${s.id}`}}
-                                                    />
-                                            </div>
+        <Background>
+            {
+                session.map((s,k) =>{
+                    return(
+                    <PopUpWrapper key={k}>
+                        <h1>Update {s.name}'s profile </h1>
+                            <form onSubmit={submitEdit}>  
+                            <PopUpContent>
+                                <div className="upbox" >
+                                    <div className="upinfo">
+                                        <div className="uptext">
+                                            <label htmlFor="name">Shelter Name:</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                placeholder={s.name}
+                                                onChange={handleChange}
+                                                value={updateShelter.name}
+                                                className="inputs"
+                                            />
+                                            <label htmlFor="age">Email:</label>
+                                            <input 
+                                                type="text"
+                                                name="email"
+                                                placeholder={s.email}
+                                                onChange={handleChange}
+                                                value={updateShelter.email}
+                                                className="inputs"
+                                            />
+                                            <label htmlFor="name">Preview:</label>
+                                            <canvas
+                                                ref={previewCanvasRef}
+                                            />
                                         </div>
-                                        <div>
-                                            <input type="submit" value="Create!" className="btn btn-info"/>
+                                        <div className="uppic">
+                                            <input 
+                                                type="file" 
+                                                name="image" 
+                                                placeholder={session.img_url}
+                                                accept="image/*" 
+                                                multiple={false} 
+                                                onChange={onSelectFile} 
+                                                
+                                                />
+                                            <ReactCrop
+                                                // name="image"
+                                                src={upImg}
+                                                onImageLoaded={onLoad}
+                                                crop={crop}
+                                                onChange={(c) => setCrop(c)}
+                                                onComplete={onCropComplete}
+                                                />
+                                            <input
+                                                type="hidden" 
+                                                name="id"  
+                                                value={session.id}
+                                                ref={x => {x = `${session.id}`}}
+                                                />
                                         </div>
                                     </div>
-                                </PopUpContent>
-                            </form>
-                        </PopUpWrapper>
-                    )
-                })}
-            </Background>
-        </> :!editShelter
+                                    <div>
+                                        <input type="submit" value="Create!" className="btn btn-info"/>
+                                    </div>
+                                </div>
+                            </PopUpContent>
+                        </form>
+                    </PopUpWrapper>
+                )
+            })}
+        </Background>
     )
 }
 

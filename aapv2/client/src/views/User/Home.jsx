@@ -3,7 +3,8 @@ import React from 'react';
 import Nav from "../../components/Nav/Nav"
 import {useState,useEffect} from  "react";
 import axios from "axios";
-import UP from "../../components/HomePage/UserPanel"
+import UP from "../../components/HomePage/HomeBody"
+import Page from "../../Style/PageBody"
 
 axios.defaults.withCredentials = true;
 
@@ -25,6 +26,8 @@ const Home = props => {
     return (
         <>
             <Nav/>
+            <Page>
+            </Page>
             <UP
             session={session}
             />

@@ -21,9 +21,6 @@ router.use(
         secret: `${sessionKey}`,
         resave: false,
         saveUninitialized: false,
-        cookie: {
-        expires: 60 * 60 * 24,
-        },
     })
 );
 
@@ -196,10 +193,5 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
         )
     }
 })
-
-
-
-
-
 
 module.exports = router;

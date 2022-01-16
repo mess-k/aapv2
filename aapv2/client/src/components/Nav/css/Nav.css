@@ -3,7 +3,7 @@
     height: 90px;
     background-color: #93d5fc;
     display: flex;
-    box-shadow: 2px 1px 3px #618faa;
+    /* box-shadow: 2px 1px 3px #618faa; */
     justify-content: space-between;
     align-items: center;
     position: fixed;

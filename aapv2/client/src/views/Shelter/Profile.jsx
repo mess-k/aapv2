@@ -12,10 +12,10 @@ axios.defaults.withCredentials = true;
 const Profile = props => {
     const [profile, setProfile] = useState([])
     const[posts,setPosts] = useState([])
-    const {session,profiles} = props
+    const {session} = props
 
     console.log(session)
-    console.log(profiles)
+
 
     useEffect(() => {
         const profileID = props.id

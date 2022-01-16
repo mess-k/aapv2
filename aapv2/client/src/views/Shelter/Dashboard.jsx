@@ -23,8 +23,6 @@ const Dashboard = props => {
         });
     }, [props]);
 
-    console.log(session)
-
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {

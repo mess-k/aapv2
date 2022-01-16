@@ -1,13 +1,13 @@
-import "./Dashpage.css"
+import "./HomeBody.css"
 import {useEffect,useState} from  "react";
 import axios from 'axios';
 import {Link} from "@reach/router"
-import ShelterPost from "../../Popups/CreatePost/ShelterPost"
-import ShelterEdit from "../Edit/ShelterEdit"
+// import ShelterPost from "../../Popups/CreatePost/ShelterPost"
+// import ShelterEdit from "../Edit/ShelterEdit"
 
 
 
-const Dashpage = props => {
+const HomeBody = props => {
     const {posts} = props
     const [profiles, setProfiles]=useState([])
     const [session, setSession]=useState([])
@@ -15,11 +15,11 @@ const Dashpage = props => {
     const [editShelter, setEditShelter] = useState(false)
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/shelter/login`)
+        axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.shelter[0])
-                setProfiles(res.data.profiles)
+                setSession(res.data.user[0])
+                // setProfiles(res.data.profiles)
             }
         });
     }, [props]);
@@ -36,7 +36,7 @@ const Dashpage = props => {
     return(
         session ?  
         <div>
-            <ShelterPost
+            {/* <ShelterPost
             session={session}
             createPost={createPost}
             PostPopUp={postPopUp}
@@ -45,10 +45,10 @@ const Dashpage = props => {
             session={[session]}
             editShelter={editShelter}
             editShelterButton={editShelterButton}
-            />
+            /> */}
             <div className="shelterHeader">
                 <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" className="shelterProfilePic"/>
-                <h1 className="shelterName">{session.name}</h1>
+                <h1 className="shelterName">{session.first_name} {session.last_name}</h1>
                 <div className="borderBottom"></div>
             </div>
             <div className="shelterBody">
@@ -134,4 +134,4 @@ const Dashpage = props => {
     )
 }
 
-export default Dashpage
+export default HomeBody

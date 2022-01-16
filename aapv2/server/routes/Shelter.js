@@ -107,10 +107,8 @@ router.post("/login", (req, res) => {
 
 router.put("/edit", (req,res) => {
     
-    const shelterName = req.body.shelterName;
+    const shelterName = req.body.name;
     const email = req.body.email;
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword
 
     if (req.session.shelter){
         db.query(
@@ -121,33 +119,26 @@ router.put("/edit", (req,res) => {
                     console.log("email exists");
                 }
                 if(result.length > 0 ){
-                    if (password == confirmPassword) {
-                        bcrypt.hash(password, saltRounds, (err, hash) => {
-                            if (err) {
-                                console.log("after hash before query");
+                    db.query(
+                        "UPDATE shelters SET name=?, email=? WHERE id = ?;",[shelterName,email,req.session.shelter[0].id],
+                        (err, results)=>{
+                            if(err){
+                            console.log(err)
+                            res.send(results)
                             }
-                            db.query(
-                                "UPDATE shelters SET name=?, email=?, password=? WHERE id = ?;",[shelterName,email,hash,req.session.shelter[0].id],
-                                (err, results)=>{
-                                    if(err){
-                                    console.log(err)
-                                    res.send(results)
+                            if(results){
+                                db.query(
+                                    "SELECT * FROM shelters WHERE id = ?",req.session.shelter[0].id, (err,results)=>{
+                                        if(err){
+                                        }
+                                        req.session.shelter = results;
+                                        console.log(results);
+                                        res.send(result);
                                     }
-                                    if(results){
-                                        db.query(
-                                            "SELECT * FROM shelters WHERE id = ?",req.session.shelter[0].id, (err,results)=>{
-                                                if(err){
-                                                }
-                                                req.session.shelter = results;
-                                                console.log(results);
-                                                res.send(result);
-                                            }
-                                        )
-                                    }
-                                }
-                            )
-                        })
-                    }
+                                )
+                            }
+                        }
+                    )
                 }
             }
         )
@@ -172,6 +163,10 @@ var upload = multer({
 
 router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
     const imgsrc = "/images/Shelter/ShelterPic/"+req.file.filename
+    const shelterName = req.body.shelterName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword
 
     if (req.session.shelter){
         db.query(

@@ -1,23 +1,21 @@
 import React from "react"
-import EditPopUpForm from "./EditPopUpForm"
+import SPEdit from "./SPEdit"
 
 const EditProfile = (props) => {
-    const {editPopUp,profile,session} = props
+    const {editShelter,session} = props
     
     return(  
         <>      
         {
-            editPopUp ?
+            editShelter ?
             <div>
-            <EditPopUpForm
-            profile={profile}
+            <SPEdit
             session={session}
             />
             </div>
-            : !editPopUp
+            : !editShelter
         }
         </>
     )
 }
-
 export default EditProfile
