@@ -87,7 +87,7 @@ router.post("/login", (req, res) => {
             bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
                 req.session.user = result;
-                console.log(req.session.user);
+                // console.log(req.session.user);
                 res.send(result);
             } else {
                 res.send ({ EPMessage: "Wrong email/password combination!" });
@@ -133,7 +133,7 @@ router.put("/edit", (req,res) => {
                                                 if(err){
                                                 }
                                                 req.session.user = results;
-                                                console.log(results);
+                                                // console.log(results);
                                                 res.send(result);
                                             }
                                         )
@@ -182,8 +182,8 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                             }
                             if(result){
                                         req.session.user = results;
-                                        console.log(result);
-                                        console.log(results);
+                                        // console.log(result);
+                                        // console.log(results);
                                         res.send(result);
                             }
                         }
@@ -192,6 +192,40 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
             }
         )
     }
+})
+
+///////////////////////////////LIKES//////////////////////////////
+
+router.post("/like",(req,res) =>{
+    const postID = req.body.postID;
+    const userID = req.session.user[0].id
+
+    db.query(
+        "INSERT INTO likes SET post_id=?, user_id=?;",[postID,userID],(err,result)=>{
+            if(result){
+                console.log("like")
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+
+router.post("/find/like", (req,res) => {
+    const postID = req.body;
+    const userID = req.session.user[0].id
+    console.log(postID)
+    // console.log(userID)
+
+    db.query(
+        "SELECT * FROM likes WHERE post_id IN (?)", [postID],(err,result)=>{
+            if(result){
+                console.log(result)
+            }
+        }
+    )
 })
 
 module.exports = router;

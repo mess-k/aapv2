@@ -12,7 +12,7 @@ const HomeBody = props => {
     const [profiles, setProfiles]=useState([])
     const [session, setSession]=useState([])
     const[postPopUp,setPostPopUp] = useState(false)
-    const [editShelter, setEditShelter] = useState(false)
+    // const [editShelter, setEditShelter] = useState(false)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -23,10 +23,18 @@ const HomeBody = props => {
             }
         });
     }, [props]);
+    
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/profile/find/random`)
+        .then((res) => {
+                setProfiles(res.data)
+            
+        });
+    }, [props]);
 
-    const editShelterButton = e =>{
-        setEditShelter(prev => !prev)
-    }
+    // const editShelterButton = e =>{
+    //     setEditShelter(prev => !prev)
+    // }
 
     const createPost = e =>{
         setPostPopUp(prev => !prev)
@@ -63,7 +71,7 @@ const HomeBody = props => {
                             session={session}
                             // profile = {profile}
                             className="btn btn-info" 
-                            onClick={editShelterButton}
+                            // onClick={editShelterButton}
                             >
                                 Edit
                             </button>
@@ -74,7 +82,7 @@ const HomeBody = props => {
                             profiles.map((p,k) => {
                                 return (
                                     <div className="singlepro" key = {k}>
-                                        <Link to={`/pet/profile/${p.id}`}
+                                        <Link to={`/profile/view/${p.id}`}
                                         profiles={profiles}
                                         session={session}
                                         >

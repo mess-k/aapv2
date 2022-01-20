@@ -84,12 +84,12 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     
     router.get("/find", (req,res)=>{
         const proID = req.query.id
-        console.log(proID)
+        // console.log(proID)
         db.query(
             "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
                 if(result){
                     res.send(result)
-                    console.log(result)
+                    // console.log(result)
                 }
             }
             )
@@ -168,8 +168,8 @@ router.post("/post",(req,res)=>{
     const shelter = req.body.shelter
     const date = req.body.date
     
-    console.log(date)
-    console.log(profile)
+    // console.log(date)
+    // console.log(profile)
 
 
     db.query(
@@ -203,7 +203,22 @@ router.post("/post/w/pic", postUpload.single("postFile"),(req,result) => {
     )
 })
 
+////////////////////////PROFILE FIND//////////////////////////
 
+router.get("/find/random",(req,res)=>{
+
+    db.query(
+        "SELECT * FROM profiles ORDER by RAND() LIMIT 6",(err,result)=>{
+            if (result){
+                res.send(result)
+                // console.log(result)
+            }
+            else{
+                console.log(err)
+            }
+        }
+    )
+})
 
 
 module.exports = router;

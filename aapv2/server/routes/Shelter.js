@@ -223,7 +223,7 @@ router.get("/find", (req,res)=>{
 router.get("/show/posts", (req,res) =>{
     const shelterID = req.query.id
     db.query(
-        "SELECT * FROM posts LEFT JOIN profiles ON profiles.id = profile_id ORDER BY posts.id DESC",[shelterID],(err,result)=>{
+        "SELECT * FROM posts LEFT JOIN profiles ON profiles.id = profile_id WHERE shelter_id=? ORDER BY posts.id DESC",[shelterID],(err,result)=>{
             if(result){
                 res.send(result)
                 console.log(result)

@@ -1,6 +1,6 @@
 import  React from "react";
 import styled from "styled-components"
-import { useState } from  "react";
+import { useState, useEffect } from  "react";
 import axios from "axios";
 import moment from "moment"
 import {useSpring,animated } from "react-spring"
@@ -55,6 +55,16 @@ const CreatePost = (props) =>{
     const [upImg, setUpImg] = useState();
     const[fileName, setFileName] = useState("")
     const [preview, setPreview] = useState(null);
+    const [session, setSession]=useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/shelter/login`)
+        .then((res) => {
+            if (res.data.loggedIn === true) {
+                setSession(res.data.shelter[0])
+            }
+        });
+    }, [props]);
 
     const [post, setPost] = useState({
         context: "",
@@ -99,9 +109,8 @@ const CreatePost = (props) =>{
             formData.append("postFile", upImg, fileName);
             formData.append("context", post.context);
             formData.append("profile", props.profile[0].id);
-            formData.append("shelter", props.session.id );
+            formData.append("shelter", session.id );
             formData.append("date", date);
-            console.log(props.session.id)
             axios.post("http://localhost:8000/api/profile/post/w/pic",formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
