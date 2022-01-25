@@ -2,6 +2,7 @@ import React from 'react';
 import "./Profile.css"
 import {useState,useEffect} from "react";
 import axios from "axios"
+import Like from "./Like"
 
 // import axios from 'axios';
 
@@ -14,7 +15,6 @@ const Proflie = props => {
         postID:"",
         userID:""
     })
-    console.log(session)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -25,15 +25,6 @@ const Proflie = props => {
         });
     }, [props]);
 
-    useEffect(() =>{
-        let userLikes = posts.map((x,y)=> x.id)
-        console.log(userLikes)
-        axios.post("http://localhost:8000/api/user/find/like",userLikes)
-            .then(res => {
-                console.log("something")
-            })
-    })
-
     const LikePost = (e) =>{ 
         e.preventDefault()
         axios.post("http://localhost:8000/api/user/like",like)
@@ -43,8 +34,6 @@ const Proflie = props => {
             .catch (err => {
                 console.log(err)
             }) 
-
-            
     }
 
 
@@ -94,61 +83,9 @@ const Proflie = props => {
                                                                 <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                                             </div>
                                                             <div className="like_comment">
-                                                                <>
-                                                                {
-                                                                    find ? 
-                                                                    <form action="">
-                                                                        <input 
-                                                                            type="submit" 
-                                                                            className='L_C' 
-                                                                            value="dislike" 
-                                                                        />
-                                                                        <input 
-                                                                            type="hidden" 
-                                                                            name="postID" 
-                                                                            value={post.id} 
-                                                                            ref={x => {like.postID = `${post.id}`}}
-                                                                        />
-                                                                    <input 
-                                                                        type="hidden" 
-                                                                        name="userID" 
-                                                                        value={session.id}
-                                                                        ref={x => {like.userID = `${session.id}`}}
-                                                                    />
-                                                                    </form>
-                                                                    :
-                                                                    <form onSubmit={LikePost}>
-                                                                        <input type="submit" className='L_C' value="Like" />
-                                                                        <input 
-                                                                    type="hidden" 
-                                                                    name="postID" 
-                                                                    value={post.id} 
-                                                                    ref={x => {like.postID = `${post.id}`}}
+                                                                <Like
+                                                                postID= {post.id}
                                                                 />
-                                                                <input 
-                                                                    type="hidden" 
-                                                                    name="userID" 
-                                                                    value={session.id}
-                                                                    // ref={x => {like.userID = `${session.id}`}}
-                                                                />
-                                                                    </form>
-                                                                }
-                                                                <input 
-                                                                    type="hidden" 
-                                                                    name="postID" 
-                                                                    value={post.id} 
-                                                                    ref={x => {like.postID = `${post.id}`}}
-                                                                />
-                                                                <input 
-                                                                    type="hidden" 
-                                                                    name="userID" 
-                                                                    value={session.id}
-                                                                    ref={x => {like.userID = `${session.id}`}}
-                                                                />
-                                                                </>
-                                                                <button className='L_C'>
-                                                                    Comment
-                                                                </button>
                                                             </div>
                                                         </div>
                                                     )

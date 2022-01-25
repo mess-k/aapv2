@@ -1,0 +1,104 @@
+import React from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import "./Profile.css";
+
+const Like = props => {
+    const {postID} = props
+    const [session, setSession] = useState()
+    const [find, setFind] = useState(false)
+    const [like, setLike] = useState({
+        postID:"",
+        userID:""
+    })
+    console.log(postID)
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/login`)
+        .then((res) => {
+            if (res.data.loggedIn === true) {
+                setSession(res.data.user[0]);
+            }
+        });
+    }, [props]);
+
+
+    useEffect(() =>{
+        const post_ID = postID
+        axios.get("http://localhost:8000/api/user/find/like",{params:{id: post_ID}})
+            .then(res => {
+                setFind(res.data)
+            })
+    })
+
+    const LikePost = (e) =>{ 
+        e.preventDefault()
+        
+        axios.post("http://localhost:8000/api/user/like",like)
+            .then (res => {
+                setLike(res.data)
+            })
+            .catch (err => {
+                console.log(err)
+            }) 
+    }
+
+    return (
+        <div>
+            <>
+                {
+                    find ? 
+                    <form action="">
+                        <input 
+                            type="submit" 
+                            className='L_C' 
+                            value="Liked" 
+                        />
+                        <input 
+                            type="hidden" 
+                            name="postID" 
+
+                            
+                        />
+                    <input 
+                        type="hidden" 
+                        name="userID" 
+                        
+                        
+                    />
+                    </form>
+                    :
+                    <form onSubmit={LikePost}>
+                        <input type="submit" className='L_C' value="Like" />
+                        <input 
+                        type="hidden" 
+                        name="postID" 
+                    
+                    
+                />
+                <input 
+                    type="hidden" 
+                    name="userID" 
+                    
+                    
+                />
+                    </form>
+                }
+                <input 
+                    type="hidden" 
+                    name="postID" 
+                    
+                    
+                />
+                <input 
+                    type="hidden" 
+                    name="userID" 
+
+                />
+                </>
+        </div>
+    );
+};
+
+
+export default Like;

@@ -213,16 +213,23 @@ router.post("/like",(req,res) =>{
 })
 
 
-router.post("/find/like", (req,res) => {
-    const postID = req.body;
+router.get("/find/like", (req,res) => {
+    const postID = req.query.id;
     const userID = req.session.user[0].id
     console.log(postID)
     // console.log(userID)
 
     db.query(
-        "SELECT * FROM likes WHERE post_id IN (?)", [postID],(err,result)=>{
-            if(result){
+        "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,result)=>{
+            if(result.length > 0){
+                res.send(true)
                 console.log(result)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
             }
         }
     )
