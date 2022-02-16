@@ -3,18 +3,16 @@ import "./Profile.css"
 import {useState,useEffect} from "react";
 import axios from "axios"
 import Like from "./Like"
+import Comment from "./Comment"
+import TextareaAutosize from 'react-textarea-autosize';
 
 // import axios from 'axios';
 
 const Proflie = props => {
     const{profile,posts} = props
     const [session, setSession] = useState()
-    const [map, setMap] = useState([])
-    const [find, setFind] = useState(false)
-    const [like, setLike] = useState({
-        postID:"",
-        userID:""
-    })
+
+
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -25,16 +23,6 @@ const Proflie = props => {
         });
     }, [props]);
 
-    const LikePost = (e) =>{ 
-        e.preventDefault()
-        axios.post("http://localhost:8000/api/user/like",like)
-            .then (res => {
-                setLike(res.data)
-            })
-            .catch (err => {
-                console.log(err)
-            }) 
-    }
 
 
     return (
@@ -85,6 +73,14 @@ const Proflie = props => {
                                                             <div className="like_comment">
                                                                 <Like
                                                                 postID= {post.id}
+                                                                sessionID={session.id}
+                                                                profile={profile.id}
+                                                                />
+                                                            </div>
+                                                            <div className="createComment">
+                                                                
+                                                                <Comment
+                                                                postID={post.id}
                                                                 />
                                                             </div>
                                                         </div>

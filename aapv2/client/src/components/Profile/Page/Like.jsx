@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 import "./Profile.css";
 
 const Like = props => {
-    const {postID} = props
+    const {postID,sessionID,profile} = props
     const [session, setSession] = useState()
     const [find, setFind] = useState(false)
     const [like, setLike] = useState({
-        postID:"",
+        postID:`${postID}`,
         userID:""
     })
-    console.log(postID)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -28,6 +27,7 @@ const Like = props => {
         axios.get("http://localhost:8000/api/user/find/like",{params:{id: post_ID}})
             .then(res => {
                 setFind(res.data)
+                setFind(res.data)
             })
     })
 
@@ -36,7 +36,21 @@ const Like = props => {
         
         axios.post("http://localhost:8000/api/user/like",like)
             .then (res => {
-                setLike(res.data)
+                // setLike()
+                setFind(prev => !prev)
+            })
+            .catch (err => {
+                console.log(err)
+            }) 
+        }
+
+    const Dislike = (e) =>{ 
+        e.preventDefault()
+        const post_ID = postID
+        axios.delete(`http://localhost:8000/api/user/like/`,{params:{id: post_ID}})
+            .then (res => {
+                // setLike(prev => !prev)
+                setFind(prev => !prev)
             })
             .catch (err => {
                 console.log(err)
@@ -48,7 +62,7 @@ const Like = props => {
             <>
                 {
                     find ? 
-                    <form action="">
+                    <form onSubmit={Dislike}>
                         <input 
                             type="submit" 
                             className='L_C' 
@@ -57,31 +71,27 @@ const Like = props => {
                         <input 
                             type="hidden" 
                             name="postID" 
-
-                            
+                            value={postID}
                         />
-                    <input 
-                        type="hidden" 
-                        name="userID" 
-                        
-                        
-                    />
+                        <input 
+                            type="hidden" 
+                            name="userID" 
+                            value={sessionID}
+                            />
                     </form>
                     :
                     <form onSubmit={LikePost}>
                         <input type="submit" className='L_C' value="Like" />
                         <input 
-                        type="hidden" 
-                        name="postID" 
-                    
-                    
-                />
-                <input 
-                    type="hidden" 
-                    name="userID" 
-                    
-                    
-                />
+                            type="hidden" 
+                            name="postID" 
+                            value={postID}
+                            />
+                        <input 
+                            type="hidden" 
+                            name="userID" 
+                            value={sessionID}
+                        />
                     </form>
                 }
                 <input 

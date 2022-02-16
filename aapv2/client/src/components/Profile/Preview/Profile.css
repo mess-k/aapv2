@@ -123,23 +123,3 @@ a {
     outline:none;
     background: none;
 }
-.createComment{
-    display:flex;
-    /* width: 100%; */
-    align-items: center;
-}
-.createComment .postInput{
-    display:flex;
-    width: 100%;
-    padding-left: 5px;
-    align-items: center;
-}
-.createComment .commentInput{
-    display: block;
-    overflow: hidden;
-    width: 100%;
-    max-width: 100%;
-    padding-left: 5px;
-    border-radius: 5px;
-    resize:none;
-}

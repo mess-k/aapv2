@@ -203,7 +203,46 @@ router.post("/like",(req,res) =>{
     db.query(
         "INSERT INTO likes SET post_id=?, user_id=?;",[postID,userID],(err,result)=>{
             if(result){
-                console.log("like")
+                db.query(
+                    "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,result)=>{
+                    if(result.length > 0){
+                        res.send(true)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+router.delete("/like",(req,res) =>{
+    const postID = req.query.id;
+    const userID = req.session.user[0].id
+
+    db.query(
+        "DELETE FROM likes WHERE post_id=? AND user_id=?;",[postID,userID],(err,result)=>{
+            if(result){
+                console.log(result)
+                db.query(
+                    "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,results)=>{
+                    if(results.length > 0){
+                        res.send(true)
+                        console.log(results)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
             }
             if(err){
                 console.log(err)
@@ -216,17 +255,36 @@ router.post("/like",(req,res) =>{
 router.get("/find/like", (req,res) => {
     const postID = req.query.id;
     const userID = req.session.user[0].id
-    console.log(postID)
+    // console.log(postID)
     // console.log(userID)
 
     db.query(
         "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,result)=>{
             if(result.length > 0){
                 res.send(true)
-                console.log(result)
             }
             else{
                 res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+///////////////////////////////COMMENT///////////////////////////////
+router.post("/postcomment",(req,res)=>{
+    const postID = req.body.postID
+    const comment = req.body.comment
+    const date = req.body.date
+    const user = req.session.user[0].id
+    console.log(postID)
+    
+    db.query(
+        "INSERT INTO comments SET comment=?, usercom_id=?, comcreated_at=?,compost_id=?",[comment,user,date,postID],(err,result)=>{
+            if(result){
+                console.log(result)
             }
             if(err){
                 console.log(err)
