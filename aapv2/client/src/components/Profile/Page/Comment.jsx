@@ -42,7 +42,7 @@ const Comment = props =>{
     return(
         session ?
         <div>
-            <div className="createComment">
+            <div className="createComments">
                 <div className="postPic">
                     <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
                 </div>

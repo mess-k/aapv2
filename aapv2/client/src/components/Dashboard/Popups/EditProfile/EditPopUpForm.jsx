@@ -4,6 +4,7 @@ import { useState, useRef } from  "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
 import ReactCrop from 'react-image-crop';
+import {useSpring,animated } from "react-spring"
 
 const Background = styled.div`
     width: 100%;
@@ -216,6 +217,13 @@ const EditPopUpForm = props => {
             
         }
     }
+    const animation = useSpring ({
+        config: {
+            duration:250
+        },
+        opacity: EditPopUpForm ? 1:0,
+        transform: EditPopUpForm ? `translateY(0%)` : `translateY(-100%)`
+    })
 
     return(
         <>
@@ -223,10 +231,11 @@ const EditPopUpForm = props => {
                 {
                     profile.map((s,k) =>{
                         return(
+                        <animated.div style={animation}>
                         <PopUpWrapper  key={k}>
                             <h1>Update {s.name}'s profile </h1>
                                 <form onSubmit={submitEdit} key={k}>  
-                                <PopUpContent>
+                                <PopUpContent key={k}>
                                     <div className="upbox">
                                         <div className="upinfo">
                                             <div className="uptext">
@@ -301,6 +310,7 @@ const EditPopUpForm = props => {
                                 </PopUpContent>
                             </form>
                         </PopUpWrapper>
+                        </animated.div>
                     )
                 })}
             </Background>

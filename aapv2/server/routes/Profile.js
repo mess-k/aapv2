@@ -221,4 +221,22 @@ router.get("/find/random",(req,res)=>{
 })
 
 
+///////////////////Find Comments/////////////////////////
+router.get("/show/comments",(req,res)=>{
+    const postID = req.query.id
+    console.log(postID)
+
+    db.query(
+        "SELECT * FROM comments WHERE compost_id=?",[postID],(err,result)=>{
+            if(res){
+                res.send(result)
+            }
+            if(err){
+                // console.log(err)
+            }
+        }
+    )
+})
+
+
 module.exports = router;

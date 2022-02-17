@@ -125,6 +125,13 @@ a {
 }
 .createComment{
     display:flex;
+    flex-direction: column;
+    /* width: 100%; */
+    align-items: center;
+}
+.createComments{
+    display:flex;
+
     /* width: 100%; */
     align-items: center;
 }
@@ -142,4 +149,9 @@ a {
     padding-left: 5px;
     border-radius: 5px;
     resize:none;
+}
+.comments{
+    border: none;
+    outline: none;
+    background: none;
 }

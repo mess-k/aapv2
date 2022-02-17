@@ -4,13 +4,14 @@ import {useState,useEffect} from "react";
 import axios from "axios"
 import Like from "./Like"
 import Comment from "./Comment"
-import TextareaAutosize from 'react-textarea-autosize';
+import ShowComponent from "./ShowComments"
+// import TextareaAutosize from 'react-textarea-autosize';
 
-// import axios from 'axios';
 
 const Proflie = props => {
     const{profile,posts} = props
     const [session, setSession] = useState()
+    const [showCom, setShowCom] = useState(false)
 
 
 
@@ -22,6 +23,11 @@ const Proflie = props => {
             }
         });
     }, [props]);
+
+    const ShowComs = (e) =>{
+        e.preventDefault()
+        setShowCom (prev => !prev)
+    }
 
 
 
@@ -76,12 +82,27 @@ const Proflie = props => {
                                                                 sessionID={session.id}
                                                                 profile={profile.id}
                                                                 />
+                                                                <div>
+                                                                    <form onSubmit={ShowComs}>
+                                                                        <input 
+                                                                        type="submit" value="Comments" 
+                                                                        className="L_C"
+                                                                        />
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                             <div className="createComment">
-                                                                
+                                                                <div className="showcomments">
+                                                                <ShowComponent
+                                                                postID={post.id}
+                                                                showCom={showCom}
+                                                                />
+                                                                </div>
+                                                                <div className="postcomments">
                                                                 <Comment
                                                                 postID={post.id}
                                                                 />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     )
