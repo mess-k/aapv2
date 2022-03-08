@@ -88,7 +88,7 @@
     flex-direction: column;
     width: 100%;
     background-color: #ffffff;
-    margin: 10px 5px 5px 5px;
+    /* margin: 10px 5px 5px 5px; */
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     transition: 0.3s;
     border-radius: 5px; 
@@ -115,7 +115,7 @@ a {
     display:flex;
     justify-content: space-evenly;
     text-align: center;
-
+    width: 100%;
 }
 .like_comment .L_C{
     display:flex;
@@ -126,13 +126,10 @@ a {
 .createComment{
     display:flex;
     flex-direction: column;
-    /* width: 100%; */
     align-items: center;
 }
 .createComments{
     display:flex;
-
-    /* width: 100%; */
     align-items: center;
 }
 .createComment .postInput{
@@ -154,4 +151,58 @@ a {
     border: none;
     outline: none;
     background: none;
+}
+.like_comment .showcomments{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.comList{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+}
+.singleCom{
+    /* width: 90%; */
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+.ComProfilePic{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width:10%;
+    border-radius: 50%/50%;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);
+}
+.listPic{
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.singleCom .comContext{
+    align-items:center;
+    text-align: start;
+    margin-bottom: 0;
+    width: 100%;
+}
+.comContext{
+    align-items:center;
+    text-align: start;
+    margin: 0;
+    border: 1px solid #e8e8e8 ;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    width: 100%;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+.COMMENT_LIST{
+    align-items: center;
+    max-width: 100%;
+}
+.nomarg{
+    margin: 0px 0px 0px 5px;
 }

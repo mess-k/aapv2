@@ -293,4 +293,23 @@ router.post("/postcomment",(req,res)=>{
     )
 })
 
+///////////////////////SHOW COMMENTS//////////////////////////
+router.get("/show/comments",(req,res)=>{
+    const postID = req.query.id
+
+    db.query(
+        "SELECT * FROM comments LEFT JOIN shelters ON shelters.id = comments.sheltercom_id LEFT JOIN users on users.id = comments.usercom_id WHERE comments.compost_id = ? ORDER BY comments.id",[postID],(err,result)=>{
+            if(result){
+                console.log(result)
+                res.send(result)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+
+
 module.exports = router;

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import "./Profile.css";
 
 const Like = props => {
-    const {postID,sessionID,profile} = props
+    const {postID,sessionID} = props
     const [session, setSession] = useState()
     const [find, setFind] = useState(false)
     const [like, setLike] = useState({
@@ -58,8 +58,8 @@ const Like = props => {
     }
 
     return (
-        <div>
-            <>
+        <div className='L_C_FORMS'>
+            
                 {
                     find ? 
                     <form onSubmit={Dislike}>
@@ -94,18 +94,8 @@ const Like = props => {
                         />
                     </form>
                 }
-                <input 
-                    type="hidden" 
-                    name="postID" 
-                    
-                    
-                />
-                <input 
-                    type="hidden" 
-                    name="userID" 
-
-                />
-                </>
+                
+                
         </div>
     );
 };

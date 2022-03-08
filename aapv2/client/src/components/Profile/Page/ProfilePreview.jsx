@@ -2,16 +2,14 @@ import React from 'react';
 import "./Profile.css"
 import {useState,useEffect} from "react";
 import axios from "axios"
-import Like from "./Like"
 import Comment from "./Comment"
-import ShowComponent from "./ShowComments"
-// import TextareaAutosize from 'react-textarea-autosize';
+import LCL from "./L_C_List"
 
 
 const Proflie = props => {
     const{profile,posts} = props
     const [session, setSession] = useState()
-    const [showCom, setShowCom] = useState(false)
+    
 
 
 
@@ -24,10 +22,7 @@ const Proflie = props => {
         });
     }, [props]);
 
-    const ShowComs = (e) =>{
-        e.preventDefault()
-        setShowCom (prev => !prev)
-    }
+    
 
 
 
@@ -77,27 +72,25 @@ const Proflie = props => {
                                                                 <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                                             </div>
                                                             <div className="like_comment">
-                                                                <Like
+                                                                <LCL
+                                                                postID= {post.id}
+                                                                sessionID={session.id}
+                                                                profile={profile.id}
+                                                                />
+                                                                {/* <Like
                                                                 postID= {post.id}
                                                                 sessionID={session.id}
                                                                 profile={profile.id}
                                                                 />
                                                                 <div>
-                                                                    <form onSubmit={ShowComs}>
-                                                                        <input 
-                                                                        type="submit" value="Comments" 
-                                                                        className="L_C"
-                                                                        />
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <div className="createComment">
                                                                 <div className="showcomments">
                                                                 <ShowComponent
                                                                 postID={post.id}
-                                                                showCom={showCom}
                                                                 />
                                                                 </div>
+                                                                </div> */}
+                                                            </div>
+                                                            <div className="createComment">
                                                                 <div className="postcomments">
                                                                 <Comment
                                                                 postID={post.id}

@@ -1,40 +1,38 @@
 import React from 'react';
-import {useState,useEffect} from "react"
-import axios from 'axios';
+import "./Profile.css"
 
 
 const ShowComments = props => {
-    const {postID,showCom} = props
-    const [comList,setComList] = useState([])
-
+    const {ShowComs,showCom} = props
+    // const [comList,setComList] = useState([])
     
-        useEffect(()=>{
-            
-            const post_ID = postID
-            axios.get("http://localhost:8000/api/profile/show/comments",{params:{id: post_ID}})
-                .then (res => {
-                    setComList(res.data)
-                    
-                })
-                .catch (err => {
-                    console.log(err)
-                }) 
-        },[postID])
+
 
     return (
-            showCom ? 
-            <div className="comms">
-                {
-                    comList.map((com,i)=>{
-                        return(
-                            <div className="singlecomm" key={i}>
-                                <p>{com.comment}</p>
-                            </div>
-                            )
-                        })
-                    }
+        showCom ? 
+        <div className="comms">
+            <div>
+                <form onSubmit={ShowComs}>
+                    <input 
+                    type="submit" value="Hide Comments" 
+                    className="L_C"
+                    // showCom={showCom}
+                    // postID={postID}
+                    />
+                </form>
             </div>
-            : <p>not something</p>
+        </div>
+        : <div>
+            <form onSubmit={ShowComs}>
+                <input 
+                type="submit" value="Comments" 
+                className="L_C"
+                // showCom={showCom}
+                // postID={postID}
+                />
+            </form>
+        </div>
+        
     );
 };
 
