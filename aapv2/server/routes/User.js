@@ -273,6 +273,89 @@ router.get("/find/like", (req,res) => {
     )
 })
 
+////////////////////////////FOLLOW////////////////////////////////////////////
+
+router.get("/find/profile/follow", (req,res) => {
+    const proID = req.query.id;
+    const userID = req.session.user[0].id
+    // console.log(postID)
+    // console.log(userID)
+    // console.log(proID)
+
+    db.query(
+        "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,result)=>{
+            if(result.length > 0){
+                res.send(true)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+router.post("/follow",(req,res) =>{
+    const proID = req.body.profileID;
+    const userID = req.session.user[0].id
+
+    // console.log(proID)
+
+    db.query(
+        "INSERT INTO user_pet_follows SET profile_id=?, user_id=?;",[proID,userID],(err,result)=>{
+            if(result){
+                db.query(
+                    "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,result)=>{
+                    if(result.length > 0){
+                        res.send(true)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+router.delete("/follow",(req,res) =>{
+    const proID = req.query.id;
+    const userID = req.session.user[0].id
+
+    db.query(
+        "DELETE FROM user_pet_follows WHERE profile_id=? AND user_id=?;",[proID,userID],(err,result)=>{
+            if(result){
+                console.log(result)
+                db.query(
+                    "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,results)=>{
+                    if(results.length > 0){
+                        res.send(true)
+                        console.log(results)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+
 ///////////////////////////////COMMENT///////////////////////////////
 router.post("/postcomment",(req,res)=>{
     const postID = req.body.postID

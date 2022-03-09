@@ -4,6 +4,7 @@ import {useState,useEffect} from "react";
 import axios from "axios"
 import Comment from "./Comment"
 import LCL from "./L_C_List"
+import Follow from "./Follow"
 
 
 const Proflie = props => {
@@ -23,9 +24,6 @@ const Proflie = props => {
     }, [props]);
 
     
-
-
-
     return (
         profile ? 
         <div>
@@ -36,6 +34,10 @@ const Proflie = props => {
                             <div className="profileHeader">
                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="petProfilePic"/>
                                 <h1 className="petName">{p.name}</h1>
+                                <Follow
+                                proID = {p.id}
+                                sessionID = {session.id}
+                                />
                                 <div className="borderBottom"></div>
                             </div>
                             <div className="profileBody">

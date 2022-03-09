@@ -77,7 +77,7 @@ const Like = props => {
                             type="hidden" 
                             name="userID" 
                             value={sessionID}
-                            />
+                        />
                     </form>
                     :
                     <form onSubmit={LikePost}>
