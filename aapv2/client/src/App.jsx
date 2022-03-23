@@ -13,15 +13,19 @@ import SProPic from "./views/Shelter/UploadShelterPic"
 import CreateProfile from './views/Shelter/CreateProfile'
 import Profile from "./views/Shelter/Profile"
 import ProView from "./views/Preview/ProfileView"
+import UserHome from "./views/User/BrowseHome"
+import GlobalStyle from './globalStyles';
 // import HL from "./components/HomeLogo"
 
 function App() {
   return (
     <>
+    <GlobalStyle/>
       {/* <HL/> */}
     <Router>
       <UserLogReg path="/"/>
       <Home path="/home"/>
+      <UserHome path="UFBHome"/>
       <ShelterLogReg path="/shelter"/>
       <Dashboard path="/dashboard"/>
       <UEdit path="/UPEdit"/>

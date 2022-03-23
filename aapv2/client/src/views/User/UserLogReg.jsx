@@ -73,7 +73,7 @@ const UserLogReg = props => {
                 }
                 if(!res.data.message && !res.data.EPMessage){
                     setLoginStatus(res.data.user)
-                    navigate("/home")
+                    navigate("/UFBHome")
                 }
             })
         .catch(err => {
