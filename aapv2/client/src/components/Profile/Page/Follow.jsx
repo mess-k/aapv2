@@ -10,8 +10,6 @@ const Follow = props => {
         userID:`${sessionID}`
     })
     const [findFollow, setFindFollow] = useState(false)
-    
-    console.log(proID)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -36,7 +34,7 @@ const Follow = props => {
         axios.post("http://localhost:8000/api/user/follow",following)
             .then (res => {
                 // setLike()
-                setFollowing(prev => !prev)
+                setFindFollow(prev => !prev)
             })
             .catch (err => {
                 console.log(err)
@@ -48,7 +46,7 @@ const Follow = props => {
             axios.delete(`http://localhost:8000/api/user/follow`,{params:{id: pro_ID}})
                 .then (res => {
                     // setLike(prev => !prev)
-                    setFollowing(prev => !prev)
+                    setFindFollow(prev => !prev)
                 })
                 .catch (err => {
                     console.log(err)
@@ -65,7 +63,7 @@ const Follow = props => {
                 <form onSubmit={unFollow}>
                 <input 
                     type="submit" 
-                    className='L_C' 
+                    className='follow_button' 
                     value="Following" 
                 />
                 <input 
@@ -83,7 +81,7 @@ const Follow = props => {
             <form onSubmit={Follow}>
                 <input 
                     type="submit" 
-                    className='L_C' 
+                    className='follow_button' 
                     value="Follow" 
                 />
                 <input 

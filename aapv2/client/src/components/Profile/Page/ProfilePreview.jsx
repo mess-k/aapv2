@@ -5,6 +5,7 @@ import axios from "axios"
 import Comment from "./Comment"
 import LCL from "./L_C_List"
 import Follow from "./Follow"
+import { Link } from '@reach/router';
 
 
 const Proflie = props => {
@@ -13,7 +14,7 @@ const Proflie = props => {
     
 
 
-
+    // console.log(posts)
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {
@@ -22,7 +23,6 @@ const Proflie = props => {
             }
         });
     }, [props]);
-
     
     return (
         profile ? 
@@ -44,12 +44,12 @@ const Proflie = props => {
                                     <div className="leftPannel">
                                         <div className="infoCard">
                                             <div className="about">
-                                                <h4>About</h4>
+                                                <h5>Bio</h5>
                                             </div>
                                             <div className="info">
-                                                <h4>Age: {p.age}</h4>
-                                                <h4>Type: {p.type}</h4>
-                                                <h4>{p.description}</h4>
+                                                <h5>Age: {p.age}</h5>
+                                                <h5>Type: {p.type}</h5>
+                                                <h5>{p.description}</h5>
 
                                             </div>
                                         </div>
@@ -63,7 +63,17 @@ const Proflie = props => {
                                                     return(
                                                         <div className="posts" key={y}>
                                                             <div className="postpic">
+                                                                <Link to={`/profile/view/${p.id}`}
+                                                                    profile={profile}
+                                                                    session={session}
+                                                                    className="postpic"
+                                                                >
                                                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                                                <div>
+
+                                                                <h6 className='p'>{p.name}</h6>
+                                                                </div>
+                                                                </Link>
                                                             </div>
                                                             <div className="postcontext">
                                                                 <p>
@@ -78,19 +88,8 @@ const Proflie = props => {
                                                                 postID= {post.id}
                                                                 sessionID={session.id}
                                                                 profile={profile.id}
+                                                                className="posterPic"
                                                                 />
-                                                                {/* <Like
-                                                                postID= {post.id}
-                                                                sessionID={session.id}
-                                                                profile={profile.id}
-                                                                />
-                                                                <div>
-                                                                <div className="showcomments">
-                                                                <ShowComponent
-                                                                postID={post.id}
-                                                                />
-                                                                </div>
-                                                                </div> */}
                                                             </div>
                                                             <div className="createComment">
                                                                 <div className="postcomments">

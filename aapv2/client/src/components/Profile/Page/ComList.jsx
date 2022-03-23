@@ -6,6 +6,8 @@ const ComList = props => {
     const {postID,showCom} = props
     const [comList,setComList] = useState([])
 
+    // console.log(postID)
+
     useEffect(()=>{
             
         const post_ID = postID
@@ -19,6 +21,7 @@ const ComList = props => {
             }) 
     },[postID])
 
+    console.log(comList)
 
     return (
         showCom?

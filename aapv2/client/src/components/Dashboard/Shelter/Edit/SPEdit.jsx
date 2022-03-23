@@ -4,15 +4,6 @@ import { useState, useRef } from  "react";
 import axios from "axios";
 import ReactCrop from 'react-image-crop';
 
-const Background = styled.div`
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 
 const PopUpWrapper = styled.div`
     display:flex;
@@ -29,9 +20,13 @@ const PopUpWrapper = styled.div`
     border-radius: 10px;
     margin-top: -150px;
     overflow:hidden;
+    .PostHeader {
+        display:flex;
+        justify-content: space-between;
+    }
 `;
 const PopUpContent = styled.div`
-    width:950px;
+    width:90%;
     margin:auto;
     display: flex;
     flex-wrap:wrap;
@@ -42,11 +37,6 @@ const PopUpContent = styled.div`
     color: #141414;
     p {
         margin-bottom: 1rem;
-    }
-    form{
-        height:400px;
-        display:flex
-        flex-wrap:wrap;
     }
     .upbox{
         width:100%;
@@ -87,12 +77,12 @@ const PopUpContent = styled.div`
 `;
 
 const EditPopUpForm = props => {
-    const {session} = props
+    const {session,editShelterButton} = props
     const [updateShelter, setUpdateShelter] = useState({
-        name:`${session[0].name}`,
-        email:`${props.session[0].email}`,
-        id:`${props.session[0].id}`,
-        img_url:`${session[0].img_url}`
+        name:`${session.name}`,
+        email:`${props.session.email}`,
+        id:`${props.session.id}`,
+        img_url:`${session.img_url}`
     })
 
     const [upImg, setUpImg] = useState();
@@ -213,77 +203,74 @@ const EditPopUpForm = props => {
         }
     }
 
+
     return(
-        <Background>
-            {
-                session.map((s,k) =>{
-                    return(
-                    <PopUpWrapper key={k}>
-                        <h1>Update {s.name}'s profile </h1>
-                            <form onSubmit={submitEdit}>  
-                            <PopUpContent>
-                                <div className="upbox" >
-                                    <div className="upinfo">
-                                        <div className="uptext">
-                                            <label htmlFor="name">Shelter Name:</label>
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                placeholder={s.name}
-                                                onChange={handleChange}
-                                                value={updateShelter.name}
-                                                className="inputs"
-                                            />
-                                            <label htmlFor="age">Email:</label>
-                                            <input 
-                                                type="text"
-                                                name="email"
-                                                placeholder={s.email}
-                                                onChange={handleChange}
-                                                value={updateShelter.email}
-                                                className="inputs"
-                                            />
-                                            <label htmlFor="name">Preview:</label>
-                                            <canvas
-                                                ref={previewCanvasRef}
-                                            />
-                                        </div>
-                                        <div className="uppic">
-                                            <input 
-                                                type="file" 
-                                                name="image" 
-                                                placeholder={session.img_url}
-                                                accept="image/*" 
-                                                multiple={false} 
-                                                onChange={onSelectFile} 
-                                                
-                                                />
-                                            <ReactCrop
-                                                // name="image"
-                                                src={upImg}
-                                                onImageLoaded={onLoad}
-                                                crop={crop}
-                                                onChange={(c) => setCrop(c)}
-                                                onComplete={onCropComplete}
-                                                />
-                                            <input
-                                                type="hidden" 
-                                                name="id"  
-                                                value={session.id}
-                                                ref={x => {x = `${session.id}`}}
-                                                />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Create!" className="btn btn-info"/>
-                                    </div>
-                                </div>
-                            </PopUpContent>
-                        </form>
-                    </PopUpWrapper>
-                )
-            })}
-        </Background>
+        <PopUpWrapper >
+            <div className="PostHeader">
+            <h1>Update {session.name}</h1>
+            <button className="btn btn-light" value="x" onClick={editShelterButton}>x</button>
+            </div>
+                <form onSubmit={submitEdit}>  
+                <PopUpContent>
+                    <div className="upbox" >
+                        <div className="upinfo">
+                            <div className="uptext">
+                                <label htmlFor="name">Shelter Name:</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder={session.name}
+                                    onChange={handleChange}
+                                    value={updateShelter.name}
+                                    className="inputs"
+                                />
+                                <label htmlFor="age">Email:</label>
+                                <input 
+                                    type="text"
+                                    name="email"
+                                    placeholder={session.email}
+                                    onChange={handleChange}
+                                    value={updateShelter.email}
+                                    className="inputs"
+                                />
+                                <label htmlFor="name">Preview:</label>
+                                <canvas
+                                    ref={previewCanvasRef}
+                                />
+                            </div>
+                            <div className="uppic">
+                                <input 
+                                    type="file" 
+                                    name="image" 
+                                    placeholder={session.img_url}
+                                    accept="image/*" 
+                                    multiple={false} 
+                                    onChange={onSelectFile} 
+                                    
+                                    />
+                                <ReactCrop
+                                    // name="image"
+                                    src={upImg}
+                                    onImageLoaded={onLoad}
+                                    crop={crop}
+                                    onChange={(c) => setCrop(c)}
+                                    onComplete={onCropComplete}
+                                    />
+                                <input
+                                    type="hidden" 
+                                    name="id"  
+                                    value={session.id}
+                                    ref={x => {x = `${session.id}`}}
+                                    />
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" value="Create!" className="btn btn-info"/>
+                        </div>
+                    </div>
+                </PopUpContent>
+            </form>
+        </PopUpWrapper>
     )
 }
 

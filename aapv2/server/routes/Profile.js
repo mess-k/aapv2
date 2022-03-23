@@ -28,7 +28,6 @@ router.use(
     })
 );
 
-
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
         callBack(null, '../../aapv2/client/public/images/PetProfile')     
@@ -58,12 +57,14 @@ var postUpload = multer({
 ////////////////////CREATE///////////////
 
 router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
-    const shelter_id = req.body.shelter;
+    const shelter_id = req.body.up_id;
     const name = req.body.name;
     const type = req.body.type;
     const age = req.body.age;
     const desc = req.body.desc
-    const pic = "/images/PetProfile/"+req.file.fileName
+    const pic = "/images/PetProfile/"+req.file.filename
+
+    console.log(pic)
     
 
     
@@ -96,17 +97,17 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
         })
 
 /////////////////////////////////FIND_POSTS///////////////////////////
-
-router.get("/show/posts", (req,res) =>{
-    const proID = req.query.id
-    db.query(
-        "SELECT * FROM posts where profile_id=? ORDER BY id DESC",[proID],(err,result)=>{
-            if(result){
-                res.send(result)
+    router.get("/show/posts", (req,res) =>{
+        const proID = req.query.id
+        db.query(
+            "SELECT * FROM posts where profile_id=? ORDER BY id DESC",[proID],(err,result)=>{
+                if(result){
+                    res.send(result)
+                    console.log(result)
+                }
             }
-        }
-    )
-})
+        )
+    })
 
 /////////////////////////UPDATE////////////////////////////////////
 

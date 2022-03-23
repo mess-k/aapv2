@@ -8,7 +8,7 @@ import {useState} from "react"
 const L_C_List = props => {
     const {postID,sessionID,profile} = props
 
-
+    // console.log(postID)
     const [showCom, setShowCom] = useState(false)
     
 

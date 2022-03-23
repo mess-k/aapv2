@@ -72,6 +72,10 @@
     max-height:45px;
     border-radius: 50%/50%;;
     margin: 5px 0px 5px 0px;;
+    text-align: center;
+}
+.postname{
+    margin: 0;
 }
 .createPost .postInput{
     width:90%;
@@ -95,11 +99,16 @@
     border: 1px solid rgba(0,0,0,.125);
     padding: 10px;
 }
+.postpic{
+    display: flex;
+    align-items: center;
+}
 .postpic img{
     max-width: 45px;
     max-height:45px;
     border-radius: 50%/50%;;
     margin: 5px 0px 5px 0px;;
+    align-items: center;
 }
 .postimg img{
     align-items: center;
@@ -164,9 +173,8 @@ a {
     margin: 0;
 }
 .singleCom{
-    /* width: 90%; */
     display:flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     text-align: center;
 }
@@ -177,6 +185,7 @@ a {
     border-radius: 50%/50%;
     border: 1px solid #ffffff;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);
+    vertical-align: top;
 }
 .listPic{
     max-width: 100%;
@@ -206,3 +215,17 @@ a {
 .nomarg{
     margin: 0px 0px 0px 5px;
 }
+.follow_button{
+    border: none;
+    outline:none;
+    background: none;
+    margin-bottom: 5px;
+    justify-content: center;
+}
+.p{
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    margin-left: 5px;
+}
+

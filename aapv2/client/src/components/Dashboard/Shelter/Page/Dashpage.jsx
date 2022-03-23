@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Link} from "@reach/router"
 import ShelterPost from "../../Popups/CreatePost/ShelterPost"
 import ShelterEdit from "../Edit/ShelterEdit"
+import CreateProfile from "../../Popups/CreateProfile/CreateProfile"
 
 
 
@@ -13,6 +14,8 @@ const Dashpage = props => {
     const [session, setSession]=useState([])
     const[postPopUp,setPostPopUp] = useState(false)
     const [editShelter, setEditShelter] = useState(false)
+    const [createPro , setCreatePro] = useState(false)
+
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
@@ -26,6 +29,9 @@ const Dashpage = props => {
 
     const editShelterButton = e =>{
         setEditShelter(prev => !prev)
+    }
+    const createProButton = e =>{
+        setCreatePro(prev => !prev)
     }
 
     const createPost = e =>{
@@ -43,8 +49,13 @@ const Dashpage = props => {
             />
             <ShelterEdit
             session={[session]}
-            editShelter={editShelter}
             editShelterButton={editShelterButton}
+            editShelter={editShelter}
+            />
+            <CreateProfile
+            session={[session]}
+            createPro={createPro}
+            createProButton={createProButton}
             />
             <div className="shelterHeader">
                 <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" className="shelterProfilePic"/>
@@ -55,17 +66,23 @@ const Dashpage = props => {
                 <div className="leftPannel">
                     <div className="infoCard">
                         <div className="about">
-                            <h4>About</h4>
+                            <h5>Bio</h5>
                         </div>
                         <div className="info">
-                            <h4>{session.email}</h4>
+                            <h5>{session.email}</h5>
                             <button 
                             session={session}
-                            // profile = {profile}
                             className="btn btn-info" 
                             onClick={editShelterButton}
                             >
                                 Edit
+                            </button>
+                            <button 
+                            session={session}
+                            className="btn btn-info" 
+                            onClick={createProButton}
+                            >
+                                Create
                             </button>
                         </div>
                     </div>
@@ -98,7 +115,7 @@ const Dashpage = props => {
                             // profile={profile}
                             onClick={createPost}
                             >
-                                Have anything to share?
+                            Have anything to share?
                             </button>
                         </div>
                     </div>
@@ -111,7 +128,7 @@ const Dashpage = props => {
                                     <div className="posts" key={y}>
                                         <div className="postpic">
                                             <img src={post.img_url ? post.img_url : session.img_url} alt="" />
-                                            <h3>{post.name ? post.name : session.name}</h3>
+                                            <h5>{post.name ? post.name : session.name}</h5>
                                         </div>
                                         <div className="postcontext">
                                             <p>
