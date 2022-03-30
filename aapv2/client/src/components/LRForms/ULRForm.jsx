@@ -1,12 +1,13 @@
 import React from 'react';
 import FlashMessage from  "react-flash-message"
+import "./LRForm.css"
 
 const ULRForm = props => {
 
     const {inputs,handleInputChange,handleLogChange,logInputs,handleSubmit,handleLogin,submitValue,errors,pwErrors,flash,LEPErr,logErr} = props;
 
     return (
-        <div className="logreg d-flex justify-content-evenly">
+        <div className="logreg">
             <div>
                 { flash &&  
                     <div className="flash">
@@ -15,55 +16,57 @@ const ULRForm = props => {
                         </FlashMessage>
                     </div>
                 }
+                <div className="register"> 
                 <h1>User Registration</h1>
-                <form onSubmit={handleSubmit} className="card col-20">
-                    <label htmlFor="name">First Name:</label>
-                    <input 
-                        type="text" 
-                        name="firstName" 
-                        onChange={handleInputChange}
-                        value={inputs.firstName}
-                    />
-                    <label htmlFor="name">Last Name:</label>
-                    <input 
-                        type="text" 
-                        name="lastName" 
-                        onChange={handleInputChange}
-                        value={inputs.lastName}
-                    />
-                    <label htmlFor="name">Email:</label>
-                    <input 
-                        type="text" 
-                        name="email" 
-                        onChange={handleInputChange}
-                        value={inputs.email}
-                    />
-                    <span className="text-danger">
-                        {errors ? errors: ""}
-                    </span>
-                    <label htmlFor="name">Password:</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        onChange={handleInputChange}
-                        value={inputs.password}
-                    />
-                    <label htmlFor="name">Confirm Password:</label>
-                    <input 
-                        type="password" 
-                        name="confirmPassword" 
-                        onChange={handleInputChange}
-                        value={inputs.confirmPassword}
-                    />
-                    <span className="text-danger">
-                        {pwErrors ? pwErrors: ""}
-                    </span>
-                    <input type="submit" value={submitValue} className="btn btn-info"/>
-                </form>
+                    <form onSubmit={handleSubmit} className="register">
+                        <label htmlFor="name">First Name:</label>
+                        <input 
+                            type="text" 
+                            name="firstName" 
+                            onChange={handleInputChange}
+                            value={inputs.firstName}
+                        />
+                        <label htmlFor="name">Last Name:</label>
+                        <input 
+                            type="text" 
+                            name="lastName" 
+                            onChange={handleInputChange}
+                            value={inputs.lastName}
+                        />
+                        <label htmlFor="name">Email:</label>
+                        <input 
+                            type="text" 
+                            name="email" 
+                            onChange={handleInputChange}
+                            value={inputs.email}
+                        />
+                        <span className="text-danger">
+                            {errors ? errors: ""}
+                        </span>
+                        <label htmlFor="name">Password:</label>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            onChange={handleInputChange}
+                            value={inputs.password}
+                        />
+                        <label htmlFor="name">Confirm Password:</label>
+                        <input 
+                            type="password" 
+                            name="confirmPassword" 
+                            onChange={handleInputChange}
+                            value={inputs.confirmPassword}
+                        />
+                        <span className="text-danger">
+                            {pwErrors ? pwErrors: ""}
+                        </span>
+                        <input type="submit" value={submitValue} className="btn btn-info"/>
+                    </form>
+                </div>
             </div>
             <div className="log">
                 <h1>User Login</h1>
-                <form onSubmit={handleLogin} className="card mb-100">
+                <form onSubmit={handleLogin} className="register">
                     <label htmlFor="name">Email:</label>
                         <input 
                             type="text" 

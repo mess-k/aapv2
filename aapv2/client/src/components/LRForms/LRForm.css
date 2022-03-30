@@ -1,0 +1,11 @@
+.logreg{
+    display: flex;
+    justify-content: space-evenly;
+}
+.register{
+    display:flex;
+    flex-direction: column;
+    text-align: start;
+    width: 100%;
+    
+}

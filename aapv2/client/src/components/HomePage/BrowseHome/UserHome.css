@@ -1,9 +1,10 @@
 .FullHome{
-    border: 5px solid black;
+    /* border: 1px solid black; */
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
+    background-color: #e8e8e8;
 }
 .UL{
     display: flex;
@@ -16,12 +17,14 @@
     margin: 10px 0px 20px 20px;
 }
 .UFHleftpannel{
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 25%;
+    position: fixed;
+    left: 0;
 }
 /* /////////////////////////////////////CENTER//////////////////////////// */
 .centerpannel{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width:50%;
     display: flex;
     flex-direction: column;
@@ -30,15 +33,59 @@
 .UFHnotfollowing{
     display: flex;
     height: 200px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 100%;
     justify-content: center;
     align-items: center;
 }
 
+.UFHpost{
+    display:flex;
+    width: 100%;
+    align-items: center;
+    /* justify-content: space-between; */
+    background-color: #ffffff;
+    margin: 10px 5px 10px 5px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    border-radius: 5px; 
+    border: 1px solid rgba(0,0,0,.125);
+    padding-left: 10px;
+}
+.UHposts{
+    display:flex;
+    width: 100%;
+    /* align-items: center; */
+    flex-direction: column;
+    /* justify-content: space-between; */
+    background-color: #ffffff;
+    margin-bottom:10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: 0.3s;
+    border-radius: 5px; 
+    border: 1px solid rgba(0,0,0,.125);
+    padding: 10px;
+}
+.UHposts .UHPcomList{
+    width: 100%;
+} 
+
+.UFHpost .postInput{
+    width:90%;
+    display: flex;
+    margin: auto;
+}
+.UFHpost .postInput button{
+    text-align: left;
+    width: 100%;
+    border-radius: 20px;
+}
+
 
 /* //////////////////////////////////////RIGHT////////////////////////////// */
 .UFHrightpannel{
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     width: 25%;
+    position: fixed;
+    right: 0;
 }
