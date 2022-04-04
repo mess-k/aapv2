@@ -18,8 +18,8 @@ const L_C_List = props => {
     }
 
     return (
-        <div>
-            <div className='like_comment'>
+        <div className="like_comment">
+            <div className="like_comments">
                 <Like
                 postID= {postID}
                 sessionID={sessionID}

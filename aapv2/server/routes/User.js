@@ -12,6 +12,7 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const cors = require("cors");
 const { response } = require("express");
+const { off } = require("process");
 
 router.use(cookieParser());
 
@@ -350,6 +351,21 @@ router.delete("/follow",(req,res) =>{
             }
             if(err){
                 console.log(err)
+            }
+        }
+    )
+})
+
+
+
+
+router.get("/notfollowing",(req,res)=>{
+    const userID = req.session.user[0].id
+    db.query(
+        "SELECT aap2.profiles.id as proID, aap2.profiles.age as age, aap2.profiles.description as description, aap2.profiles.name as name, aap2.profiles.uploader_id as uploader_id, aap2.profiles.img_url as img_url  FROM aap2.profiles left join aap2.user_pet_follows on aap2.user_pet_follows.profile_id = aap2.profiles.id Where aap2.user_pet_follows.user_id is NULL",[userID],(err,result)=>{
+            if(result){
+                res.send(result)
+                console.log(result)
             }
         }
     )

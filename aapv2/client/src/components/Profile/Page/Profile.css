@@ -120,11 +120,19 @@ a {
     text-decoration: solid;
 }
 .like_comment{
+    width: 100%;
     display:flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.like_comments{
+    width: 100%;
+    display: flex;
     justify-content: space-evenly;
 }
 .like_comment .L_C{
     display:flex;
+    justify-content: space-evenly;
     border: none;
     outline:none;
     background: none;
@@ -172,14 +180,13 @@ a {
 .singleCom{
     display:flex;
     align-items: flex-start;
-    justify-content: flex-start;
     text-align: center;
-    width: 100%;
+    max-width: 100%;
 }
 .ComProfilePic{
     margin-top: 5px;
     margin-bottom: 10px;
-    width:10%;
+    max-width:8%;
     border-radius: 50%/50%;
     border: 1px solid #ffffff;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);
@@ -207,6 +214,7 @@ a {
     margin-left: 5px;
 }
 .COMMENT_LIST{
+    display: flex;
     align-items: center;
     width: 100%;
 }

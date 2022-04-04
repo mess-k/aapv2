@@ -33,7 +33,7 @@ const ComList = props => {
                             <img src={process.env.PUBLIC_URL+`${com.img_url}`} alt="" className="ComProfilePic"/>
                             <div className="comContext">
                                 <p className='nomarg'>{com.first_name}</p>
-                                <p className='nomarg'>{com.comment}</p>
+                                <h5 className='nomarg'>{com.comment}</h5>
                             </div>
                         </div>
                     )

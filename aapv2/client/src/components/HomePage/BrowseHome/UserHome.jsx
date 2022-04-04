@@ -4,11 +4,13 @@ import axios from 'axios';
 import {Link} from "@reach/router"
 import "./UserHome.css"
 import LCL from "../../Profile/Page/L_C_List"
+import Comment from "../../Profile/Page/Comment"
 
 const UserHome = props => {
     const [profiles, setProfiles]=useState([])
     const [session, setSession]=useState([])
     const[postPopUp,setPostPopUp] = useState(false)
+    const[notFollow, setNotFollow]= useState([])
     const[followPosts,setFollowPosts] = useState([])
 
     useEffect(() => {
@@ -26,8 +28,13 @@ const UserHome = props => {
                 setFollowPosts(res.data)
             })
     },[props])
-
-
+    
+    useEffect(()=>{
+        axios.get("http://localhost:8000/api/user/notfollowing")
+            .then(res => {
+                setNotFollow(res.data)
+            })
+    },[props])
 
     return (
         <>
@@ -49,8 +56,32 @@ const UserHome = props => {
             </div>
             <div className="centerpannel">
                 <div className="UFHnotfollowing">
-                    <p>not following</p>
+                    <div className="notcontainer">
+                    {
+                        notFollow.map((not,i)=>{
+                            return(
+                                <div className="singleNotfollow" key={i}>
+                                    <Link to={`/profile/view/${not.proID}`}
+                                        profile={not}
+                                        session={session}
+                                        className="singleNotfollow"
+                                    >
+                                        <div className="notPic" key={i}>
+                                            <img src={process.env.PUBLIC_URL+`${not.img_url}`} alt="" />
+                                        </div>
+                                        <div className="notName">
+                                            <h5>{not.name}</h5>
+                                        </div>
+                                    </Link>
+                                    </div>
+                            )
+                        })
+                    }
+                    </div>
                 </div>
+                    <div className="who">
+                        <h2>Check out these pets!</h2>
+                    </div>
                 <div className="UFHpost">
                         <div className="postPic">
                             <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
@@ -98,6 +129,13 @@ const UserHome = props => {
                                         className="UHPcomList"
                                         />
                                     </div>
+                                    <div className="createComment">
+                                        <div className="postcomments">
+                                            <Comment
+                                            postID={fp.post_id}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                             )
                         })
@@ -111,6 +149,5 @@ const UserHome = props => {
         </>
     );
 };
-
 
 export default UserHome;
