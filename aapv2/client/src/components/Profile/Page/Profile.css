@@ -109,12 +109,17 @@
     margin: 5px 0px 5px 0px;;
     align-items: center;
 }
+.postimg{
+    margin: auto;
+}
 .postimg img{
+    margin: auto;
     align-items: center;
     max-width: 100%;
     max-height: 100%;
     border-radius: 5px;
 }
+
 a {
     color: #000000;
     text-decoration: solid;

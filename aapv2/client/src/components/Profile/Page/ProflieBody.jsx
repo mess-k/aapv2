@@ -19,6 +19,8 @@ const Proflie = props => {
         console.log(postPopUp)
     }
 
+
+
     return (
         profile ? 
         <div>

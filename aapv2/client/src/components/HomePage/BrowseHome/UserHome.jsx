@@ -5,6 +5,7 @@ import {Link} from "@reach/router"
 import "./UserHome.css"
 import LCL from "../../Profile/Page/L_C_List"
 import Comment from "../../Profile/Page/Comment"
+import { HiArrowCircleRight } from "react-icons/hi";
 
 const UserHome = props => {
     const [profiles, setProfiles]=useState([])
@@ -36,6 +37,16 @@ const UserHome = props => {
             })
     },[props])
 
+    const scrollRight = (e) =>{
+        const container = document.getElementByClassName("notcontainer")[0]
+        ? document.getElementsByClassName("notcontainer")[0].getBoundingClientRect()
+        : 0;
+        container.scrollTo({
+        right: 100, 
+        behavior: 'smooth'
+        });
+      };
+
     return (
         <>
         {
@@ -56,6 +67,11 @@ const UserHome = props => {
             </div>
             <div className="centerpannel">
                 <div className="UFHnotfollowing">
+                        <div className="leftscroll">
+                            <button onClick={scrollRight}>
+                                <HiArrowCircleRight size={40}/>
+                            </button>
+                        </div>
                     <div className="notcontainer">
                     {
                         notFollow.map((not,i)=>{

@@ -35,7 +35,7 @@
     /* display: flex; */
     height: 100%;
     /* border: 1px solid green; */
-    width: 100%;
+    max-width: 100%;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
@@ -45,36 +45,52 @@
     padding-top: 20px;
     /* overflow-x: auto; */
     overflow: auto;
-    white-space: nowrap
+    white-space: nowrap;
+    /* position: absolute; */
 }
 
 .notcontainer{
     display: flex;
-    width: 100vw;
+    width:98.4vw;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    padding-left: 15px;
+    
+}
+
+.leftscroll{
+    vertical-align: middle;
+    z-index: 9;
+    position: absolute;
+    top: 25%;
+}
+.leftscroll button{
+    border: none;
+    outline: none;
+    background: none;
+    color: rgb(207, 207, 207);
 }
 
 .singleNotfollow{
+    position: relative;
     display: flex;
-    width: 50%;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    /* margin-right: 5px; */
-    
+    margin-right: 10px;
+    width: 264px;
+    z-index: 8;
 }
 .notPic img{    
     border-radius: 25px;
-    max-width: 100%;
+    width: 264px;
     display: flex;
     align-items: center;
-    margin: auto;
 }
 
 .UFHpost{
     display:flex;
-    width: 100%;
+    min-width: 100%;
     align-items: center;
     /* justify-content: space-between; */
     background-color: #ffffff;
@@ -88,9 +104,7 @@
 .UHposts{
     display:flex;
     width: 100%;
-    /* align-items: center; */
     flex-direction: column;
-    /* justify-content: space-between; */
     margin-bottom:10px;
     transition: 0.3s;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
