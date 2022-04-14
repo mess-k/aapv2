@@ -16,6 +16,7 @@ import ProView from "./views/Preview/ProfileView"
 import UserHome from "./views/User/BrowseHome"
 import GlobalStyle from './globalStyles';
 // import HL from "./components/HomeLogo"
+import FLpreview from "./views/User/UFview"
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <CreateProfile path="/createprofile"/>
       <Profile path="/pet/profile/:id"/>
       <ProView path="/profile/view/:id"/>
+      <FLpreview path="/pet/follow/list"/>
     </Router>
     </>
   );

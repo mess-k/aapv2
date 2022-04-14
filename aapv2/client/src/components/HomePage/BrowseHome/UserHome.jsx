@@ -1,18 +1,27 @@
 import React from 'react';
-import {useEffect,useState} from  "react";
+import {useEffect,useState,useRef} from  "react";
 import axios from 'axios';
 import {Link} from "@reach/router"
 import "./UserHome.css"
 import LCL from "../../Profile/Page/L_C_List"
 import Comment from "../../Profile/Page/Comment"
 import { HiArrowCircleRight } from "react-icons/hi";
+import { HiArrowCircleLeft } from "react-icons/hi";
+
 
 const UserHome = props => {
-    const [profiles, setProfiles]=useState([])
+    // const [profiles, setProfiles]=useState([])
     const [session, setSession]=useState([])
-    const[postPopUp,setPostPopUp] = useState(false)
+    // const[postPopUp,setPostPopUp] = useState(false)
     const[notFollow, setNotFollow]= useState([])
     const[followPosts,setFollowPosts] = useState([])
+    const ref = useRef(null)
+
+    const scroll = (scrollOffset) =>{
+        ref.current.scrollLeft += scrollOffset
+    }
+    
+
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -37,42 +46,52 @@ const UserHome = props => {
             })
     },[props])
 
-    const scrollRight = (e) =>{
-        const container = document.getElementByClassName("notcontainer")[0]
-        ? document.getElementsByClassName("notcontainer")[0].getBoundingClientRect()
-        : 0;
-        container.scrollTo({
-        right: 100, 
-        behavior: 'smooth'
-        });
-      };
-
     return (
         <>
         {
         session ? 
         <div className="FullHome">
             <div className="UFHleftpannel">
-                <ul className="UL">
-                    <li>
-                        user
-                    </li>
-                    <li>
-                        shelters gg
-                    </li>
-                    <li>
-                        pets
-                    </li>
-                </ul>
+                <div className="UL">
+                    <button>
+                        <Link to="/home" 
+                            session={session}
+                            className='LPuser'
+                        >
+                            <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
+                            <h4>{session.first_name}</h4>
+                        </Link>
+                    </button>
+                    <button>
+                        <Link to="/pet/follow/list" 
+                            session={session}
+                            className='LPuser'
+                        >
+                            <h4>pets</h4>
+                        </Link>
+                    </button>
+                    <button>
+                        <Link to="/home" 
+                            session={session}
+                            className='LPuser'
+                        >
+                            <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
+                            <h4>{session.first_name}</h4>
+                        </Link>
+                    </button>
+                </div>
             </div>
             <div className="centerpannel">
-                <div className="UFHnotfollowing">
                         <div className="leftscroll">
-                            <button onClick={scrollRight}>
-                                <HiArrowCircleRight size={40}/>
-                            </button>
+                                <button onClick={() => scroll(-200)}>
+                                <HiArrowCircleLeft  size={40} />
+                                </button>
+                                <button onClick={() => scroll(200)}>
+                                <HiArrowCircleRight  size={40} />
+                                </button>
                         </div>
-                    <div className="notcontainer">
+                <div id={'UFHnotfollowing'} ref={ref}>
+                    <div className='notcontainer' id={"notcontainer"}  >
                     {
                         notFollow.map((not,i)=>{
                             return(
@@ -94,10 +113,10 @@ const UserHome = props => {
                         })
                     }
                     </div>
-                </div>
                     <div className="who">
                         <h2>Check out these pets!</h2>
                     </div>
+                </div>
                 <div className="UFHpost">
                         <div className="postPic">
                             <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />

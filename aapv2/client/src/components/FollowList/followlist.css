@@ -1,0 +1,41 @@
+.FLcontainer{
+    display: flex;
+    height: 100vh;
+}
+
+.FLleftPannel{
+    display: flex;
+    min-width: 25%;
+    border: 1px solid red;
+}
+
+.FLrightpannel{
+    display: flex;
+    width: 75%;
+    border: 1px solid blueviolet;
+}
+
+.FL{
+    display: flex;
+    flex-direction: column;
+}
+
+.singleFollow{
+    display: flex;
+    width: 100%;
+}
+
+.singleFollow button{
+    background: none;
+    border: none;
+    outline: none;
+    width: 10%;
+}
+
+.singleFollow img{
+    max-width: 45px;
+    max-height:45px;
+    border-radius: 50%/50%;;
+    margin: 5px 0px 5px 0px;;
+    text-align: center;
+}

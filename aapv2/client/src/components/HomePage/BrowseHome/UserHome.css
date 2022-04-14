@@ -6,21 +6,45 @@
     justify-content: center;
     background-color: #e8e8e8;
 }
+
+/* ////////////////////////////////////LEFT///////////////////////////// */
+.UFHleftpannel{
+    /* border: 1px solid blue; */
+    width: 25%;
+    position: fixed;
+    left: 0;
+    /* margin-top: px; */
+}
 .UL{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     list-style: none;
     padding: 0;
+    margin-top: 15px;
 }
-.UL li{
-    margin: 10px 0px 20px 20px;
+.UL button{
+    background: none;
+    border: none;
+    outline: none;
+    width: 10%;
 }
-.UFHleftpannel{
-    /* border: 1px solid blue; */
-    width: 25%;
-    position: fixed;
-    left: 0;
+
+.LPuser{
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+}
+.LPuser h4{
+    margin: 0;
+    margin-left: 5px;
+}
+.LPuser img{
+    max-width: 45px;
+    max-height:45px;
+    border-radius: 50%/50%;;
+    margin: 5px 0px 5px 0px;;
+    text-align: center;
 }
 /* /////////////////////////////////////CENTER//////////////////////////// */
 .centerpannel{
@@ -30,45 +54,58 @@
     flex-direction: column;
     align-items: center;
 }
-.UFHnotfollowing{
-    margin-top:20px ;
-    /* display: flex; */
-    height: 100%;
-    /* border: 1px solid green; */
-    max-width: 100%;
-    justify-content: space-between;
+#UFHnotfollowing{
+    margin-top:15px ;
+    padding-bottom: 50px;
+    width: 100%;
     align-items: center;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     background-color: #ffffff;
     border-radius: 5px; 
     border: 1px solid rgba(0,0,0,.125);
     padding-top: 20px;
-    /* overflow-x: auto; */
-    overflow: auto;
+    overflow: hidden;
     white-space: nowrap;
+    scroll-behavior: smooth;
+    text-align: center;
     /* position: absolute; */
 }
-
-.notcontainer{
+.leftscroll{
     display: flex;
-    width:98.4vw;
+    vertical-align: middle;
+    justify-content: space-between;
+    /* z-index: 9; */
+    position: absolute;
+    top: 25%;
+    width: 52.6%;
+}
+.who{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center; 
+}
+
+#notcontainer{
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 15px;
+    padding-left: 10px;
+    scroll-behavior: smooth;
+    /* overflow-x: scroll; */
     
 }
 
-.leftscroll{
-    vertical-align: middle;
-    z-index: 9;
-    position: absolute;
-    top: 25%;
-}
 .leftscroll button{
     border: none;
     outline: none;
-    background: none;
-    color: rgb(207, 207, 207);
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: rgb(103, 99, 99);
+    border-radius: 60%/60%;
+    z-index: 9;
 }
 
 .singleNotfollow{
@@ -78,7 +115,7 @@
     text-align: center;
     flex-direction: column;
     margin-right: 10px;
-    width: 264px;
+    min-width: 267px;
     z-index: 8;
 }
 .notPic img{    

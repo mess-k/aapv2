@@ -68,6 +68,7 @@
     padding-left: 10px;
 }
 .postPic  img{
+    display: flex;
     max-width: 45px;
     max-height:45px;
     border-radius: 50%/50%;;
@@ -141,6 +142,15 @@ a {
     border: none;
     outline:none;
     background: none;
+    /* color: blue; */
+}
+.like_comment .N_L_C{
+    display:flex;
+    justify-content: space-evenly;
+    border: none;
+    outline:none;
+    background: none;
+    color: #93d5fc;
 }
 .createComment{
     display:flex;
@@ -189,9 +199,10 @@ a {
     max-width: 100%;
 }
 .ComProfilePic{
+    max-width: 45px;
+    max-height: 45px;
     margin-top: 5px;
     margin-bottom: 10px;
-    max-width:8%;
     border-radius: 50%/50%;
     border: 1px solid #ffffff;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);

@@ -65,7 +65,7 @@ const Like = props => {
                     <form onSubmit={Dislike}>
                         <input 
                             type="submit" 
-                            className='L_C' 
+                            className='N_L_C' 
                             value="Liked" 
                         />
                         <input 
@@ -81,7 +81,11 @@ const Like = props => {
                     </form>
                     :
                     <form onSubmit={LikePost}>
-                        <input type="submit" className='L_C' value="Like" />
+                        <input 
+                            type="submit" 
+                            className='L_C' 
+                            value="Like" 
+                        />
                         <input 
                             type="hidden" 
                             name="postID" 

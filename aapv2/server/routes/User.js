@@ -297,6 +297,26 @@ router.get("/find/profile/follow", (req,res) => {
         }
     )
 })
+router.get("/find/profiles/follow", (req,res) => {
+    const userID = req.session.user[0].id
+    // console.log(postID)
+    // console.log(userID)
+    // console.log(proID)
+
+    db.query(
+        "SELECT b.profile_id as followID, b.user_id, a.id as proID, a.age,a.description ,a.name,a.uploader_id ,a.img_url FROM aap2.user_pet_follows as b join aap2.profiles as a on a.id = b.profile_id where b.user_id = ?", [userID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
 
 router.post("/follow",(req,res) =>{
     const proID = req.body.profileID;
@@ -362,7 +382,7 @@ router.delete("/follow",(req,res) =>{
 router.get("/notfollowing",(req,res)=>{
     const userID = req.session.user[0].id
     db.query(
-        "SELECT aap2.profiles.id as proID, aap2.profiles.age as age, aap2.profiles.description as description, aap2.profiles.name as name, aap2.profiles.uploader_id as uploader_id, aap2.profiles.img_url as img_url  FROM aap2.profiles left join aap2.user_pet_follows on aap2.user_pet_follows.profile_id = aap2.profiles.id Where aap2.user_pet_follows.user_id is NULL ORDER BY RAND() LIMIT 6",[userID],(err,result)=>{
+        "SELECT a.id as proID, a.age  ,a.description ,a.name,a.uploader_id ,a.img_url   ,b.user_id as F_userID,b.profile_id as F_profile_id FROM aap2.profiles as a left join aap2.user_pet_follows as b on a.id = b.profile_id where b.user_id IS NULL or b.user_id NOT IN (?)ORDER BY RAND() LIMIT 6",[userID],(err,result)=>{
             if(result){
                 res.send(result)
                 console.log(result)
@@ -399,7 +419,7 @@ router.get("/show/comments",(req,res)=>{
     db.query(
         "SELECT * FROM comments LEFT JOIN shelters ON shelters.id = comments.sheltercom_id LEFT JOIN users on users.id = comments.usercom_id WHERE comments.compost_id = ? ORDER BY comments.id",[postID],(err,result)=>{
             if(result){
-                console.log(result)
+                // console.log(result)
                 res.send(result)
             }
             if(err){
