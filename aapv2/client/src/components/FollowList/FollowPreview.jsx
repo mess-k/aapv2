@@ -1,17 +1,19 @@
 import React from 'react';
+import ProPreView from "../Profile/Page/ProfilePreview2"
 
 
 const FollowPreview = props => {
-    const {FID,right}= props
+    const {right,profile}= props
 
-    console.log(FID)
-
+    
     return (
         <>
         {
             right ?
             <div>
-                <h1>WORKING!</h1>
+                <ProPreView
+                profile={profile}
+                />
             </div>
             : <h1>FALSE</h1>
         }

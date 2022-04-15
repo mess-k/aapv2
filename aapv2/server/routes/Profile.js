@@ -85,12 +85,15 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     
     router.get("/find", (req,res)=>{
         const proID = req.query.id
-        // console.log(proID)
+        console.log(proID)
         db.query(
             "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
                 if(result){
                     res.send(result)
                     // console.log(result)
+                }
+                else{
+                    console.log(err)
                 }
             }
             )

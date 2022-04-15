@@ -35,16 +35,33 @@ const FollowList = props => {
     }, [props]);
 
 
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/profile/find/random`)
-        .then((res) => {
-                setProfile(res.data)
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/profile/find/random`)
+    //     .then((res) => {
+    //             setProfile(res.data)
             
-        });
-    }, [props]);
+    //     });
+    // }, [props]);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/profile/find`,profile)
+    //     .then((res) => {
+    //             setProfile(res.data)
+    //             setRight(true)
+    //             console.log(profile)
+            
+    //     });
+    // }, [props]);
 
     const setProView = (e) =>{
-        setRight(prev => !prev)
+        e.preventDefault()
+        const profileID = proID
+        console.log(profileID)
+        axios.get("http://localhost:8000/api/profile/find",{params:{id: profileID}} )
+            .then(res => {
+                setProfile(res.data)
+                console.log(profile)
+                setRight(true)
+            })
     }
 
     return (
@@ -59,11 +76,14 @@ const FollowList = props => {
                                 return(
                                 <div className="singleFollow" key={k}>
                                     <button
-                                        FID={f.proID}
-                                        onClick={setProView}
-                                        right={right}
+                                        value={f.age}
                                         key={k}
-                                    >
+                                        onClick={(e) => {
+                                            setProView(e);
+                                            setProID(f.followID);
+                                        }}>
+                                        
+                                    
                                     <img src={process.env.PUBLIC_URL+`${f.img_url}`} alt="" />
                                     <h4>{f.name}</h4>
                                     </button>
@@ -74,12 +94,10 @@ const FollowList = props => {
                     </div>
                 </div>
                 <div className="FLrightpannel">
-                        {
-                            right?
-                            <FP
-                            FID={}
-                            /> : !right
-                        }
+                    <FP
+                    profile={profile}
+                    right={right}
+                    />
                 </div>: 
             </div>
         : !session
