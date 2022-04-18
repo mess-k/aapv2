@@ -12,9 +12,6 @@ const Proflie = props => {
     const{profile,posts} = props
     const [session, setSession] = useState()
     
-
-
-    // console.log(posts)
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {

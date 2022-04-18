@@ -7,7 +7,7 @@ const Nav = props => {
     return (
         <>
         <div className="Nav">
-            <a href="/home"><img src={logo} alt="" className="NavImg"/></a>
+            <a href="/UFBHome"><img src={logo} alt="" className="NavImg"/></a>
             <a href="/login">Logout</a>
         </div>
         </>
