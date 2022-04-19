@@ -36,6 +36,7 @@ const UserHome = props => {
         axios.get("http://localhost:8000/api/user/following/posts")
             .then(res => {
                 setFollowPosts(res.data)
+                console.log(res.data)
             })
     },[props])
     
@@ -43,6 +44,7 @@ const UserHome = props => {
         axios.get("http://localhost:8000/api/user/notfollowing")
             .then(res => {
                 setNotFollow(res.data)
+                // console.log(res.data)
             })
     },[props])
 
@@ -141,6 +143,7 @@ const UserHome = props => {
                                             // profile={profile}
                                             session={session}
                                             className="postpic"
+                                            sid={fp}
                                         >
                                         <img src={process.env.PUBLIC_URL+`${fp.img_url}`} alt="" />
                                         <div>

@@ -346,6 +346,34 @@ router.post("/follow",(req,res) =>{
         }
     )
 })
+router.post("/follow/shelter",(req,res) =>{
+    const proID = req.body.profileID;
+    const userID = req.session.user[0].id
+
+    console.log(proID)
+
+    db.query(
+        "INSERT INTO user_shelters_follows SET shelter_id=?, user_id=?;",[proID,userID],(err,result)=>{
+            if(result){
+                db.query(
+                    "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [proID,userID],(err,result)=>{
+                    if(result.length > 0){
+                        res.send(true)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
 
 router.delete("/follow",(req,res) =>{
     const proID = req.query.id;

@@ -1,30 +1,28 @@
 import React from 'react';
 import Nav from "../../components/Nav/Nav"
 import {useEffect,useState} from  "react";
-import Pro from "../../components/Profile/Page/ProfilePreview"
+import ShelterCom from "../../components/Shelter/ShelterPreView"
 import Page from "../../Style/PageBody"
 import axios from 'axios';
 
-const ProfileView = props => {
-    const [profile, setProfile] = useState([])
-    const[posts,setPosts] = useState([])
-    const[sID,setSID] = useState([])
-    const {session} = props
 
+const ShelterView = props => {
+    const [shelter, setShelter] = useState([])
+    const[posts,setPosts] = useState([])
+    const {session} = props
     console.log(props)
 
     useEffect(() => {
-        const profileID = props.id
-        axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})
+        const SID = props.id
+        axios.get(`http://localhost:8000/api/shelter/find`, {params:{id: SID}})
         .then((res) => {
-            setProfile([res.data[0]])
-            setSID(res.data[0].uploader_id)
+            setShelter([res.data[0]])
         });
     }, [props]);
 
     useEffect(() => {
         const profileID = props.id
-        axios.get('http://localhost:8000/api/profile/show/posts',{params:{id: profileID}})
+        axios.get('http://localhost:8000/api/shelter/show/posts',{params:{id: profileID}})
         .then( res => {
             setPosts(res.data)
         })
@@ -35,15 +33,16 @@ const ProfileView = props => {
             <Nav/>
             <Page>
             </Page>
-            <Pro
-            profile={profile}
+            <ShelterCom
+            shelter={shelter}
             session={session}
             posts={posts}
-            sID={sID}
             />
         </> 
     );
 
 }
 
-export default ProfileView
+
+
+export default ShelterView;

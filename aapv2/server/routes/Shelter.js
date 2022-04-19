@@ -198,24 +198,23 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
     }
 })
 
-///////////////////////////FIND PROFILES/////////////////////////////
+///////////////////////////FIND/////////////////////////////////////////////
 
 router.get("/find", (req,res)=>{
-    if (req.session.shelter){
-        const SID = req.session.shelter[0].id;
+        const SID = req.query.id;
         console.log(SID)
         db.query(
-            "SELECT * FROM profiles WHERE uploader_id=?",SID,(err,result)=>{
+            "SELECT * FROM shelters WHERE id=?",SID,(err,result)=>{
                 if(result){
                     res.send(result)
                     console.log(result)
                 }
             }
         )
-    }
-    else{
-        console.log("problem  209")
-    }
+    
+    // else{
+    //     console.log("problem  209")
+    // }
 })
 
 ////////////////////FIND POSTS///////////////////
@@ -223,10 +222,42 @@ router.get("/find", (req,res)=>{
 router.get("/show/posts", (req,res) =>{
     const shelterID = req.query.id
     db.query(
-        "SELECT * FROM posts LEFT JOIN profiles ON profiles.id = profile_id WHERE shelter_id=? ORDER BY posts.id DESC",[shelterID],(err,result)=>{
+        "SELECT * FROM posts LEFT JOIN shelters ON shelters.id = shelter_id WHERE shelter_id=? ORDER BY posts.id DESC",[shelterID],(err,result)=>{
             if(result){
                 res.send(result)
-                console.log(result)
+                // console.log(result)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+////////////////////////////FOLLOW////////////////////////////////////////////////
+
+
+router.post("/follow",(req,res) =>{
+    const proID = req.body.profileID;
+    const userID = req.session.user[0].id
+
+    // console.log(proID)
+
+    db.query(
+        "INSERT INTO user_shelter_follows SET shelter_id=?, user_id=?;",[proID,userID],(err,result)=>{
+            if(result){
+                db.query(
+                    "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,result)=>{
+                    if(result.length > 0){
+                        res.send(true)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
             }
             if(err){
                 console.log(err)

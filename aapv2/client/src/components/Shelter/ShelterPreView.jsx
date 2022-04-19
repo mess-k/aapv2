@@ -1,18 +1,17 @@
 import React from 'react';
-import "./Profile.css"
+// import "./Profile.css"
 import {useState,useEffect} from "react";
 import axios from "axios"
-import Comment from "./Comment"
-import LCL from "./L_C_List"
-import Follow from "./Follow"
+import Comment from "../Profile/Page/Comment"
+// import LCL from "./L_C_List"
+import Follow from "./SFollow"
 import { Link } from '@reach/router';
 
 
-const Proflie = props => {
-    const{profile,posts,sID} = props
+const ShelterPreView = props => {
+    const{shelter,posts} = props
     const [session, setSession] = useState()
-    const [shelter, setShelter] = useState([])
-    
+
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {
@@ -21,21 +20,12 @@ const Proflie = props => {
             }
         });
     }, [props]);
-    useEffect(() => {
-        const SID = sID
-        axios.get(`http://localhost:8000/api/shelter/find`,{params:{id: SID}})
-        .then((res) => {
-            setShelter(res.data);
-            console.log(res.data)
-
-        });
-    }, [props]);
     
     return (
-        profile ? 
+        shelter ? 
         <div>
             {
-                profile.map((p,k)=>{
+                shelter.map((p,k)=>{
                     return(
                         <div className="profile" key={k}>
                             <div className="profileHeader">
@@ -54,26 +44,9 @@ const Proflie = props => {
                                                 <h5>Bio</h5>
                                             </div>
                                             <div className="info">
-                                                <h5>Age: {p.age}</h5>
-                                                <h5>Type: {p.type}</h5>
-                                                <h5>{p.description}</h5>
-                                                {
-                                                    shelter.map((s,i) =>{
-                                                        return(
-                                                            <div className="SContact" key={i}>
-                                                                <Link to={`/shelter/view/${s.id}`}
-                                                                    shelter={s}
-                                                                    session={session}
-                                                                    className="singleNotfollow"
-                                                                >
-                                                                <div className="notName">
-                                                                    <h5>{s.email}</h5>
-                                                                </div>
-                                                                </Link>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
+                                                <h5>{p.name}</h5>
+                                                <h5>{p.email}</h5>
+
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +60,7 @@ const Proflie = props => {
                                                         <div className="posts" key={y}>
                                                             <div className="postpic">
                                                                 <Link to={`/profile/view/${p.id}`}
-                                                                    profile={profile}
+                                                                    shelter={shelter}
                                                                     session={session}
                                                                     className="postpic"
                                                                 >
@@ -107,12 +80,12 @@ const Proflie = props => {
                                                                 <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                                             </div>
                                                             <div className="like_comment">
-                                                                <LCL
+                                                                {/* <LCL
                                                                 postID= {post.id}
                                                                 sessionID={session.id}
-                                                                profile={profile.id}
+                                                                shelter={shelter.id}
                                                                 className="posterPic"
-                                                                />
+                                                                /> */}
                                                             </div>
                                                             <div className="createComment">
                                                                 <div className="postcomments">
@@ -133,8 +106,10 @@ const Proflie = props => {
                     )
                 })
             }
-        </div> : <h1>"Cant find info on this pet sorry ):"</h1>
+        </div> : <h1>"Cant find info on this shelter sorry ):"</h1>
     );
-}
+};
 
-export default Proflie;
+
+
+export default ShelterPreView;
