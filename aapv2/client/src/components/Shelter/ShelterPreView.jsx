@@ -3,7 +3,7 @@ import React from 'react';
 import {useState,useEffect} from "react";
 import axios from "axios"
 import Comment from "../Profile/Page/Comment"
-// import LCL from "./L_C_List"
+import LCL from "../Profile/Page/L_C_List"
 import Follow from "./SFollow"
 import { Link } from '@reach/router';
 
@@ -11,6 +11,8 @@ import { Link } from '@reach/router';
 const ShelterPreView = props => {
     const{shelter,posts} = props
     const [session, setSession] = useState()
+
+    console.log(posts)
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -59,38 +61,53 @@ const ShelterPreView = props => {
                                                     return(
                                                         <div className="posts" key={y}>
                                                             <div className="postpic">
-                                                                <Link to={`/profile/view/${p.id}`}
+                                                                <>
+                                                                {
+                                                                post.PID === null ?
+                                                                <Link to={`/shelter/view/${p.id}`}
                                                                     shelter={shelter}
                                                                     session={session}
                                                                     className="postpic"
                                                                 >
-                                                                <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                                                <img src={process.env.PUBLIC_URL+`${post.s_img_url}`} alt="" />
+                                                                <div>
+                                                                    <p className='p'>{post.s_name}</p>
+                                                                </div>
+                                                                </Link> :
+                                                                <Link to={`/profile/view/${post.PID}`}
+                                                                shelter={shelter}
+                                                                session={session}
+                                                                className="postpic"
+                                                                >
+                                                                <img src={process.env.PUBLIC_URL+`${post.p_img_url}`} alt="" />
                                                                 <div>
 
-                                                                <p className='p'>{p.name}</p>
+                                                                <p className='p'>{post.p_name}</p>
                                                                 </div>
                                                                 </Link>
-                                                            </div>
-                                                            <div className="postcontext">
-                                                                <h5>
-                                                                    {post.context}
-                                                                </h5>
-                                                            </div>
+                                                                    }
+                                                                    </>
+                                                                </div>
+                                                                <div className="postcontext">
+                                                                    <h5>
+                                                                        {post.context}
+                                                                    </h5>
+                                                                </div>
                                                             <div className="postimg">
                                                                 <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                                             </div>
                                                             <div className="like_comment">
-                                                                {/* <LCL
-                                                                postID= {post.id}
+                                                                <LCL
+                                                                postID= {post.post_id}
                                                                 sessionID={session.id}
-                                                                shelter={shelter.id}
+                                                                shelter={post.id}
                                                                 className="posterPic"
-                                                                /> */}
+                                                                />
                                                             </div>
                                                             <div className="createComment">
                                                                 <div className="postcomments">
                                                                 <Comment
-                                                                postID={post.id}
+                                                                postID={post.post_id}
                                                                 />
                                                                 </div>
                                                             </div>

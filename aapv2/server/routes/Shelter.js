@@ -132,7 +132,7 @@ router.put("/edit", (req,res) => {
                                         if(err){
                                         }
                                         req.session.shelter = results;
-                                        console.log(results);
+                                        // console.log(results);
                                         res.send(result);
                                     }
                                 )
@@ -185,7 +185,7 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                                 db.query(
                                     "SELECT * FROM shelters WHERE id = ?", req.session.shelter[0].id, (err,final) => {
                                         req.session.shelter = final;
-                                        console.log(final);
+                                        // console.log(final);
                                         res.send(final);
                                     }
                                 )
@@ -202,12 +202,12 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
 
 router.get("/find", (req,res)=>{
         const SID = req.query.id;
-        console.log(SID)
+        // console.log(SID)
         db.query(
             "SELECT * FROM shelters WHERE id=?",SID,(err,result)=>{
                 if(result){
                     res.send(result)
-                    console.log(result)
+                    // console.log(result)
                 }
             }
         )
@@ -222,10 +222,10 @@ router.get("/find", (req,res)=>{
 router.get("/show/posts", (req,res) =>{
     const shelterID = req.query.id
     db.query(
-        "SELECT * FROM posts LEFT JOIN shelters ON shelters.id = shelter_id WHERE shelter_id=? ORDER BY posts.id DESC",[shelterID],(err,result)=>{
+        "SELECT a.id as post_id,a.created_at,a.context, a.context, a.post_url, a.shelter_id,a.user_id,b.id as PID,b.img_url as p_img_url, b.name as p_name,b.uploader_id,c.id,c.name as s_name, c.img_url as s_img_url FROM posts as a left join profiles as b on b.id = profile_id LEFT JOIN shelters as c ON c.id = shelter_id WHERE shelter_id=? ORDER BY a.id DESC",[shelterID],(err,result)=>{
             if(result){
                 res.send(result)
-                // console.log(result)
+                console.log(result)
             }
             if(err){
                 console.log(err)

@@ -21,8 +21,8 @@ const SFollow = props => {
     }, [props]);
 
     useEffect(() =>{
-        const pro_ID = proID
-        axios.get("http://localhost:8000/api/user/find/profile/follow",{params:{id: pro_ID}})
+        const s_ID = proID
+        axios.get("http://localhost:8000/api/user/find/shelter/follow",{params:{id: s_ID}})
             .then(res => {
                 setFindFollow(res.data)
             })
@@ -42,8 +42,8 @@ const SFollow = props => {
         }
         const unFollow = (e) =>{ 
             e.preventDefault()
-            const pro_ID = proID
-            axios.delete(`http://localhost:8000/api/user/follow`,{params:{id: pro_ID}})
+            const SID = proID
+            axios.delete(`http://localhost:8000/api/user/follow/shelter`,{params:{id: SID}})
                 .then (res => {
                     // setLike(prev => !prev)
                     setFindFollow(prev => !prev)

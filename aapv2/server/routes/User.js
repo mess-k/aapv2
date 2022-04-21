@@ -274,7 +274,7 @@ router.get("/find/like", (req,res) => {
     )
 })
 
-////////////////////////////FOLLOW////////////////////////////////////////////
+////////////////////////////FOLLOW PROFILE////////////////////////////////////////////
 
 router.get("/find/profile/follow", (req,res) => {
     const proID = req.query.id;
@@ -297,6 +297,7 @@ router.get("/find/profile/follow", (req,res) => {
         }
     )
 })
+
 router.get("/find/profiles/follow", (req,res) => {
     const userID = req.session.user[0].id
     // console.log(postID)
@@ -315,8 +316,61 @@ router.get("/find/profiles/follow", (req,res) => {
                 console.log(err)
             }
         }
-    )
+        )
+    })
+    
+    router.delete("/follow",(req,res) =>{
+        const proID = req.query.id;
+        const userID = req.session.user[0].id
+    
+        db.query(
+            "DELETE FROM user_pet_follows WHERE profile_id=? AND user_id=?;",[proID,userID],(err,result)=>{
+                if(result){
+                    console.log(result)
+                    db.query(
+                        "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,results)=>{
+                        if(results.length > 0){
+                            res.send(true)
+                            console.log(results)
+                        }
+                        else{
+                            res.send(false)
+                        }
+                        if(err){
+                            console.log(err)
+                        }
+                    })
+                }
+                if(err){
+                    console.log(err)
+                }
+            }
+        )
+    })
+
+////////////////FOLLOW SHELTER/////////////////////////////////////
+router.get("/find/shelter/follow", (req,res) => {
+    const SID = req.query.id;
+    const userID = req.session.user[0].id
+    // console.log(postID)
+    // console.log(userID)
+    // console.log(proID)
+
+    db.query(
+        "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [SID,userID],(err,result)=>{
+            if(result.length > 0){
+                res.send(true)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+        )
 })
+
 
 router.post("/follow",(req,res) =>{
     const proID = req.body.profileID;
@@ -375,16 +429,16 @@ router.post("/follow/shelter",(req,res) =>{
     )
 })
 
-router.delete("/follow",(req,res) =>{
-    const proID = req.query.id;
+router.delete("/follow/shelter",(req,res) =>{
+    const SID = req.query.id;
     const userID = req.session.user[0].id
 
     db.query(
-        "DELETE FROM user_pet_follows WHERE profile_id=? AND user_id=?;",[proID,userID],(err,result)=>{
+        "DELETE FROM user_shelters_follows WHERE shelter_id=? AND user_id=?;",[SID,userID],(err,result)=>{
             if(result){
                 console.log(result)
                 db.query(
-                    "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,results)=>{
+                    "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [SID,userID],(err,results)=>{
                     if(results.length > 0){
                         res.send(true)
                         console.log(results)
@@ -403,7 +457,6 @@ router.delete("/follow",(req,res) =>{
         }
     )
 })
-
 
 
 
