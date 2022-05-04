@@ -16,7 +16,7 @@ const PopUpWrapper = styled.div`
     color: #000;
     grid-template-columns: 1fr 1fr;
     position: relative;
-    z-index: 10;
+    z-index: 11;
     border-radius: 10px;
     margin-top: -150px;
     overflow:hidden;

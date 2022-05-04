@@ -256,3 +256,9 @@ a {
     width: 100%;
 }
 
+.logout{
+    outline: none;
+    border: none;
+    background-color: none;
+    background: none;
+}

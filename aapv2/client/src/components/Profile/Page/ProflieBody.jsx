@@ -3,13 +3,14 @@ import "./Profile.css"
 import {useState} from "react";
 import Editpop from "../../Dashboard/Popups/EditProfile/EditProfile"
 import CreatePost from "../../Dashboard/Popups/CreatePost/CreatePost"
+import Comment from "./Comment"
+import LCL from "./L_C_List"
 // import axios from 'axios';
 
 const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
     const[postPopUp,setPostPopUp] = useState(false)
     const{profile,session,posts} = props
-
 
     const EditProfileButton = (e)=>{
         setEditPopUp(prev => !prev)
@@ -18,8 +19,6 @@ const Proflie = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
-
-
 
     return (
         profile ? 

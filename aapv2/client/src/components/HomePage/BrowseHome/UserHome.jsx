@@ -36,7 +36,6 @@ const UserHome = props => {
         axios.get("http://localhost:8000/api/user/following/posts")
             .then(res => {
                 setFollowPosts(res.data)
-                console.log(res.data)
             })
     },[props])
     

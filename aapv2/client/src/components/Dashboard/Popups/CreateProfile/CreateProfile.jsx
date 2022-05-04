@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { useState, useRef } from  "react";
-import {useEffect} from  "react";
 import axios from 'axios';
 import ReactCrop from 'react-image-crop';
 import {useSpring,animated } from "react-spring"
@@ -14,6 +13,7 @@ const Background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index:11;
 `;
 
 const PopUpWrapper = styled.div`
@@ -248,7 +248,7 @@ const EditPopUpForm = props => {
                                 <div key={k}>
 
                     <div className="PostHeader">
-                    <h1>Update {session.name}</h1>
+                    <h1>Create a profile for a pet!</h1>
                     <button className="btn btn-light" value="x" onClick={createProButton}>x</button>
                     </div>
                         <form onSubmit={handleSubmit} >

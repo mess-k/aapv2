@@ -7,7 +7,7 @@
     align-items: center;
     position: fixed;
     transition: all 0.3s ease-out;
-    z-index: 1000;
+    z-index: 9;
 }
 
 .SPNav a {

@@ -1,12 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect,useState } from 'react';
+import { Link } from '@reach/router';
 
 const ComList = props => {
     const {postID,showCom} = props
     const [comList,setComList] = useState([])
-
-    // console.log(postID)
 
     useEffect(()=>{
             
@@ -21,26 +20,42 @@ const ComList = props => {
             }) 
     },[postID])
 
-
     return (
         showCom?
         <div className='comList'>
             {
                 comList.map((com,i)=>{
                     return(
-                        <div className="singleCom" key={i}>
-                            <img src={process.env.PUBLIC_URL+`${com.img_url}`} alt="" className="ComProfilePic"/>
-                            <div className="comContext">
-                                <p className='nomarg'>{com.first_name}</p>
-                                <h5 className='nomarg'>{com.comment}</h5>
+                        <>
+                            {
+                                com.sheltercom_id === null ?
+                                
+                            <div className="singleCom" key={i}>
+                                <Link to={`/home`}
+                                >
+                                <img src={process.env.PUBLIC_URL+`${com.img_url}`} alt="" className="ComProfilePic"/>
+                                </Link>
+                                <div className="comContext">
+                                    <Link to="/home"
+                                    >
+                                    <h4 className='nomarg'>{com.first_name}</h4>
+                                    </Link>
+                                    <h6 className='nomarg'>{com.comcreated_at}</h6>
+                                    <h5 className='nomarg'>{com.comment}</h5>
+                                </div>
                             </div>
-                        </div>
+                                :
+                                <div className="singleCom" key={i}>
+                                <Link to={`/home`}>
+                                </Link>
+                                </div>
+                            }
+                        </>
                     )
                 })
             }
         </div>: !showCom
     );
 };
-
 
 export default ComList;

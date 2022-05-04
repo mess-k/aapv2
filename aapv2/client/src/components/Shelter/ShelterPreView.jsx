@@ -7,7 +7,6 @@ import LCL from "../Profile/Page/L_C_List"
 import Follow from "./SFollow"
 import { Link } from '@reach/router';
 
-
 const ShelterPreView = props => {
     const{shelter,posts} = props
     const [session, setSession] = useState()
@@ -126,7 +125,5 @@ const ShelterPreView = props => {
         </div> : <h1>"Cant find info on this shelter sorry ):"</h1>
     );
 };
-
-
 
 export default ShelterPreView;

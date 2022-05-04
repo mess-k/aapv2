@@ -53,8 +53,6 @@ const Follow = props => {
                 }) 
         }
 
-
-
     return (
         session ? 
         <div>

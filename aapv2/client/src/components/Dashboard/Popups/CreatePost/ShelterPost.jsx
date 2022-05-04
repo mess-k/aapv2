@@ -22,9 +22,9 @@ const PopUpWrapper = styled.div`
     color: #000;
     grid-template-columns: 1fr 1fr;
     position: relative;
-    z-index: 10;
+    z-index: 1000;
     border-radius: 10px;
-    margin-top: -150px;
+    margin-top: -100px;
     overflow:auto;
 `;
 const PopUpContent = styled.div`

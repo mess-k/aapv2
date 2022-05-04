@@ -128,12 +128,12 @@ const Dashpage = props => {
                                     <div className="posts" key={y}>
                                         <div className="postpic">
                                             <img src={post.img_url ? post.img_url : session.img_url} alt="" />
-                                            <h5>{post.name ? post.name : session.name}</h5>
+                                            <p>{post.name ? post.name : session.name}</p>
                                         </div>
                                         <div className="postcontext">
-                                            <p>
+                                            <h5>
                                                 {post.context}
-                                            </p>
+                                            </h5>
                                         </div>
                                         <div className="postimg">
                                             <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />

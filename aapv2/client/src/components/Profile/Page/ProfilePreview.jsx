@@ -26,10 +26,8 @@ const Proflie = props => {
         axios.get(`http://localhost:8000/api/shelter/find`,{params:{id: SID}})
         .then((res) => {
             setShelter(res.data);
-            console.log(res.data)
-
         });
-    }, [props]);
+    }, [sID]);
     
     return (
         profile ? 

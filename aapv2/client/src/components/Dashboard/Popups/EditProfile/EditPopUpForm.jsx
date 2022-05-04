@@ -14,6 +14,7 @@ const Background = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index:11;
 `;
 
 const PopUpWrapper = styled.div`
@@ -27,7 +28,7 @@ const PopUpWrapper = styled.div`
     color: #000;
     grid-template-columns: 1fr 1fr;
     position: relative;
-    z-index: 10;
+    z-index: 11;
     border-radius: 10px;
     margin-top: -150px;
     overflow:hidden;

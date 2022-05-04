@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const { response } = require("express");
 const { off } = require("process");
+const { appendFile } = require("fs");
 
 router.use(cookieParser());
 
@@ -500,7 +501,7 @@ router.get("/show/comments",(req,res)=>{
     db.query(
         "SELECT * FROM comments LEFT JOIN shelters ON shelters.id = comments.sheltercom_id LEFT JOIN users on users.id = comments.usercom_id WHERE comments.compost_id = ? ORDER BY comments.id",[postID],(err,result)=>{
             if(result){
-                // console.log(result)
+                console.log(result)
                 res.send(result)
             }
             if(err){
@@ -523,6 +524,16 @@ router.get("/following/posts", (req,res) => {
             }
         }
     )
+})
+
+
+////////////////////LOGOUT////////////////////////////////
+
+router.use("/logout",function(req,res){
+    req.session.destroy(function(err) {
+        res.send("logout")
+    })
+    
 })
 
 
