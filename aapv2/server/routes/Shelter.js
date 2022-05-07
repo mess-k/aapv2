@@ -102,7 +102,6 @@ router.post("/login", (req, res) => {
         }}
     );
 });
-
 //////////////////////UPDATE/////////////////////
 
 router.put("/edit", (req,res) => {
@@ -146,7 +145,6 @@ router.put("/edit", (req,res) => {
         console.log("no match")
     }
 })
-
 
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
@@ -198,8 +196,7 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
     }
 })
 
-///////////////////////////FIND/////////////////////////////////////////////
-
+///////
 router.get("/find", (req,res)=>{
         const SID = req.query.id;
         // console.log(SID)
@@ -216,9 +213,7 @@ router.get("/find", (req,res)=>{
     //     console.log("problem  209")
     // }
 })
-
 ////////////////////FIND POSTS///////////////////
-
 router.get("/show/posts", (req,res) =>{
     const shelterID = req.query.id
     db.query(
@@ -233,16 +228,11 @@ router.get("/show/posts", (req,res) =>{
         }
     )
 })
-
-////////////////////////////FOLLOW////////////////////////////////////////////////
-
+////////////////////////////FOLLOW////////////////////////////////////////////////////////////////////////
 
 router.post("/follow",(req,res) =>{
     const proID = req.body.profileID;
     const userID = req.session.user[0].id
-
-    // console.log(proID)
-
     db.query(
         "INSERT INTO user_shelter_follows SET shelter_id=?, user_id=?;",[proID,userID],(err,result)=>{
             if(result){
@@ -258,6 +248,103 @@ router.post("/follow",(req,res) =>{
                         console.log(err)
                     }
                 })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+//////////////////////////////LIKES//////////////////////////////////////////////////////////////////
+
+router.get("/find/like", (req,res) => {
+    const postID = req.query.id;
+    const userID = req.session.shelter[0].id
+    // console.log(postID)
+    // console.log(userID)
+    db.query(
+        "SELECT * FROM likes WHERE post_id=? AND shelter_id=?", [postID,userID],(err,result)=>{
+            if(result.length > 0){
+                res.send(true)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+router.post("/like",(req,res) =>{
+    const postID = req.body.postID;
+    const userID = req.session.shelter[0].id
+
+    db.query(
+        "INSERT INTO likes SET post_id=?, shelter_id=?;",[postID,userID],(err,result)=>{
+            if(result){
+                db.query(
+                    "SELECT * FROM likes WHERE post_id=? AND shelter_id=?", [postID,userID],(err,result)=>{
+                    if(result.length > 0){
+                        res.send(true)
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+router.delete("/like",(req,res) =>{
+    const postID = req.query.id;
+    const userID = req.session.shelter[0].id
+
+    db.query(
+        "DELETE FROM likes WHERE post_id=? AND shelter_id=?;",[postID,userID],(err,result)=>{
+            if(result){
+                console.log(result)
+                db.query(
+                    "SELECT * FROM likes WHERE post_id=? AND shelter_id=?", [postID,userID],(err,results)=>{
+                    if(results.length > 0){
+                        res.send(true)
+                        
+                    }
+                    else{
+                        res.send(false)
+                    }
+                    if(err){
+                        console.log(err)
+                    }
+                })
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+/////////////////////////////////////COMMENT/////////////////////////
+router.post("/postcomment",(req,res)=>{
+    const postID = req.body.postID
+    const comment = req.body.comment
+    const date = req.body.date
+    const user = req.session.shelter[0].id
+    
+    db.query(
+        "INSERT INTO comments SET comment=?, sheltercom_id=?, comcreated_at=?,compost_id=?",[comment,user,date,postID],(err,result)=>{
+            if(result){
+                console.log(result)
             }
             if(err){
                 console.log(err)

@@ -1,11 +1,11 @@
 import React from 'react';
-import Like from "./Like"
+import Like from "./SLike"
 import Show from "./ShowComments"
 import List from "./ComList"
 import {useState} from "react"
 
 
-const L_C_List = props => {
+const S_L_C_List = props => {
     const {postID,sessionID,profile} = props
 
     console.log(profile)
@@ -46,4 +46,4 @@ const L_C_List = props => {
 };
 
 
-export default L_C_List;
+export default S_L_C_List;

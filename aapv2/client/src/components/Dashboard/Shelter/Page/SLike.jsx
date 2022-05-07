@@ -1,22 +1,23 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import "./Profile.css";
+// import "./Profile.css";
 
-const Like = props => {
+const SLike = props => {
     const {postID,sessionID} = props
     const [session, setSession] = useState(false)
     const [find, setFind] = useState(false)
+    const [sfind, setSFind] = useState(false)
     const [like, setLike] = useState({
         postID:`${postID}`,
         userID:""
     })
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/login`)
+        axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.user[0]);
+                setSession(res.data.shelter[0]);
             }
         });
     }, [props]);
@@ -24,45 +25,44 @@ const Like = props => {
 
     useEffect(() =>{
         const post_ID = postID
-        axios.get("http://localhost:8000/api/user/find/like",{params:{id: post_ID}})
+        axios.get("http://localhost:8000/api/shelter/find/like",{params:{id: post_ID}})
             .then(res => {
                 setFind(res.data)
             })
     })
 
-    const LikePost = (e) =>{ 
+    
+        const SLikePost = (e) =>{ 
         e.preventDefault()
         
-        axios.post("http://localhost:8000/api/user/like",like)
+        axios.post("http://localhost:8000/api/shelter/like",like)
             .then (res => {
                 // setLike()
-                setFind(prev => !prev)
+                setSFind(prev => !prev)
             })
             .catch (err => {
                 console.log(err)
             }) 
         }
-    
 
-    const Dislike = (e) =>{ 
+    const SDislike = (e) =>{ 
         e.preventDefault()
         const post_ID = postID
-        axios.delete(`http://localhost:8000/api/user/like/`,{params:{id: post_ID}})
+        axios.delete(`http://localhost:8000/api/shelter/like/`,{params:{id: post_ID}})
             .then (res => {
                 // setLike(prev => !prev)
-                setFind(prev => !prev)
+                setSFind(prev => !prev)
             })
             .catch (err => {
                 console.log(err)
             }) 
     }
 
-
     return (
         <div className='L_C_FORMS'>
                 {
                     find ? 
-                    <form onSubmit={Dislike}>
+                    <form onSubmit={SDislike}>
                         <input 
                             type="submit" 
                             className='N_L_C' 
@@ -80,7 +80,7 @@ const Like = props => {
                         />
                     </form>
                     :
-                    <form onSubmit={LikePost}>
+                    <form onSubmit={SLikePost}>
                         <input 
                             type="submit" 
                             className='L_C' 
@@ -103,4 +103,4 @@ const Like = props => {
 };
 
 
-export default Like;
+export default SLike;

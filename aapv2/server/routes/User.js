@@ -236,7 +236,7 @@ router.delete("/like",(req,res) =>{
                     "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,results)=>{
                     if(results.length > 0){
                         res.send(true)
-                        console.log(results)
+                        
                     }
                     else{
                         res.send(false)
@@ -267,9 +267,6 @@ router.get("/find/like", (req,res) => {
             }
             else{
                 res.send(false)
-            }
-            if(err){
-                console.log(err)
             }
         }
     )
@@ -480,7 +477,6 @@ router.post("/postcomment",(req,res)=>{
     const comment = req.body.comment
     const date = req.body.date
     const user = req.session.user[0].id
-    console.log(postID)
     
     db.query(
         "INSERT INTO comments SET comment=?, usercom_id=?, comcreated_at=?,compost_id=?",[comment,user,date,postID],(err,result)=>{
@@ -499,7 +495,7 @@ router.get("/show/comments",(req,res)=>{
     const postID = req.query.id
 
     db.query(
-        "SELECT * FROM comments LEFT JOIN shelters ON shelters.id = comments.sheltercom_id LEFT JOIN users on users.id = comments.usercom_id WHERE comments.compost_id = ? ORDER BY comments.id",[postID],(err,result)=>{
+        "SELECT a.id as post_id,a.comment,a.sheltercom_id,a.usercom_id,a.comcreated_at,a.compost_id,b.id as s_id,b.name,b.img_url as s_img,c.id as u_id,c.first_name,c.last_name,c.img_url as u_img FROM aap2.comments as a left join aap2.shelters as b on a.sheltercom_id = b.id left join aap2.users as c on a.usercom_id = c.id WHERE a.compost_id = ? ORDER BY a.id",[postID],(err,result)=>{
             if(result){
                 console.log(result)
                 res.send(result)

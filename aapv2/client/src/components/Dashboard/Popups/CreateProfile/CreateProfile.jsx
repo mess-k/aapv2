@@ -98,7 +98,6 @@ const EditPopUpForm = props => {
         img_url:``,
         up_id:`${session[0].id}`
     })
-    console.log(session[0].id)
 
     // useEffect(() => {
     //     axios.get(`http://localhost:8000/api/shelter/login`)

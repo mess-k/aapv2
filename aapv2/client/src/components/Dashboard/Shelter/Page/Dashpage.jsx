@@ -5,6 +5,8 @@ import {Link} from "@reach/router"
 import ShelterPost from "../../Popups/CreatePost/ShelterPost"
 import ShelterEdit from "../Edit/ShelterEdit"
 import CreateProfile from "../../Popups/CreateProfile/CreateProfile"
+import LCL from "./S_L_C_List"
+import Comment from "./Comment"
 
 
 
@@ -15,7 +17,6 @@ const Dashpage = props => {
     const[postPopUp,setPostPopUp] = useState(false)
     const [editShelter, setEditShelter] = useState(false)
     const [createPro , setCreatePro] = useState(false)
-
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
@@ -30,6 +31,7 @@ const Dashpage = props => {
     const editShelterButton = e =>{
         setEditShelter(prev => !prev)
     }
+
     const createProButton = e =>{
         setCreatePro(prev => !prev)
     }
@@ -38,6 +40,7 @@ const Dashpage = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
+    console.log(posts)
 
     return(
         session ?  
@@ -125,20 +128,71 @@ const Dashpage = props => {
                         {
                             posts.map((post,y) =>{
                                 return(
+                                    <>
+                                    {
+                                    post.PID === null ?
                                     <div className="posts" key={y}>
                                         <div className="postpic">
-                                            <img src={post.img_url ? post.img_url : session.img_url} alt="" />
-                                            <p>{post.name ? post.name : session.name}</p>
+                                            <Link to={`/dashboard`}
+                                            className="postpic"
+                                            >
+                                            <img src={post.p_img_url ? post.p_img_url : session.img_url} alt="" />
+                                            <p>{post.p_name ? post.p_name : session.name}</p>
+                                            </Link>
+                                        </div>
+                                        <div className="postcontext"  >
+                                            <h5>
+                                                {post.context}
+                                            </h5>
+                                        </div>
+                                        <div className="postimg" >
+                                            <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
+                                        </div>
+                                        <div className="like_comment" >
+                                            <LCL
+                                            postID= {post.post_id}
+                                            sessionID={session.id}
+                                            profile={session.id}
+                                            className="posterPic"
+                                            />
+                                        </div>
+                                        <div className="createComment" >
+                                            <div className="postcomments" >
+                                            <Comment
+                                            postID={post.post_id}
+                                            />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div className="posts" >
+                                        <div className="postpic">
+                                        <Link to={`/pet/profile/${post.PID}`}
+                                            className="postpic"
+                                            >
+                                            <img src={post.p_img_url ? post.p_img_url : session.img_url} alt="" />
+                                            <p>{post.p_name ? post.p_name : session.name}</p>
+                                            </Link>
                                         </div>
                                         <div className="postcontext">
                                             <h5>
                                                 {post.context}
                                             </h5>
                                         </div>
-                                        <div className="postimg">
+                                        <div className="postimg" >
                                             <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
                                         </div>
+                                        <div className="like_comment" >
+                                            <LCL
+                                            postID= {post.post_id}
+                                            sessionID={session.id}
+                                            profile={session.id}
+                                            className="posterPic"
+                                            />
+                                        </div>
                                     </div>
+                                    }
+                                    </>
                                 )
                             })
                         }
