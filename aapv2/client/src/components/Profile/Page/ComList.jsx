@@ -28,12 +28,12 @@ const ComList = props => {
                     return(
                         <>
                             {
-                                com.sheltercom_id === null ?
+                                com.s_id === null ?
                                 
                             <div className="singleCom" key={i}>
                                 <Link to={`/home`}
                                 >
-                                <img src={process.env.PUBLIC_URL+`${com.img_url}`} alt="" className="ComProfilePic"/>
+                                <img src={process.env.PUBLIC_URL+`${com.u_img}`} alt="" className="ComProfilePic"/>
                                 </Link>
                                 <div className="comContext" key={i}>
                                     <Link to="/home"
@@ -47,7 +47,16 @@ const ComList = props => {
                                 :
                                 <div className="singleCom" key={i}>
                                 <Link to={`/home`}>
+                                <img src={process.env.PUBLIC_URL+`${com.s_img}`} alt="" className="ComProfilePic"/>
                                 </Link>
+                                <div className="comContext" key={i}>
+                                    <Link to="/home"
+                                    >
+                                    <h4 className='nomarg'>{com.name}</h4>
+                                    </Link>
+                                    <h6 className='nomarg'>{com.comcreated_at}</h6>
+                                    <h5 className='nomarg'>{com.comment}</h5>
+                                </div>
                                 </div>
                             }
                         </>

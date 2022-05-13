@@ -61,6 +61,7 @@ const Proflie = props => {
                                                             <div className="SContact" key={i}>
                                                                 <Link to={`/shelter/view/${s.id}`}
                                                                     shelter={s}
+                                                                    sID={s.id}
                                                                     session={session}
                                                                     className="singleNotfollow"
                                                                 >

@@ -9,14 +9,15 @@ import axios from 'axios';
 const ShelterView = props => {
     const [shelter, setShelter] = useState([])
     const[posts,setPosts] = useState([])
+    const[sID,setSID] = useState([])
     const {session} = props
-    console.log(props)
 
     useEffect(() => {
         const SID = props.id
         axios.get(`http://localhost:8000/api/shelter/find`, {params:{id: SID}})
         .then((res) => {
             setShelter([res.data[0]])
+            setSID(res.data[0].id)
         });
     }, [props]);
 
@@ -36,6 +37,7 @@ const ShelterView = props => {
             <ShelterCom
             shelter={shelter}
             session={session}
+            sid={sID}
             posts={posts}
             />
         </> 

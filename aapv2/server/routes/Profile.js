@@ -98,6 +98,22 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             }
             )
         })
+    
+    router.get("/find/shelter", (req,res)=>{
+        const proID = req.query.id
+        console.log(proID)
+        db.query(
+            "SELECT * FROM profiles WHERE uploader_id=?",[proID],(err, result)=>{
+                if(result){
+                    res.send(result)
+                    // console.log(result)
+                }
+                else{
+                    console.log(err)
+                }
+            }
+            )
+        })
 
 /////////////////////////////////FIND_POSTS///////////////////////////
     router.get("/show/posts", (req,res) =>{

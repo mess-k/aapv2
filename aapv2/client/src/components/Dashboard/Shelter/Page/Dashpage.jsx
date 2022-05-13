@@ -190,6 +190,13 @@ const Dashpage = props => {
                                             className="posterPic"
                                             />
                                         </div>
+                                        <div className="createComment" >
+                                            <div className="postcomments" >
+                                            <Comment
+                                            postID={post.post_id}
+                                            />
+                                            </div>
+                                        </div>
                                     </div>
                                     }
                                     </>

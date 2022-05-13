@@ -8,10 +8,9 @@ import Follow from "./SFollow"
 import { Link } from '@reach/router';
 
 const ShelterPreView = props => {
-    const{shelter,posts} = props
+    const{shelter,posts,sid} = props
     const [session, setSession] = useState()
-
-    console.log(posts)
+    const [sProfiles, setSProfiles] = useState()
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -21,6 +20,18 @@ const ShelterPreView = props => {
             }
         });
     }, [props]);
+    
+    useEffect(() => {
+        const s_ID = sid
+        axios.get(`http://localhost:8000/api/profile/find/shelter`,{params:{id: s_ID}})
+        .then((res) => {
+                setSProfiles(res.data);
+            
+        });
+    }, [sid]);
+
+    console.log(sProfiles)
+
     
     return (
         shelter ? 
@@ -47,8 +58,24 @@ const ShelterPreView = props => {
                                             <div className="info">
                                                 <h5>{p.name}</h5>
                                                 <h5>{p.email}</h5>
-
                                             </div>
+                                        </div>
+                                        <div className="propannelcontainer">
+                                            {
+                                                sProfiles.map((p,k) => {
+                                                    return (
+                                                        <div className="singlepro" key = {k}>
+                                                            <Link to={`/profile/view/${p.id}`}
+                                                            profiles={sProfiles}
+                                                            session={session}
+                                                            >
+                                                                <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="profilepannelpic"/>
+                                                                <h6>{p.name}</h6>
+                                                            </Link>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                     </div>
                                     <div className="rightPannel">
