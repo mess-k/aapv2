@@ -28,20 +28,22 @@ const FollowList = props => {
         axios.get(`http://localhost:8000/api/user/find/profiles/follow`)
         .then((res) => {
                 setFList(res.data);
-                // console.log(res.data)
+                console.log(res.data)
             
         });
     }, [props]);
 
-    const setProView = (e) =>{
+    const setProView = () =>{
         // e.preventDefault()
         const profileID = proID
-        setRight(true)
+        // setRight(true)
         console.log(profileID)
         axios.get("http://localhost:8000/api/profile/find",{params:{id: profileID}} )
             .then(res => {
                 setProfile(res.data)
                 console.log(profile)
+                setRight(true)
+                // window.location.reload()
             })
     }
 
@@ -67,8 +69,8 @@ const FollowList = props => {
                                     <button
                                         value={f.age}
                                         key={k}
-                                        onClick={(e) => {
-                                            setProView(e);
+                                        onClick={() => {
+                                            setProView();
                                             setProID(f.followID);
                                         }}>
                                         

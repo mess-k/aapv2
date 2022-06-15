@@ -93,7 +93,6 @@ router.post("/login", (req, res) => {
             bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
                 req.session.shelter = result;
-                console.log(req.session.shelter);
                 res.send(result);
             } else {
                 res.send ({ EPMessage: "Wrong email/password combination!" });
@@ -131,7 +130,6 @@ router.put("/edit", (req,res) => {
                                         if(err){
                                         }
                                         req.session.shelter = results;
-                                        // console.log(results);
                                         res.send(result);
                                     }
                                 )
@@ -183,7 +181,6 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                                 db.query(
                                     "SELECT * FROM shelters WHERE id = ?", req.session.shelter[0].id, (err,final) => {
                                         req.session.shelter = final;
-                                        // console.log(final);
                                         res.send(final);
                                     }
                                 )
@@ -196,23 +193,19 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
     }
 })
 
-///////
+///////////////////////////////////////////
 router.get("/find", (req,res)=>{
         const SID = req.query.id;
-        // console.log(SID)
+
         db.query(
             "SELECT * FROM shelters WHERE id=?",SID,(err,result)=>{
                 if(result){
                     res.send(result)
-                    // console.log(result)
                 }
             }
         )
-    
-    // else{
-    //     console.log("problem  209")
-    // }
 })
+
 ////////////////////FIND POSTS///////////////////
 router.get("/show/posts", (req,res) =>{
     const shelterID = req.query.id
@@ -220,7 +213,6 @@ router.get("/show/posts", (req,res) =>{
         "SELECT a.id as post_id,a.created_at,a.context, a.context, a.post_url, a.shelter_id,a.user_id,b.id as PID,b.img_url as p_img_url, b.name as p_name,b.uploader_id,c.id,c.name as s_name, c.img_url as s_img_url FROM posts as a left join profiles as b on b.id = profile_id LEFT JOIN shelters as c ON c.id = shelter_id WHERE shelter_id=? ORDER BY a.id DESC",[shelterID],(err,result)=>{
             if(result){
                 res.send(result)
-                console.log(result)
             }
             if(err){
                 console.log(err)
@@ -261,8 +253,7 @@ router.post("/follow",(req,res) =>{
 router.get("/find/like", (req,res) => {
     const postID = req.query.id;
     const userID = req.session.shelter[0].id
-    // console.log(postID)
-    // console.log(userID)
+
     db.query(
         "SELECT * FROM likes WHERE post_id=? AND shelter_id=?", [postID,userID],(err,result)=>{
             if(result.length > 0){
@@ -312,7 +303,6 @@ router.delete("/like",(req,res) =>{
     db.query(
         "DELETE FROM likes WHERE post_id=? AND shelter_id=?;",[postID,userID],(err,result)=>{
             if(result){
-                console.log(result)
                 db.query(
                     "SELECT * FROM likes WHERE post_id=? AND shelter_id=?", [postID,userID],(err,results)=>{
                     if(results.length > 0){
@@ -343,9 +333,6 @@ router.post("/postcomment",(req,res)=>{
     
     db.query(
         "INSERT INTO comments SET comment=?, sheltercom_id=?, comcreated_at=?,compost_id=?",[comment,user,date,postID],(err,result)=>{
-            if(result){
-                console.log(result)
-            }
             if(err){
                 console.log(err)
             }

@@ -89,7 +89,7 @@ router.post("/login", (req, res) => {
             bcrypt.compare(password, result[0].password, (error, response) => {
             if (response) {
                 req.session.user = result;
-                // console.log(req.session.user);
+                
                 res.send(result);
             } else {
                 res.send ({ EPMessage: "Wrong email/password combination!" });
@@ -105,9 +105,12 @@ router.put("/edit", (req,res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword
+    // const password = req.body.password;
+    // const confirmPassword = req.body.confirmPassword
 
+
+
+    
     if (req.session.user){
         db.query(
             "SELECT * FROM users WHERE id = ?", 
@@ -116,41 +119,33 @@ router.put("/edit", (req,res) => {
                     res.send({ err: err })
                     console.log("email asscoicated with another account");
                 }
-                if(result.length > 0 ){
-                    if (password == confirmPassword) {
-                        bcrypt.hash(password, saltRounds, (err, hash) => {
-                            if (err) {
-                                console.log("after hash before query");
+                if(result){
+                    db.query(
+                        "UPDATE users SET first_name=?, last_name=?, email=? WHERE id = ?;",[firstName,lastName,email,req.session.user[0].id],(err, results)=>{
+                            if(err){
+                            console.log(err)
+                            res.send(results)
                             }
-                            db.query(
-                                "UPDATE users SET first_name=?, last_name=?, email=?, password=? WHERE id = ?;",[firstName,lastName,email,hash,req.session.user[0].id],
-                                (err, results)=>{
-                                    if(err){
-                                    console.log(err)
-                                    res.send(results)
+                            if(results){
+                                db.query(
+                                    "SELECT * FROM users WHERE id = ?",req.session.user[0].id, (err,final)=>{
+                                        if(err){
+                                        }
+                                        if(final){
+                                            req.session.user = final;
+                                            res.send(results);
+                                        }
                                     }
-                                    if(results){
-                                        db.query(
-                                            "SELECT * FROM users WHERE id = ?",req.session.user[0].id, (err,results)=>{
-                                                if(err){
-                                                }
-                                                req.session.user = results;
-                                                // console.log(results);
-                                                res.send(result);
-                                            }
-                                        )
-                                    }
-                                }
-                            )
-                        })
-                    }
+                                )
+                            }
+                        }
+                    )
                 }
             }
         )
-    }else{
-        console.log("no match")
     }
 })
+
 
 
 var storage = multer.diskStorage({
@@ -168,6 +163,9 @@ var upload = multer({
 
 router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
     const imgsrc = "/images/"+req.file.filename
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const email = req.body.email;
 
     if (req.session.user){
         db.query(
@@ -178,15 +176,17 @@ router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
                 }
                 if(results.length > 0 ){
                     db.query(
-                        "UPDATE users SET img_url=? WHERE id = ?;",[imgsrc,req.session.user[0].id],(err,result)=>{
+                        "UPDATE users SET first_name=?, last_name=?, email=?, img_url=? WHERE id = ?;",[firstName,lastName,email,imgsrc,req.session.user[0].id],(err,result)=>{
                             if(err){
                                 console.log("something wrong with image upload")
                             }
                             if(result){
-                                        req.session.user = results;
-                                        // console.log(result);
-                                        // console.log(results);
-                                        res.send(result);
+                                db.query(
+                                    "SELECT * FROM users WHERE id = ?", req.session.user[0].id, (err,final) =>{
+                                        req.session.user = final
+                                        res.send(final)
+                                    }
+                                )
                             }
                         }
                     )
@@ -231,7 +231,7 @@ router.delete("/like",(req,res) =>{
     db.query(
         "DELETE FROM likes WHERE post_id=? AND user_id=?;",[postID,userID],(err,result)=>{
             if(result){
-                console.log(result)
+                
                 db.query(
                     "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,results)=>{
                     if(results.length > 0){
@@ -257,8 +257,7 @@ router.delete("/like",(req,res) =>{
 router.get("/find/like", (req,res) => {
     const postID = req.query.id;
     const userID = req.session.user[0].id
-    // console.log(postID)
-    // console.log(userID)
+
 
     db.query(
         "SELECT * FROM likes WHERE post_id=? AND user_id=?", [postID,userID],(err,result)=>{
@@ -277,9 +276,7 @@ router.get("/find/like", (req,res) => {
 router.get("/find/profile/follow", (req,res) => {
     const proID = req.query.id;
     const userID = req.session.user[0].id
-    // console.log(postID)
-    // console.log(userID)
-    // console.log(proID)
+
 
     db.query(
         "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,result)=>{
@@ -298,9 +295,6 @@ router.get("/find/profile/follow", (req,res) => {
 
 router.get("/find/profiles/follow", (req,res) => {
     const userID = req.session.user[0].id
-    // console.log(postID)
-    // console.log(userID)
-    // console.log(proID)
 
     db.query(
         "SELECT b.profile_id as followID, b.user_id, a.id as proID, a.age,a.description ,a.name,a.uploader_id ,a.img_url FROM aap2.user_pet_follows as b join aap2.profiles as a on a.id = b.profile_id where b.user_id = ?", [userID],(err,result)=>{
@@ -324,12 +318,11 @@ router.get("/find/profiles/follow", (req,res) => {
         db.query(
             "DELETE FROM user_pet_follows WHERE profile_id=? AND user_id=?;",[proID,userID],(err,result)=>{
                 if(result){
-                    console.log(result)
+
                     db.query(
                         "SELECT * FROM user_pet_follows WHERE profile_id=? AND user_id=?", [proID,userID],(err,results)=>{
                         if(results.length > 0){
                             res.send(true)
-                            console.log(results)
                         }
                         else{
                             res.send(false)
@@ -350,9 +343,7 @@ router.get("/find/profiles/follow", (req,res) => {
 router.get("/find/shelter/follow", (req,res) => {
     const SID = req.query.id;
     const userID = req.session.user[0].id
-    // console.log(postID)
-    // console.log(userID)
-    // console.log(proID)
+
 
     db.query(
         "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [SID,userID],(err,result)=>{
@@ -374,7 +365,7 @@ router.post("/follow",(req,res) =>{
     const proID = req.body.profileID;
     const userID = req.session.user[0].id
 
-    // console.log(proID)
+
 
     db.query(
         "INSERT INTO user_pet_follows SET profile_id=?, user_id=?;",[proID,userID],(err,result)=>{
@@ -402,7 +393,7 @@ router.post("/follow/shelter",(req,res) =>{
     const proID = req.body.profileID;
     const userID = req.session.user[0].id
 
-    console.log(proID)
+
 
     db.query(
         "INSERT INTO user_shelters_follows SET shelter_id=?, user_id=?;",[proID,userID],(err,result)=>{
@@ -434,12 +425,10 @@ router.delete("/follow/shelter",(req,res) =>{
     db.query(
         "DELETE FROM user_shelters_follows WHERE shelter_id=? AND user_id=?;",[SID,userID],(err,result)=>{
             if(result){
-                console.log(result)
                 db.query(
                     "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [SID,userID],(err,results)=>{
                     if(results.length > 0){
                         res.send(true)
-                        console.log(results)
                     }
                     else{
                         res.send(false)
@@ -464,7 +453,6 @@ router.get("/notfollowing",(req,res)=>{
         "SELECT a.id as proID, a.age  ,a.description ,a.name,a.uploader_id ,a.img_url   ,b.user_id as F_userID,b.profile_id as F_profile_id FROM aap2.profiles as a left join aap2.user_pet_follows as b on a.id = b.profile_id where b.user_id IS NULL or b.user_id NOT IN (?)ORDER BY RAND() LIMIT 6",[userID],(err,result)=>{
             if(result){
                 res.send(result)
-                console.log(result)
             }
         }
     )
@@ -480,9 +468,6 @@ router.post("/postcomment",(req,res)=>{
     
     db.query(
         "INSERT INTO comments SET comment=?, usercom_id=?, comcreated_at=?,compost_id=?",[comment,user,date,postID],(err,result)=>{
-            if(result){
-                console.log(result)
-            }
             if(err){
                 console.log(err)
             }
@@ -497,7 +482,6 @@ router.get("/show/comments",(req,res)=>{
     db.query(
         "SELECT a.id as post_id,a.comment,a.sheltercom_id,a.usercom_id,a.comcreated_at,a.compost_id,b.id as s_id,b.name,b.img_url as s_img,c.id as u_id,c.first_name,c.last_name,c.img_url as u_img FROM aap2.comments as a left join aap2.shelters as b on a.sheltercom_id = b.id left join aap2.users as c on a.usercom_id = c.id WHERE a.compost_id = ? ORDER BY a.id",[postID],(err,result)=>{
             if(result){
-                console.log(result)
                 res.send(result)
             }
             if(err){
@@ -515,7 +499,6 @@ router.get("/following/posts", (req,res) => {
     db.query(
         "SELECT * FROM aap2.user_pet_follows join (select aap2.posts.id as post_id, aap2.posts.context,aap2.posts.post_url,aap2.posts.profile_id,aap2.posts.shelter_id,aap2.posts.user_id from aap2.posts) posts ON aap2.user_pet_follows.profile_id = aap2.posts.profile_id join aap2.profiles ON aap2.profiles.id = aap2.posts.profile_id Where aap2.user_pet_follows. user_id= 22 Order by aap2.posts.post_id desc ",[user],(err,result) =>{
             if(result){
-                console.log(result)
                 res.send(result)
             }
         }

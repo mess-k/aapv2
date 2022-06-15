@@ -25,7 +25,7 @@ const Nav = props => {
     return (
         <>
         <div className="Nav">
-            <a href="/UFBHome"><img src={logo} alt="" className="NavImg"/></a>
+            <a href="/dashboard"><img src={logo} alt="" className="NavImg"/></a>
             <button
             className='logout'
             onClick={LogOut}

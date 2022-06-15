@@ -3,8 +3,9 @@ import "./Profile.css"
 import {useState} from "react";
 import Editpop from "../../Dashboard/Popups/EditProfile/EditProfile"
 import CreatePost from "../../Dashboard/Popups/CreatePost/CreatePost"
-import Comment from "./Comment"
-import LCL from "./L_C_List"
+import Comment from "../../Dashboard/Shelter/Page/Comment"
+import LCL from "../../Dashboard/Shelter/Page/S_L_C_List"
+import { Link } from '@reach/router';
 // import axios from 'axios';
 
 const Proflie = props => {
@@ -87,15 +88,40 @@ const Proflie = props => {
                                                     return(
                                                         <div className="posts" key={y}>
                                                             <div className="postpic">
+                                                                <Link to={`/profile/view/${p.id}`}
+                                                                    profile={profile}
+                                                                    session={session}
+                                                                    className="postpic"
+                                                                >
                                                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
+                                                                <div>
+
+                                                                <p className='p'>{p.name}</p>
+                                                                </div>
+                                                                </Link>
                                                             </div>
                                                             <div className="postcontext">
-                                                                <p>
+                                                                <h5>
                                                                     {post.context}
-                                                                </p>
+                                                                </h5>
                                                             </div>
                                                             <div className="postimg">
                                                                 <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
+                                                            </div>
+                                                            <div className="like_comment">
+                                                                <LCL
+                                                                postID= {post.id}
+                                                                // sessionID={session.id}
+                                                                profile={profile.id}
+                                                                className="posterPic"
+                                                                />
+                                                            </div>
+                                                            <div className="createComment">
+                                                                <div className="postcomments">
+                                                                <Comment
+                                                                postID={post.id}
+                                                                />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     )

@@ -7,7 +7,6 @@ import LCL from "./L_C_List"
 import Follow from "./Follow"
 import { Link } from '@reach/router';
 
-
 const Proflie = props => {
     const{profile,posts,sID} = props
     const [session, setSession] = useState()
@@ -21,6 +20,7 @@ const Proflie = props => {
             }
         });
     }, [props]);
+    
     useEffect(() => {
         const SID = sID
         axios.get(`http://localhost:8000/api/shelter/find`,{params:{id: SID}})

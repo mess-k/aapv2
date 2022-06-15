@@ -8,9 +8,8 @@ import Page from "../../Style/PageBody"
 
 axios.defaults.withCredentials = true;
 
-
 const Home = props => {
-    
+
     const [session, setSession] = useState()
 
     useEffect(() => {
@@ -21,7 +20,6 @@ const Home = props => {
             }
         });
     }, [props]);
-
 
     return (
         <>

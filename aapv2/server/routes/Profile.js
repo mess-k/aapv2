@@ -64,7 +64,6 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
     const desc = req.body.desc
     const pic = "/images/PetProfile/"+req.file.filename
 
-    console.log(pic)
     
 
     
@@ -75,7 +74,6 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             }
             if(result){
                 res.send(result)
-                // console.log(result)
             }
         }
         )
@@ -90,7 +88,6 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             "SELECT * FROM profiles WHERE id=?",[proID],(err, result)=>{
                 if(result){
                     res.send(result)
-                    // console.log(result)
                 }
                 else{
                     console.log(err)
@@ -106,7 +103,6 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             "SELECT * FROM profiles WHERE uploader_id=?",[proID],(err, result)=>{
                 if(result){
                     res.send(result)
-                    // console.log(result)
                 }
                 else{
                     console.log(err)
@@ -122,7 +118,6 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             "SELECT * FROM posts where profile_id=? ORDER BY id DESC",[proID],(err,result)=>{
                 if(result){
                     res.send(result)
-                    console.log(result)
                 }
             }
         )
@@ -187,10 +182,6 @@ router.post("/post",(req,res)=>{
     const profile = req.body.profile
     const shelter = req.body.shelter
     const date = req.body.date
-    
-    // console.log(date)
-    // console.log(profile)
-
 
     db.query(
         "INSERT INTO posts SET context=?, profile_id=?, shelter_id=?, created_at=?", [context,profile,shelter,date],(err,result)=>{
@@ -231,7 +222,6 @@ router.get("/find/random",(req,res)=>{
         "SELECT * FROM profiles ORDER by RAND() LIMIT 6",(err,result)=>{
             if (result){
                 res.send(result)
-                // console.log(result)
             }
             else{
                 console.log(err)
@@ -252,7 +242,7 @@ router.get("/show/comments",(req,res)=>{
                 res.send(result)
             }
             if(err){
-                // console.log(err)
+                console.log(err)
             }
         }
     )
