@@ -1,17 +1,27 @@
 import axios from 'axios';
 import React from 'react';
 import { useEffect,useState } from 'react';
-import ProPreView from "../Profile/Page/ProfilePreview"
+import ProPreView from "../Profile/Page/FollowView"
 
 
 
 const FollowPreview = props => {
-    const {proID,right,profile}= props
+    const {proID,right}= props
     
     const[posts,setPosts] = useState()
-    // const [profile, setProfile] = useState([])
+    const[profile,setProfile] = useState([])
+    const [session, setSession]=useState([])
+    
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/login`)
+        .then((res) => {
+            if (res.data.loggedIn === true) {
+                setSession(res.data.user[0])
+            }
+        });
+    }, [props]);
 
-    console.log(proID)
+
     useEffect(() => {
         const profileID = proID
         axios.get('http://localhost:8000/api/profile/show/posts',{params:{id: profileID}})
@@ -21,16 +31,15 @@ const FollowPreview = props => {
         })
     },[proID])
 
-    // useEffect(() => {
-    //     const profileID = proID
-    //     console.log(proID)
-    //     axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})
-    //     .then((res) => {
-    //         setProfile([res.data[0]])
-    //     });
-    // }, [proID]);
+    useEffect(() => {
+        const profileID = proID
+        axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})
+        .then((res) => {
+            setProfile(res.data[0])
+        });
+    }, [proID]);
 
-    // console.log(profile)
+
 
     
     return (
@@ -41,6 +50,7 @@ const FollowPreview = props => {
                 <ProPreView
                 profile={profile}
                 posts={posts}
+                session={session}
                 />
             </div>
                 :!right

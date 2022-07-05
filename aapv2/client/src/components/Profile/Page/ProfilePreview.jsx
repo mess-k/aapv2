@@ -9,8 +9,8 @@ import { Link } from '@reach/router';
 
 const Proflie = props => {
     const{profile,posts,sID} = props
-    const [session, setSession] = useState()
     const [shelter, setShelter] = useState([])
+    const [session, setSession] = useState()
     
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/login`)
@@ -37,8 +37,14 @@ const Proflie = props => {
                     return(
                         <div className="profile" key={k}>
                             <div className="profileHeader">
+                                <Link to={`/profile/view/${p.id}`}
+                                    profile={profile}
+                                    session={session}
+                                    className="profileHeader"
+                                >
                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="petProfilePic"/>
                                 <h1 className="petName">{p.name}</h1>
+                                </Link>
                                 <Follow
                                 proID = {p.id}
                                 sessionID = {session.id}

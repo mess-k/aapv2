@@ -1,8 +1,20 @@
 import React from 'react';
 import FP from "../FollowList/FollowPreview"
+import {useState,useEffect} from "react"
+import axios from "axios"
 
 const Followlistleft = props => {
-    const {setProView,setProID,fList,profile,right,session,proID} = props
+    const {setProView,setProID,fList,profile,right,proID} = props
+    const [session, setSession]=useState([])
+    
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/login`)
+        .then((res) => {
+            if (res.data.loggedIn === true) {
+                setSession(res.data.user[0])
+            }
+        });
+    }, [props]);
 
 
     return (
