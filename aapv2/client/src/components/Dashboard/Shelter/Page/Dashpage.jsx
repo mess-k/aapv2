@@ -165,7 +165,7 @@ const Dashpage = props => {
                                         </div>
                                     </div>
                                     :
-                                    <div className="posts" >
+                                    <div className="posts" key={y} >
                                         <div className="postpic">
                                         <Link to={`/pet/profile/${post.PID}`}
                                             className="postpic"

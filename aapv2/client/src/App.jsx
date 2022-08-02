@@ -17,6 +17,7 @@ import UserHome from "./views/User/BrowseHome"
 import GlobalStyle from './globalStyles';
 // import HL from "./components/HomeLogo"
 import FLpreview from "./views/User/UFview"
+import SLpreview from "./views/User/SFview"
 import ShelterPreview from "./views/Preview/ShelterView"
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Profile path="/pet/profile/:id"/>
       <ProView path="/profile/view/:id"/>
       <FLpreview path="/pet/follow/list"/>
+      <SLpreview path="/shelter/follow/list"/>
       <ShelterPreview path="/shelter/view/:id"/>
 
     </Router>

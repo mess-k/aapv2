@@ -24,18 +24,17 @@ const Comment = props =>{
     };
     
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/shelter/login`)
+        axios.get(`http://localhost:8000/api/user/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.shelter[0]);
+                setSession(res.data.user[0]);
             }
         });
     }, [props]);
 
     const PostComment = e =>{
-        axios.post('http://localhost:8000/api/shelter/postcomment', comment)
+        axios.post('http://localhost:8000/api/user/postcomment', comment)
             .then(res => {
-
             })
     }
     

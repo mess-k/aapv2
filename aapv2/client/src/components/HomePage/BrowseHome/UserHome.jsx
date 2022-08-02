@@ -66,18 +66,17 @@ const UserHome = props => {
                     <button>
                         <Link to="/pet/follow/list" 
                             session={session}
-                            className='LPuser'
+                            className='LPPetShelter'
                         >
-                            <h4>pets</h4>
+                            <h4>Pets</h4>
                         </Link>
                     </button>
                     <button>
-                        <Link to="/home" 
+                        <Link to="/shelter/follow/list" 
                             session={session}
-                            className='LPuser'
+                            className='LPPetShelter'
                         >
-                            <img src={process.env.PUBLIC_URL+`${session.img_url}`} alt="" />
-                            <h4>{session.first_name}</h4>
+                        <h4>Shelters</h4>
                         </Link>
                     </button>
                 </div>

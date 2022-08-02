@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 
 const SLike = props => {
     const {postID,sessionID} = props
-    const [session, setSession] = useState(false)
+    const [, setSession] = useState(false)
     const [find, setFind] = useState(false)
-    const [sfind, setSFind] = useState(false)
-    const [like, setLike] = useState({
+    const [, setSFind] = useState(false)
+    const [like] = useState({
         postID:`${postID}`,
         userID:""
     })
@@ -25,7 +25,7 @@ const SLike = props => {
 
     useEffect(() =>{
         const post_ID = postID
-        axios.get("http://localhost:8000/api/shelter/find/like",{params:{id: post_ID}})
+        axios.get("http://localhost:8000/api/user/find/like",{params:{id: post_ID}})
             .then(res => {
                 setFind(res.data)
             })
@@ -35,8 +35,8 @@ const SLike = props => {
         const SLikePost = (e) =>{ 
         e.preventDefault()
         
-        axios.post("http://localhost:8000/api/shelter/like",like)
-            .then (res => {
+        axios.post("http://localhost:8000/api/user/like",like)
+            .then (() => {
                 // setLike()
                 setSFind(prev => !prev)
             })
@@ -48,8 +48,8 @@ const SLike = props => {
     const SDislike = (e) =>{ 
         e.preventDefault()
         const post_ID = postID
-        axios.delete(`http://localhost:8000/api/shelter/like/`,{params:{id: post_ID}})
-            .then (res => {
+        axios.delete(`http://localhost:8000/api/user/like/`,{params:{id: post_ID}})
+            .then (() => {
                 // setLike(prev => !prev)
                 setSFind(prev => !prev)
             })
