@@ -1,0 +1,98 @@
+"filename", "language", "JavaScript", "JSON", "Markdown", "CSS", "JavaScript React", "HTML", "comment", "blank", "total"
+"c:\Users\mess\Documents\Projects\aapv2\client\README.md", "Markdown", 0, 0, 38, 0, 0, 0, 0, 33, 71
+"c:\Users\mess\Documents\Projects\aapv2\client\package-lock.json", "JSON", 0, 40841, 0, 0, 0, 0, 0, 1, 40842
+"c:\Users\mess\Documents\Projects\aapv2\client\package.json", "JSON", 0, 49, 0, 0, 0, 0, 0, 50, 99
+"c:\Users\mess\Documents\Projects\aapv2\client\public\index.html", "HTML", 0, 0, 0, 0, 0, 22, 23, 1, 46
+"c:\Users\mess\Documents\Projects\aapv2\client\public\manifest.json", "JSON", 0, 25, 0, 0, 0, 0, 0, 1, 26
+"c:\Users\mess\Documents\Projects\aapv2\client\src\App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\mess\Documents\Projects\aapv2\client\src\App.jsx", "JavaScript React", 0, 0, 0, 0, 44, 0, 3, 4, 51
+"c:\Users\mess\Documents\Projects\aapv2\client\src\App.test.js", "JavaScript", 7, 0, 0, 0, 0, 0, 0, 2, 9
+"c:\Users\mess\Documents\Projects\aapv2\client\src\Style\PageBody.jsx", "JavaScript React", 0, 0, 0, 0, 14, 0, 0, 6, 20
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreatePost\CreatePost.jsx", "JavaScript React", 0, 0, 0, 0, 152, 0, 16, 9, 177
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreatePost\ShelterPost.jsx", "JavaScript React", 0, 0, 0, 0, 140, 0, 16, 7, 163
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreateProfile\CreateProfile.jsx", "JavaScript React", 0, 0, 0, 0, 268, 0, 45, 21, 334
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\EditProfile\EditPopUpForm.jsx", "JavaScript React", 0, 0, 0, 0, 268, 0, 36, 18, 322
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\EditProfile\EditProfile.jsx", "JavaScript React", 0, 0, 0, 0, 20, 0, 0, 3, 23
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\SPEdit.jsx", "JavaScript React", 0, 0, 0, 0, 226, 0, 31, 20, 277
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\SPicForm.jsx", "JavaScript React", 0, 0, 0, 0, 92, 0, 27, 15, 134
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\ShelterEdit.jsx", "JavaScript React", 0, 0, 0, 0, 52, 0, 0, 8, 60
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\ComList.jsx", "JavaScript React", 0, 0, 0, 0, 63, 0, 0, 5, 68
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Comment.jsx", "JavaScript React", 0, 0, 0, 0, 68, 0, 0, 7, 75
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Dashpage.css", "CSS", 0, 0, 0, 148, 0, 0, 2, 2, 152
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Dashpage.jsx", "JavaScript React", 0, 0, 0, 0, 205, 0, 1, 10, 216
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Follow.jsx", "JavaScript React", 0, 0, 0, 0, 93, 0, 2, 8, 103
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Profile.css", "CSS", 0, 0, 0, 259, 0, 0, 1, 4, 264
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\SFollowView.jsx", "JavaScript React", 0, 0, 0, 0, 158, 0, 0, 8, 166
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\SLike.jsx", "JavaScript React", 0, 0, 0, 0, 92, 0, 3, 11, 106
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\S_L_C_List.jsx", "JavaScript React", 0, 0, 0, 0, 40, 0, 0, 8, 48
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\ShowComments.jsx", "JavaScript React", 0, 0, 0, 0, 26, 0, 6, 8, 40
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Pannel\ShelterPanel.css", "CSS", 0, 0, 0, 6, 0, 0, 1, 0, 7
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Pannel\ShelterPanel.jsx", "JavaScript React", 0, 0, 0, 0, 23, 0, 2, 3, 28
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\FollowList.jsx", "JavaScript React", 0, 0, 0, 0, 76, 0, 11, 11, 98
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\FollowPreview.jsx", "JavaScript React", 0, 0, 0, 0, 48, 0, 0, 16, 64
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\Followlistleft.jsx", "JavaScript React", 0, 0, 0, 0, 51, 0, 0, 11, 62
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\SFollowList.jsx", "JavaScript React", 0, 0, 0, 0, 76, 0, 11, 10, 97
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\SFollowPreview.jsx", "JavaScript React", 0, 0, 0, 0, 48, 0, 0, 13, 61
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\followlist.css", "CSS", 0, 0, 0, 36, 0, 0, 3, 6, 45
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HL\HL.css", "CSS", 0, 0, 0, 18, 0, 0, 0, 3, 21
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HL\HomeLogo.jsx", "JavaScript React", 0, 0, 0, 0, 11, 0, 0, 2, 13
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\BrowseHome\UserHome.css", "CSS", 0, 0, 0, 157, 0, 0, 10, 11, 178
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\BrowseHome\UserHome.jsx", "JavaScript React", 0, 0, 0, 0, 185, 0, 4, 12, 201
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\EPEdit.jsx", "JavaScript React", 0, 0, 0, 0, 56, 0, 15, 3, 74
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\HomeBody.css", "CSS", 0, 0, 0, 147, 0, 0, 1, 2, 150
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\HomeBody.jsx", "JavaScript React", 0, 0, 0, 0, 133, 0, 3, 12, 148
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\PicForm.css", "CSS", 0, 0, 0, 21, 0, 0, 0, 2, 23
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\PicForm.jsx", "JavaScript React", 0, 0, 0, 0, 95, 0, 27, 15, 137
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\EditPopUpForm.jsx", "JavaScript React", 0, 0, 0, 0, 268, 0, 36, 18, 322
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\SPEdit.jsx", "JavaScript React", 0, 0, 0, 0, 236, 0, 32, 19, 287
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\ShelterEdit.jsx", "JavaScript React", 0, 0, 0, 0, 52, 0, 0, 8, 60
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\ShelterPost.jsx", "JavaScript React", 0, 0, 0, 0, 141, 0, 16, 7, 164
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\UBHPost.jsx", "JavaScript React", 0, 0, 0, 0, 141, 0, 16, 7, 164
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\UserPanel.css", "CSS", 0, 0, 0, 19, 0, 0, 0, 3, 22
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\UserPanel.jsx", "JavaScript React", 0, 0, 0, 0, 39, 0, 0, 5, 44
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\LRForm.css", "CSS", 0, 0, 0, 10, 0, 0, 0, 1, 11
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\SLRForm.jsx", "JavaScript React", 0, 0, 0, 0, 69, 0, 12, 4, 85
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\ULRForm.jsx", "JavaScript React", 0, 0, 0, 0, 93, 0, 0, 4, 97
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\Nav.jsx", "JavaScript React", 0, 0, 0, 0, 27, 0, 0, 8, 35
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\SNav.jsx", "JavaScript React", 0, 0, 0, 0, 27, 0, 4, 10, 41
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\SPNav.jsx", "JavaScript React", 0, 0, 0, 0, 27, 0, 0, 6, 33
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\css\Nav.css", "CSS", 0, 0, 0, 25, 0, 0, 1, 2, 28
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\css\SPNav.css", "CSS", 0, 0, 0, 25, 0, 0, 0, 2, 27
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Form\ProfileForm.jsx", "JavaScript React", 0, 0, 0, 0, 53, 0, 38, 5, 96
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Form\Proform.css", "CSS", 0, 0, 0, 35, 0, 0, 1, 6, 42
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ComList.jsx", "JavaScript React", 0, 0, 0, 0, 63, 0, 0, 7, 70
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Comment.jsx", "JavaScript React", 0, 0, 0, 0, 68, 0, 0, 8, 76
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Follow.jsx", "JavaScript React", 0, 0, 0, 0, 93, 0, 2, 8, 103
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\FollowView.jsx", "JavaScript React", 0, 0, 0, 0, 124, 0, 0, 6, 130
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\L_C_List.jsx", "JavaScript React", 0, 0, 0, 0, 40, 0, 0, 8, 48
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Like.jsx", "JavaScript React", 0, 0, 0, 0, 92, 0, 2, 12, 106
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Profile.css", "CSS", 0, 0, 0, 259, 0, 0, 1, 4, 264
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ProfilePreview.jsx", "JavaScript React", 0, 0, 0, 0, 139, 0, 0, 7, 146
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ProflieBody.jsx", "JavaScript React", 0, 0, 0, 0, 133, 0, 4, 5, 142
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ShowComments.jsx", "JavaScript React", 0, 0, 0, 0, 27, 0, 5, 8, 40
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Pannel\ProfilePannel.css", "CSS", 0, 0, 0, 0, 0, 0, 27, 0, 27
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Pannel\ProfilePannel.jsx", "JavaScript React", 0, 0, 0, 0, 38, 0, 0, 9, 47
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Preview\Profile.css", "CSS", 0, 0, 0, 122, 0, 0, 0, 4, 126
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Shelter\SFollow.jsx", "JavaScript React", 0, 0, 0, 0, 93, 0, 2, 10, 105
+"c:\Users\mess\Documents\Projects\aapv2\client\src\components\Shelter\ShelterPreView.jsx", "JavaScript React", 0, 0, 0, 0, 146, 0, 1, 9, 156
+"c:\Users\mess\Documents\Projects\aapv2\client\src\globalStyles.js", "JavaScript", 9, 0, 0, 0, 0, 0, 0, 4, 13
+"c:\Users\mess\Documents\Projects\aapv2\client\src\index.css", "CSS", 0, 0, 0, 12, 0, 0, 0, 2, 14
+"c:\Users\mess\Documents\Projects\aapv2\client\src\index.js", "JavaScript", 12, 0, 0, 0, 0, 0, 3, 5, 20
+"c:\Users\mess\Documents\Projects\aapv2\client\src\reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\mess\Documents\Projects\aapv2\client\src\setupTests.js", "JavaScript", 1, 0, 0, 0, 0, 0, 4, 1, 6
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Preview\ProfileView.jsx", "JavaScript React", 0, 0, 0, 0, 41, 0, 0, 6, 47
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Preview\ShelterView.jsx", "JavaScript React", 0, 0, 0, 0, 41, 0, 0, 9, 50
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\CreateProfile.jsx", "JavaScript React", 0, 0, 0, 0, 146, 0, 3, 21, 170
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\Dashboard.jsx", "JavaScript React", 0, 0, 0, 0, 48, 0, 5, 7, 60
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\Profile.jsx", "JavaScript React", 0, 0, 0, 0, 40, 0, 1, 9, 50
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\ShelterEdit.jsx", "JavaScript React", 0, 0, 0, 0, 59, 0, 3, 11, 73
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\ShelterLogReg.jsx", "JavaScript React", 0, 0, 0, 0, 95, 0, 3, 15, 113
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\UploadShelterPic.jsx", "JavaScript React", 0, 0, 0, 0, 30, 0, 5, 7, 42
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\BrowseHome.jsx", "JavaScript React", 0, 0, 0, 0, 29, 0, 1, 6, 36
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\Edit.jsx", "JavaScript React", 0, 0, 0, 0, 59, 0, 3, 12, 74
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\Home.jsx", "JavaScript React", 0, 0, 0, 0, 29, 0, 1, 8, 38
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\SFview.jsx", "JavaScript React", 0, 0, 0, 0, 28, 0, 0, 5, 33
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UFview.jsx", "JavaScript React", 0, 0, 0, 0, 28, 0, 0, 7, 35
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UploadProPic.jsx", "JavaScript React", 0, 0, 0, 0, 27, 0, 5, 7, 39
+"c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UserLogReg.jsx", "JavaScript React", 0, 0, 0, 0, 99, 0, 3, 13, 115
+"Total", "-", 41, 40915, 38, 1299, 5851, 22, 540, 780, 49486

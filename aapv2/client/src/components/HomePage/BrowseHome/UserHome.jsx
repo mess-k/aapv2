@@ -5,6 +5,7 @@ import {Link} from "@reach/router"
 import "./UserHome.css"
 import LCL from "../../Profile/Page/L_C_List"
 import Comment from "../../Profile/Page/Comment"
+import ShelterPost from "../Popups/UBHPost"
 import { HiArrowCircleRight } from "react-icons/hi";
 import { HiArrowCircleLeft } from "react-icons/hi";
 
@@ -12,7 +13,7 @@ import { HiArrowCircleLeft } from "react-icons/hi";
 const UserHome = props => {
     // const [profiles, setProfiles]=useState([])
     const [session, setSession]=useState([])
-    // const[postPopUp,setPostPopUp] = useState(false)
+    const[postPopUp,setPostPopUp] = useState(false)
     const[notFollow, setNotFollow]= useState([])
     const[followPosts,setFollowPosts] = useState([])
     const ref = useRef(null)
@@ -47,11 +48,22 @@ const UserHome = props => {
             })
     },[props])
 
+    const createPost = e =>{
+        setPostPopUp(prev => !prev)
+        console.log(postPopUp)
+    }
+
     return (
         <>
         {
         session ? 
+        
         <div className="FullHome">
+            <ShelterPost
+            session={session}
+            createPost={createPost}
+            PostPopUp={postPopUp}
+            />
             <div className="UFHleftpannel">
                 <div className="UL">
                     <button>
@@ -124,8 +136,8 @@ const UserHome = props => {
                         <div className="postInput">
                             <button
                             session={session}
-                            // profile={profile}
-                            // onClick={createPost}
+                            // profile={profile}/po
+                            onClick={createPost}
                             >
                                 Have anything to share?
                             </button>

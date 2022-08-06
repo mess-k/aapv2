@@ -8,8 +8,9 @@ import ShelterEdit from "./Popups/ShelterEdit"
 
 
 const HomeBody = props => {
-    const {posts} = props
+    
     const [profiles, setProfiles]=useState([])
+    const [posts, setPosts]=useState([])
     const [session, setSession]=useState([])
     const[postPopUp,setPostPopUp] = useState(false)
     const [editShelter, setEditShelter] = useState(false)
@@ -28,11 +29,16 @@ const HomeBody = props => {
         axios.get(`http://localhost:8000/api/user/find/profiles/follow`)
         .then((res) => {
                 setProfiles(res.data)
-            
         });
     }, [props]);
 
-    console.log(profiles)
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/user/show/posts`)
+        .then((res) => {
+                setPosts(res.data)
+                console.log(res.data)
+        });
+    }, [props]);
 
     const editShelterButton = e =>{
         setEditShelter(prev => !prev)
@@ -121,7 +127,7 @@ const HomeBody = props => {
                                     <div className="posts" key={y}>
                                         <div className="postpic">
                                             <img src={post.img_url ? post.img_url : session.img_url} alt="" />
-                                            <h3>{post.name ? post.name : session.name}</h3>
+                                            <h3>{post.name ? post.name : session.first_name}</h3>
                                         </div>
                                         <div className="postcontext">
                                             <p>

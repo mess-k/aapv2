@@ -96,16 +96,16 @@ const CreatePost = (props) =>{
             const formData = new FormData();
             formData.append("postFile", upImg, fileName);
             formData.append("context", post.context);
-            formData.append("shelter", props.session.id );
+            formData.append("user", props.session.id );
             formData.append("date", date);
             console.log(props.session.id)
-            axios.post("http://localhost:8000/api/profile/post/w/pic",formData,{
+            axios.post("http://localhost:8000/api/user/post/w/pic",formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
                 })
                 .then((res) => {
-                    window.location.replace(`/pet/profile/${props.profile[0].id}`)
+                    window.location.replace(`/UFBHome`)
                 })
             .catch(err => {
                 console.log(err)
@@ -114,8 +114,8 @@ const CreatePost = (props) =>{
         if(!upImg){
             e.preventDefault()
             console.log(post)
-            axios.post("http://localhost:8000/api/profile/post",(post))
-            .then(res => window.location.replace(`/pet/profile/${props.profile[0].id}`))
+            axios.post("http://localhost:8000/api/user/post",(post))
+            .then(res => window.location.replace(`/UFBHome`))
             
         }
     }

@@ -1,0 +1,169 @@
+Date : 2022-08-06 13:19:02
+Directory : c:\Users\mess\Documents\Projects\aapv2\server
+Total : 104 files,  -42677 codes, -512 comments, -593 blanks, all -43782 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JavaScript       |         10 |      1,008 |         21 |        145 |      1,174 |
+| Properties       |          1 |          5 |          0 |          3 |          8 |
+| HTML             |          1 |        -22 |        -23 |         -1 |        -46 |
+| Markdown         |          1 |        -38 |          0 |        -33 |        -71 |
+| CSS              |         18 |     -1,299 |        -48 |        -55 |     -1,402 |
+| JavaScript React |         68 |     -5,851 |       -462 |       -625 |     -6,938 |
+| JSON             |          5 |    -36,480 |          0 |        -27 |    -36,507 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |        104 |    -42,677 |       -512 |       -593 |    -43,782 |
+| ..                                                                                                            |         96 |    -48,166 |       -540 |       -780 |    -49,486 |
+| ..\client                                                                                                     |         96 |    -48,166 |       -540 |       -780 |    -49,486 |
+| ..\client\public                                                                                              |          2 |        -47 |        -23 |         -2 |        -72 |
+| ..\client\src                                                                                                 |         91 |     -7,191 |       -517 |       -694 |     -8,402 |
+| ..\client\src\Style                                                                                           |          1 |        -14 |          0 |         -6 |        -20 |
+| ..\client\src\components                                                                                      |         67 |     -6,281 |       -474 |       -524 |     -7,279 |
+| ..\client\src\components\Dashboard                                                                            |         20 |     -2,399 |       -189 |       -175 |     -2,763 |
+| ..\client\src\components\Dashboard\Popups                                                                     |          5 |       -848 |       -113 |        -58 |     -1,019 |
+| ..\client\src\components\Dashboard\Popups\CreatePost                                                          |          2 |       -292 |        -32 |        -16 |       -340 |
+| ..\client\src\components\Dashboard\Popups\CreateProfile                                                       |          1 |       -268 |        -45 |        -21 |       -334 |
+| ..\client\src\components\Dashboard\Popups\EditProfile                                                         |          2 |       -288 |        -36 |        -21 |       -345 |
+| ..\client\src\components\Dashboard\Shelter                                                                    |         15 |     -1,551 |        -76 |       -117 |     -1,744 |
+| ..\client\src\components\Dashboard\Shelter\Edit                                                               |          3 |       -370 |        -58 |        -43 |       -471 |
+| ..\client\src\components\Dashboard\Shelter\Page                                                               |         10 |     -1,152 |        -15 |        -71 |     -1,238 |
+| ..\client\src\components\Dashboard\Shelter\Pannel                                                             |          2 |        -29 |         -3 |         -3 |        -35 |
+| ..\client\src\components\FollowList                                                                           |          6 |       -335 |        -25 |        -67 |       -427 |
+| ..\client\src\components\HL                                                                                   |          2 |        -29 |          0 |         -5 |        -34 |
+| ..\client\src\components\HomePage                                                                             |         14 |     -1,690 |       -160 |       -124 |     -1,974 |
+| ..\client\src\components\HomePage\BrowseHome                                                                  |          2 |       -342 |        -14 |        -23 |       -379 |
+| ..\client\src\components\HomePage\Popups                                                                      |          5 |       -838 |       -100 |        -59 |       -997 |
+| ..\client\src\components\LRForms                                                                              |          3 |       -172 |        -12 |         -9 |       -193 |
+| ..\client\src\components\Nav                                                                                  |          5 |       -131 |         -5 |        -28 |       -164 |
+| ..\client\src\components\Nav\css                                                                              |          2 |        -50 |         -1 |         -4 |        -55 |
+| ..\client\src\components\Profile                                                                              |         15 |     -1,286 |        -80 |        -97 |     -1,463 |
+| ..\client\src\components\Profile\Form                                                                         |          2 |        -88 |        -39 |        -11 |       -138 |
+| ..\client\src\components\Profile\Page                                                                         |         10 |     -1,038 |        -14 |        -73 |     -1,125 |
+| ..\client\src\components\Profile\Pannel                                                                       |          2 |        -38 |        -27 |         -9 |        -74 |
+| ..\client\src\components\Profile\Preview                                                                      |          1 |       -122 |          0 |         -4 |       -126 |
+| ..\client\src\components\Shelter                                                                              |          2 |       -239 |         -3 |        -19 |       -261 |
+| ..\client\src\views                                                                                           |         15 |       -799 |        -33 |       -143 |       -975 |
+| ..\client\src\views\Preview                                                                                   |          2 |        -82 |          0 |        -15 |        -97 |
+| ..\client\src\views\Shelter                                                                                   |          6 |       -418 |        -20 |        -70 |       -508 |
+| ..\client\src\views\User                                                                                      |          7 |       -299 |        -13 |        -58 |       -370 |
+| config                                                                                                        |          1 |          8 |          0 |          3 |         11 |
+| routes                                                                                                        |          3 |      1,018 |         28 |        143 |      1,189 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                                      | language         | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\mess\Documents\Projects\aapv2\client\README.md                                                       | Markdown         |        -38 |          0 |        -33 |        -71 |
+| c:\Users\mess\Documents\Projects\aapv2\client\package-lock.json                                               | JSON             |    -40,841 |          0 |         -1 |    -40,842 |
+| c:\Users\mess\Documents\Projects\aapv2\client\package.json                                                    | JSON             |        -49 |          0 |        -50 |        -99 |
+| c:\Users\mess\Documents\Projects\aapv2\client\public\index.html                                               | HTML             |        -22 |        -23 |         -1 |        -46 |
+| c:\Users\mess\Documents\Projects\aapv2\client\public\manifest.json                                            | JSON             |        -25 |          0 |         -1 |        -26 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\App.css                                                     | CSS              |          0 |          0 |         -1 |         -1 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\App.jsx                                                     | JavaScript React |        -44 |         -3 |         -4 |        -51 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\App.test.js                                                 | JavaScript       |         -7 |          0 |         -2 |         -9 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\Style\PageBody.jsx                                          | JavaScript React |        -14 |          0 |         -6 |        -20 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreatePost\CreatePost.jsx       | JavaScript React |       -152 |        -16 |         -9 |       -177 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreatePost\ShelterPost.jsx      | JavaScript React |       -140 |        -16 |         -7 |       -163 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\CreateProfile\CreateProfile.jsx | JavaScript React |       -268 |        -45 |        -21 |       -334 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\EditProfile\EditPopUpForm.jsx   | JavaScript React |       -268 |        -36 |        -18 |       -322 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Popups\EditProfile\EditProfile.jsx     | JavaScript React |        -20 |          0 |         -3 |        -23 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\SPEdit.jsx                | JavaScript React |       -226 |        -31 |        -20 |       -277 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\SPicForm.jsx              | JavaScript React |        -92 |        -27 |        -15 |       -134 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Edit\ShelterEdit.jsx           | JavaScript React |        -52 |          0 |         -8 |        -60 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\ComList.jsx               | JavaScript React |        -63 |          0 |         -5 |        -68 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Comment.jsx               | JavaScript React |        -68 |          0 |         -7 |        -75 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Dashpage.css              | CSS              |       -148 |         -2 |         -2 |       -152 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Dashpage.jsx              | JavaScript React |       -205 |         -1 |        -10 |       -216 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Follow.jsx                | JavaScript React |        -93 |         -2 |         -8 |       -103 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\Profile.css               | CSS              |       -259 |         -1 |         -4 |       -264 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\SFollowView.jsx           | JavaScript React |       -158 |          0 |         -8 |       -166 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\SLike.jsx                 | JavaScript React |        -92 |         -3 |        -11 |       -106 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\S_L_C_List.jsx            | JavaScript React |        -40 |          0 |         -8 |        -48 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Page\ShowComments.jsx          | JavaScript React |        -26 |         -6 |         -8 |        -40 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Pannel\ShelterPanel.css        | CSS              |         -6 |         -1 |          0 |         -7 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Dashboard\Shelter\Pannel\ShelterPanel.jsx        | JavaScript React |        -23 |         -2 |         -3 |        -28 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\FollowList.jsx                        | JavaScript React |        -76 |        -11 |        -11 |        -98 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\FollowPreview.jsx                     | JavaScript React |        -48 |          0 |        -16 |        -64 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\Followlistleft.jsx                    | JavaScript React |        -51 |          0 |        -11 |        -62 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\SFollowList.jsx                       | JavaScript React |        -76 |        -11 |        -10 |        -97 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\SFollowPreview.jsx                    | JavaScript React |        -48 |          0 |        -13 |        -61 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\FollowList\followlist.css                        | CSS              |        -36 |         -3 |         -6 |        -45 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HL\HL.css                                        | CSS              |        -18 |          0 |         -3 |        -21 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HL\HomeLogo.jsx                                  | JavaScript React |        -11 |          0 |         -2 |        -13 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\BrowseHome\UserHome.css                 | CSS              |       -157 |        -10 |        -11 |       -178 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\BrowseHome\UserHome.jsx                 | JavaScript React |       -185 |         -4 |        -12 |       -201 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\EPEdit.jsx                              | JavaScript React |        -56 |        -15 |         -3 |        -74 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\HomeBody.css                            | CSS              |       -147 |         -1 |         -2 |       -150 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\HomeBody.jsx                            | JavaScript React |       -133 |         -3 |        -12 |       -148 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\PicForm.css                             | CSS              |        -21 |          0 |         -2 |        -23 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\PicForm.jsx                             | JavaScript React |        -95 |        -27 |        -15 |       -137 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\EditPopUpForm.jsx                | JavaScript React |       -268 |        -36 |        -18 |       -322 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\SPEdit.jsx                       | JavaScript React |       -236 |        -32 |        -19 |       -287 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\ShelterEdit.jsx                  | JavaScript React |        -52 |          0 |         -8 |        -60 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\ShelterPost.jsx                  | JavaScript React |       -141 |        -16 |         -7 |       -164 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\Popups\UBHPost.jsx                      | JavaScript React |       -141 |        -16 |         -7 |       -164 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\UserPanel.css                           | CSS              |        -19 |          0 |         -3 |        -22 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\HomePage\UserPanel.jsx                           | JavaScript React |        -39 |          0 |         -5 |        -44 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\LRForm.css                               | CSS              |        -10 |          0 |         -1 |        -11 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\SLRForm.jsx                              | JavaScript React |        -69 |        -12 |         -4 |        -85 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\LRForms\ULRForm.jsx                              | JavaScript React |        -93 |          0 |         -4 |        -97 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\Nav.jsx                                      | JavaScript React |        -27 |          0 |         -8 |        -35 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\SNav.jsx                                     | JavaScript React |        -27 |         -4 |        -10 |        -41 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\SPNav.jsx                                    | JavaScript React |        -27 |          0 |         -6 |        -33 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\css\Nav.css                                  | CSS              |        -25 |         -1 |         -2 |        -28 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Nav\css\SPNav.css                                | CSS              |        -25 |          0 |         -2 |        -27 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Form\ProfileForm.jsx                     | JavaScript React |        -53 |        -38 |         -5 |        -96 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Form\Proform.css                         | CSS              |        -35 |         -1 |         -6 |        -42 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ComList.jsx                         | JavaScript React |        -63 |          0 |         -7 |        -70 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Comment.jsx                         | JavaScript React |        -68 |          0 |         -8 |        -76 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Follow.jsx                          | JavaScript React |        -93 |         -2 |         -8 |       -103 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\FollowView.jsx                      | JavaScript React |       -124 |          0 |         -6 |       -130 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\L_C_List.jsx                        | JavaScript React |        -40 |          0 |         -8 |        -48 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Like.jsx                            | JavaScript React |        -92 |         -2 |        -12 |       -106 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\Profile.css                         | CSS              |       -259 |         -1 |         -4 |       -264 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ProfilePreview.jsx                  | JavaScript React |       -139 |          0 |         -7 |       -146 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ProflieBody.jsx                     | JavaScript React |       -133 |         -4 |         -5 |       -142 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Page\ShowComments.jsx                    | JavaScript React |        -27 |         -5 |         -8 |        -40 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Pannel\ProfilePannel.css                 | CSS              |          0 |        -27 |          0 |        -27 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Pannel\ProfilePannel.jsx                 | JavaScript React |        -38 |          0 |         -9 |        -47 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Profile\Preview\Profile.css                      | CSS              |       -122 |          0 |         -4 |       -126 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Shelter\SFollow.jsx                              | JavaScript React |        -93 |         -2 |        -10 |       -105 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\components\Shelter\ShelterPreView.jsx                       | JavaScript React |       -146 |         -1 |         -9 |       -156 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\globalStyles.js                                             | JavaScript       |         -9 |          0 |         -4 |        -13 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\index.css                                                   | CSS              |        -12 |          0 |         -2 |        -14 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\index.js                                                    | JavaScript       |        -12 |         -3 |         -5 |        -20 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\reportWebVitals.js                                          | JavaScript       |        -12 |          0 |         -2 |        -14 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\setupTests.js                                               | JavaScript       |         -1 |         -4 |         -1 |         -6 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Preview\ProfileView.jsx                               | JavaScript React |        -41 |          0 |         -6 |        -47 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Preview\ShelterView.jsx                               | JavaScript React |        -41 |          0 |         -9 |        -50 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\CreateProfile.jsx                             | JavaScript React |       -146 |         -3 |        -21 |       -170 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\Dashboard.jsx                                 | JavaScript React |        -48 |         -5 |         -7 |        -60 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\Profile.jsx                                   | JavaScript React |        -40 |         -1 |         -9 |        -50 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\ShelterEdit.jsx                               | JavaScript React |        -59 |         -3 |        -11 |        -73 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\ShelterLogReg.jsx                             | JavaScript React |        -95 |         -3 |        -15 |       -113 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\Shelter\UploadShelterPic.jsx                          | JavaScript React |        -30 |         -5 |         -7 |        -42 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\BrowseHome.jsx                                   | JavaScript React |        -29 |         -1 |         -6 |        -36 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\Edit.jsx                                         | JavaScript React |        -59 |         -3 |        -12 |        -74 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\Home.jsx                                         | JavaScript React |        -29 |         -1 |         -8 |        -38 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\SFview.jsx                                       | JavaScript React |        -28 |          0 |         -5 |        -33 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UFview.jsx                                       | JavaScript React |        -28 |          0 |         -7 |        -35 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UploadProPic.jsx                                 | JavaScript React |        -27 |         -5 |         -7 |        -39 |
+| c:\Users\mess\Documents\Projects\aapv2\client\src\views\User\UserLogReg.jsx                                   | JavaScript React |        -99 |         -3 |        -13 |       -115 |
+| c:\Users\mess\Documents\Projects\aapv2\server\.env                                                            | Properties       |          5 |          0 |          3 |          8 |
+| c:\Users\mess\Documents\Projects\aapv2\server\config\db.js                                                    | JavaScript       |          8 |          0 |          3 |         11 |
+| c:\Users\mess\Documents\Projects\aapv2\server\index.js                                                        | JavaScript       |         23 |          0 |         13 |         36 |
+| c:\Users\mess\Documents\Projects\aapv2\server\package-lock.json                                               | JSON             |      4,412 |          0 |          1 |      4,413 |
+| c:\Users\mess\Documents\Projects\aapv2\server\package.json                                                    | JSON             |         23 |          0 |         24 |         47 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\Profile.js                                               | JavaScript       |        210 |          7 |         35 |        252 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\Shelter.js                                               | JavaScript       |        302 |          8 |         33 |        343 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\User.js                                                  | JavaScript       |        506 |         13 |         75 |        594 |
+| Total                                                                                                         |                  |    -42,677 |       -512 |       -593 |    -43,782 |
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

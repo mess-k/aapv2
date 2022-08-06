@@ -1,0 +1,36 @@
+Date : 2022-08-06 13:19:02
+Directory : c:\Users\mess\Documents\Projects\aapv2\server
+Total : 8 files,  5489 codes, 28 comments, 187 blanks, all 5704 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          2 |      4,435 |          0 |         25 |      4,460 |
+| JavaScript |          5 |      1,049 |         28 |        159 |      1,236 |
+| Properties |          1 |          5 |          0 |          3 |          8 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                            | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                               |          8 |      5,489 |         28 |        187 |      5,704 |
+| config                                                          |          1 |          8 |          0 |          3 |         11 |
+| routes                                                          |          3 |      1,018 |         28 |        143 |      1,189 |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                        | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\mess\Documents\Projects\aapv2\server\.env              | Properties |          5 |          0 |          3 |          8 |
+| c:\Users\mess\Documents\Projects\aapv2\server\config\db.js      | JavaScript |          8 |          0 |          3 |         11 |
+| c:\Users\mess\Documents\Projects\aapv2\server\index.js          | JavaScript |         23 |          0 |         13 |         36 |
+| c:\Users\mess\Documents\Projects\aapv2\server\package-lock.json | JSON       |      4,412 |          0 |          1 |      4,413 |
+| c:\Users\mess\Documents\Projects\aapv2\server\package.json      | JSON       |         23 |          0 |         24 |         47 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\Profile.js | JavaScript |        210 |          7 |         35 |        252 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\Shelter.js | JavaScript |        302 |          8 |         33 |        343 |
+| c:\Users\mess\Documents\Projects\aapv2\server\routes\User.js    | JavaScript |        506 |         13 |         75 |        594 |
+| Total                                                           |            |      5,489 |         28 |        187 |      5,704 |
++-----------------------------------------------------------------+------------+------------+------------+------------+------------+

@@ -5,7 +5,7 @@ import axios from 'axios';
 const SFollow = props => {
     const {proID,sessionID} = props
     const [session, setSession] = useState()
-    const [following, setFollowing] = useState({
+    const [following] = useState({
         profileID:`${proID}`,
         userID:`${sessionID}`
     })

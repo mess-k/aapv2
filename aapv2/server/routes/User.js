@@ -26,6 +26,31 @@ router.use(
     })
 );
 
+var storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, '../../aapv2/client/public/images/PetProfile')     
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, Date.now()+`${file.originalname}`)
+    }
+})
+var upload = multer({
+    storage: storage
+});
+
+var postStorage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, '../../aapv2/client/public/images/PetProfile/Post')     
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, Date.now()+`${file.originalname}`)
+    }
+})
+var postUpload = multer({
+    storage: postStorage
+});
+
+
 ////////////////////////REGISTER///////////////////////////////
 
 router.post("/register", (req,res)=>{
@@ -344,7 +369,6 @@ router.get("/find/shelter/follow", (req,res) => {
     const SID = req.query.id;
     const userID = req.session.user[0].id
 
-
     db.query(
         "SELECT * FROM user_shelters_follows WHERE shelter_id=? AND user_id=?", [SID,userID],(err,result)=>{
             if(result.length > 0){
@@ -360,12 +384,9 @@ router.get("/find/shelter/follow", (req,res) => {
         )
 })
 
-
 router.post("/follow",(req,res) =>{
     const proID = req.body.profileID;
     const userID = req.session.user[0].id
-
-
 
     db.query(
         "INSERT INTO user_pet_follows SET profile_id=?, user_id=?;",[proID,userID],(err,result)=>{
@@ -389,11 +410,10 @@ router.post("/follow",(req,res) =>{
         }
     )
 })
+
 router.post("/follow/shelter",(req,res) =>{
     const proID = req.body.profileID;
     const userID = req.session.user[0].id
-
-
 
     db.query(
         "INSERT INTO user_shelters_follows SET shelter_id=?, user_id=?;",[proID,userID],(err,result)=>{
@@ -417,6 +437,24 @@ router.post("/follow/shelter",(req,res) =>{
         }
     )
 })
+
+router.get("/find/shelters/follow", (req,res) => {
+    const userID = req.session.user[0].id
+
+    db.query(
+        "Select a.shelter_id as followID, a.user_id, b.id as proID, b.name, b.img_url,b.email From aap2.user_shelters_follows as a join aap2.shelters as b on b.id = a.shelter_id where a.user_id = ?", [userID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+            else{
+                res.send(false)
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+        )
+    })
 
 router.delete("/follow/shelter",(req,res) =>{
     const SID = req.query.id;
@@ -445,12 +483,62 @@ router.delete("/follow/shelter",(req,res) =>{
     )
 })
 
-
-
 router.get("/notfollowing",(req,res)=>{
     const userID = req.session.user[0].id
     db.query(
         "SELECT a.id as proID, a.age  ,a.description ,a.name,a.uploader_id ,a.img_url   ,b.user_id as F_userID,b.profile_id as F_profile_id FROM aap2.profiles as a left join aap2.user_pet_follows as b on a.id = b.profile_id where b.user_id IS NULL or b.user_id NOT IN (?)ORDER BY RAND() LIMIT 6",[userID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+        }
+    )
+})
+
+////////////////////////////////POST//////////////////////////////////////////
+
+router.post("/post",(req,res)=>{
+    const context = req.body.context
+    const profile = req.body.profile
+    const user = req.body.user
+    const date = req.body.date
+
+    db.query(
+        "INSERT INTO posts SET context=?, profile_id=?, user_id=?, created_at=?", [context,profile,user,date],(err,result)=>{
+            if(result){
+                console.log("HELL YEAH!")
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+router.post("/post/w/pic", postUpload.single("postFile"),(req,result) => {
+    const context = req.body.context
+    const profile = req.body.profile
+    const user = req.body.user
+    const date = req.body.date
+    const pic = "/images/PetProfile/Post/"+req.file.filename
+
+    db.query(
+        "INSERT INTO posts SET context=?, post_url=?, profile_id=?, user_id=?, created_at=?", [context,pic,profile,user,date],(err,result)=>{
+            if(result){
+                console.log("HELL YEAH!")
+            }
+            if(err){
+                console.log(err)
+            }
+        }
+    )
+})
+
+/////////////////////////////////////////FIND POSTS/////////////////////////
+
+router.get("/show/posts", (req,res) =>{
+    const proID = req.session.user[0].id
+    db.query(
+        "SELECT * FROM posts where user_id=? ORDER BY id DESC",[proID],(err,result)=>{
             if(result){
                 res.send(result)
             }
@@ -500,6 +588,9 @@ router.get("/following/posts", (req,res) => {
         "SELECT * FROM aap2.user_pet_follows join (select aap2.posts.id as post_id, aap2.posts.context,aap2.posts.post_url,aap2.posts.profile_id,aap2.posts.shelter_id,aap2.posts.user_id from aap2.posts) posts ON aap2.user_pet_follows.profile_id = aap2.posts.profile_id join aap2.profiles ON aap2.profiles.id = aap2.posts.profile_id Where aap2.user_pet_follows. user_id= 22 Order by aap2.posts.post_id desc ",[user],(err,result) =>{
             if(result){
                 res.send(result)
+            }
+            if(err){
+                console.log(err)
             }
         }
     )

@@ -7,7 +7,7 @@ const Like = props => {
     const {postID,sessionID} = props
     const [session, setSession] = useState(false)
     const [find, setFind] = useState(false)
-    const [like, setLike] = useState({
+    const [like] = useState({
         postID:`${postID}`,
         userID:""
     })

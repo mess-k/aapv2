@@ -111,7 +111,7 @@ router.post("/createprofile", upload.single('profilepic'),(req,res)=>{
             )
         })
 
-/////////////////////////////////FIND_POSTS///////////////////////////
+/////////////////////////////////FIND_POSTS///////////////////////////////////
     router.get("/show/posts", (req,res) =>{
         const proID = req.query.id
         db.query(
