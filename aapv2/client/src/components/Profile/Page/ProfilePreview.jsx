@@ -98,7 +98,6 @@ const Proflie = props => {
                                                                 >
                                                                 <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" />
                                                                 <div>
-
                                                                 <p className='p'>{p.name}</p>
                                                                 </div>
                                                                 </Link>

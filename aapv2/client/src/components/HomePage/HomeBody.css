@@ -117,12 +117,14 @@
 }
 .posts .postpic {
     display: flex;
+    align-items: center;
 }
 .postpic h3{
     display: flex;
     align-items: center;
 }
 .postpic img{
+    display: flex;
     max-width: 45px;
     max-height:45px;
     border-radius: 50%/50%;;
@@ -146,4 +148,10 @@
 a {
     color: #000000;
     text-decoration: solid;
+}
+.p{
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    margin-left: 5px;
 }

@@ -4,7 +4,8 @@ import axios from 'axios';
 import {Link} from "@reach/router"
 import ShelterPost from "./Popups/ShelterPost"
 import ShelterEdit from "./Popups/ShelterEdit"
-
+import LCL from "../Profile/Page/L_C_List"
+import Comment from "../Profile/Page/Comment"
 
 
 const HomeBody = props => {
@@ -126,16 +127,37 @@ const HomeBody = props => {
                                 return(
                                     <div className="posts" key={y}>
                                         <div className="postpic">
-                                            <img src={post.img_url ? post.img_url : session.img_url} alt="" />
-                                            <h3>{post.name ? post.name : session.first_name}</h3>
+                                            <Link to={"/home"}
+                                            className="postpic"
+                                            >
+                                                <img src={post.img_url ? post.img_url : session.img_url} alt="" />
+                                                <div>
+                                                <p>{session.first_name}</p>
+                                                </div>
+                                            </Link>
                                         </div>
                                         <div className="postcontext">
-                                            <p>
+                                            <h5>
                                                 {post.context}
-                                            </p>
+                                            </h5>
                                         </div>
                                         <div className="postimg">
                                             <img src={process.env.PUBLIC_URL+`${post.post_url}`} alt="" />
+                                        </div>
+                                        <div className="like_comment">
+                                            <LCL
+                                            postID= {post.id}
+                                            sessionID={session.id}
+                                            // profile={profile.id}
+                                            className="posterPic"
+                                            />
+                                        </div>
+                                        <div className="createComment">
+                                            <div className="postcomments">
+                                            <Comment
+                                            postID={post.id}
+                                            />
+                                            </div>
                                         </div>
                                     </div>
                                 )
