@@ -14,9 +14,6 @@ const Profile = props => {
     const[posts,setPosts] = useState([])
     const {session} = props
 
-    console.log(session)
-
-
     useEffect(() => {
         const profileID = props.id
         axios.get(`http://localhost:8000/api/profile/find`, {params:{id: profileID}})

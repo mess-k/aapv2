@@ -3,7 +3,7 @@ import "./Profile.css"
 import {useState} from "react";
 import Editpop from "../../Dashboard/Popups/EditProfile/EditProfile"
 import CreatePost from "../../Dashboard/Popups/CreatePost/CreatePost"
-import Comment from "../../Dashboard/Shelter/Page/Comment"
+import Comment from "../../Dashboard/Shelter/Page/SComment"
 import LCL from "../../Dashboard/Shelter/Page/S_L_C_List"
 import { Link } from '@reach/router';
 // import axios from 'axios';
@@ -12,6 +12,8 @@ const Proflie = props => {
     const[editPopUp,setEditPopUp] = useState(false)
     const[postPopUp,setPostPopUp] = useState(false)
     const{profile,session,posts} = props
+    
+    console.log(posts)
 
     const EditProfileButton = (e)=>{
         setEditPopUp(prev => !prev)

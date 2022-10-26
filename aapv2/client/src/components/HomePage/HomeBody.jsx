@@ -50,6 +50,8 @@ const HomeBody = props => {
         console.log(postPopUp)
     }
 
+    console.log(session)
+
     return(
         session ?  
         <div>

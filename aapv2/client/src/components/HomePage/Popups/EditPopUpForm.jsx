@@ -196,7 +196,7 @@ const EditPopUpForm = props => {
             formData.append("age", updatePro.age)
             formData.append("type", updatePro.type)
             formData.append("desc", updatePro.desc)
-            axios.post("http://localhost:8000/api/profile/update/w/pic",formData,{
+            axios.put("http://localhost:8000/api/user/edit/uploadPic",formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
@@ -211,7 +211,7 @@ const EditPopUpForm = props => {
         }
         else{
             console.log(updatePro)
-            axios.post("http://localhost:8000/api/profile/update",updatePro)
+            axios.put("http://localhost:8000/api/user/edit",updatePro)
                 .then(res => {
                     navigate(`/pet/profile/${updatePro.id}`)
                 })

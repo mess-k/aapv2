@@ -242,9 +242,9 @@ const EditPopUpForm = props => {
             <animated.div style={animation}>
                 <PopUpWrapper >
                     {
-                        session.map((s,k) =>{
+                        session.map((s,z) =>{
                             return(
-                                <div key={k}>
+                                <div key={z}>
 
                     <div className="PostHeader">
                     <h1>Create a profile for a pet!</h1>

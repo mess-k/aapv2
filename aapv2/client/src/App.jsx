@@ -19,6 +19,7 @@ import GlobalStyle from './globalStyles';
 import FLpreview from "./views/User/UFview"
 import SLpreview from "./views/User/SFview"
 import ShelterPreview from "./views/Preview/ShelterView"
+import U2U from "./views/Preview/User2UserView"
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
       <CreateProfile path="/createprofile"/>
       <Profile path="/pet/profile/:id"/>
       <ProView path="/profile/view/:id"/>
+      <U2U path="/user/view/:id"/>
       <FLpreview path="/pet/follow/list"/>
       <SLpreview path="/shelter/follow/list"/>
       <ShelterPreview path="/shelter/view/:id"/>

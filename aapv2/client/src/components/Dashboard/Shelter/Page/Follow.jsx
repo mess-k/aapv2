@@ -12,10 +12,10 @@ const Follow = props => {
     const [findFollow, setFindFollow] = useState(false)
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/login`)
+        axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.user[0]);
+                setSession(res.data.shelter[0]);
             }
         });
     }, [props]);

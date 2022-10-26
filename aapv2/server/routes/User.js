@@ -26,6 +26,21 @@ router.use(
     })
 );
 
+
+
+var storage = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, '../../aapv2/client/public/images')     
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, `${file.originalname}`)
+    }
+})
+
+var upload = multer({
+    storage: storage
+});
+
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
         callBack(null, '../../aapv2/client/public/images/PetProfile')     
@@ -171,23 +186,22 @@ router.put("/edit", (req,res) => {
     }
 })
 
+///////////////////////////////////////////FIND//////////////
+router.get("/find", (req,res)=>{
+    const UID = req.query.id;
 
-
-var storage = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, '../../aapv2/client/public/images')     
-    },
-    filename: (req, file, callBack) => {
-        callBack(null, `${file.originalname}`)
-    }
+    db.query(
+        "SELECT * FROM user WHERE id=?",[UID],(err,result)=>{
+            if(result){
+                res.send(result)
+            }
+        }
+    )
 })
 
-var upload = multer({
-    storage: storage
-});
 
 router.put ("/edit/uploadPic", upload.single('profilepic'), (req,res) => {
-    const imgsrc = "/images/"+req.file.filename
+    const imgsrc = "/images/PetProfile/"+req.file.filename
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;

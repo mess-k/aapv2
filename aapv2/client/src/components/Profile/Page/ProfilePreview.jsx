@@ -28,6 +28,12 @@ const Proflie = props => {
             setShelter(res.data);
         });
     }, [sID]);
+
+    console.log(posts)
+
+    // console.log(posts)
+
+
     
     return (
         profile ? 
@@ -89,7 +95,10 @@ const Proflie = props => {
                                             {
                                                 posts.map((post,y) =>{
                                                     return(
-                                                        <div className="posts" key={y}>
+                                                        <div className="posts" key={y}>{
+                                                            // post.shelter_id===null ?
+                                                            // Link to={'/'}
+                                                        }
                                                             <div className="postpic">
                                                                 <Link to={`/profile/view/${p.id}`}
                                                                     profile={profile}
