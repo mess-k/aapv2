@@ -11,7 +11,7 @@ const ShelterView = props => {
     const [puser, setPuser] = useState([])
     const[posts,setPosts] = useState([])
     const[uID,setUID] = useState([])
-    const {session,puid} = props
+    const {session,puid,userViewID} = props
 
     useEffect(() => {
         const UID = props.id
@@ -30,6 +30,8 @@ const ShelterView = props => {
         });
     }, [puid]);
 
+    console.log(userViewID)
+
     useEffect(() => {
         const profileID = props.id
         axios.get('http://localhost:8000/api/user/show/posts',{params:{id: profileID}})
@@ -37,7 +39,7 @@ const ShelterView = props => {
             setPosts(res.data)
         })
     },[props])
-    console.log(puid)
+    console.log(props.userViewID)
 
     return (
         <>
@@ -45,10 +47,11 @@ const ShelterView = props => {
             <Page>
             </Page>
             <UserCom
-            // pUser={puser}
-            // user={user}
-            // session={session}
-            // uid={uID}
+            pUser={puser}
+            user={user}
+            session={session}
+            uid={uID}
+            userViewID={userViewID}
             posts={posts}
             />
         </> 

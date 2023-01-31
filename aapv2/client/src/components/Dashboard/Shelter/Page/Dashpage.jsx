@@ -40,6 +40,9 @@ const Dashpage = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
+
+    console.log(posts)
+
     return(
         session ?  
         <div>

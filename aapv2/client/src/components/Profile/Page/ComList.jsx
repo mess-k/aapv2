@@ -20,7 +20,7 @@ const ComList = props => {
             }) 
     },[postID])
 
-    // console.log(comList)
+    console.log(comList)
 
     return (
         showCom?
@@ -34,7 +34,7 @@ const ComList = props => {
                                 
                             <div className="singleCom" key={i}>
                                 <Link to={`/user/view/${com.usercom_id}`}
-                                puid={22}
+                                userViewID={com.usercom_id}
                                 >
                                 <img src={process.env.PUBLIC_URL+`${com.u_img}`} alt="" className="ComProfilePic"/>
                                 </Link>
@@ -49,7 +49,7 @@ const ComList = props => {
                             </div>
                                 :
                                 <div className="singleCom" key={i}>
-                                <Link to={`/home`}>
+                                <Link to={`/shelter/view/${com.sheltercom_id}`}>
                                 <img src={process.env.PUBLIC_URL+`${com.s_img}`} alt="" className="ComProfilePic"/>
                                 </Link>
                                 <div className="comContext" key={i}>

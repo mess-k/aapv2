@@ -93,6 +93,7 @@ const ShelterPreView = props => {
                                                                 <Link to={`/shelter/view/${p.id}`}
                                                                     shelter={shelter}
                                                                     session={session}
+                                                                    userViewID={post.u_id}
                                                                     className="postpic"
                                                                 >
                                                                 <img src={process.env.PUBLIC_URL+`${post.s_img_url}`} alt="" />

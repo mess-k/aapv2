@@ -52,6 +52,7 @@ const UserHome = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
+    console.log(followPosts)
 
     return (
         <>
@@ -172,6 +173,7 @@ const UserHome = props => {
                                     <div className="like_comment">
                                         <LCL
                                         postID= {fp.post_id}
+                                        userViewID={fp.post}
                                         sessionID={session.id}
                                         profile={fp.profile_id}
                                         className="UHPcomList"

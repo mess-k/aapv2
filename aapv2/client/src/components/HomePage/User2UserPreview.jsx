@@ -8,7 +8,7 @@ import Comment from "../Profile/Page/Comment"
 import { Link } from '@reach/router';
 
 const U2U = props => {
-    const{posts,uid} = props
+    const{posts,uid,profile,userViewID} = props
     const [session, setSession] = useState()
     const [profiles, setProfiles]=useState([])
     const [puser, setPuser]=useState([])
@@ -22,7 +22,7 @@ const U2U = props => {
             }
         });
     }, [props]);
-    
+
     useEffect(() => {
         const UID = props.id
         axios.get(`http://localhost:8000/api/user/find`,{params:{id: UID}})
@@ -30,7 +30,8 @@ const U2U = props => {
                 setPuser(res.data.user[0]);
             
         });
-    }, [props]);
+    }, [userViewID]);
+
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/user/find/profiles/follow`)
@@ -40,11 +41,11 @@ const U2U = props => {
     }, [props]);
 
     console.log(puser)
-    console.log(props)
+    console.log(userViewID)
 
     
     return (
-        uid ? 
+        userViewID ? 
         <div>
             {
             puser.map((p,k)=>{
