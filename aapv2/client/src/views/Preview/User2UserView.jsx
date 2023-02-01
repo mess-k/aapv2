@@ -30,8 +30,6 @@ const ShelterView = props => {
         });
     }, [puid]);
 
-    console.log(userViewID)
-
     useEffect(() => {
         const profileID = props.id
         axios.get('http://localhost:8000/api/user/show/posts',{params:{id: profileID}})
