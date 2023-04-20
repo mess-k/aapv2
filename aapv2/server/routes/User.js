@@ -149,8 +149,6 @@ router.put("/edit", (req,res) => {
     // const confirmPassword = req.body.confirmPassword
 
 
-
-    
     if (req.session.user){
         db.query(
             "SELECT * FROM users WHERE id = ?", 
@@ -191,7 +189,7 @@ router.get("/find", (req,res)=>{
     const UID = req.query.id;
 
     db.query(
-        "SELECT * FROM user WHERE id=?",[UID],(err,result)=>{
+        "SELECT * FROM users WHERE id=?",[UID],(err,result)=>{
             if(result){
                 res.send(result)
             }
