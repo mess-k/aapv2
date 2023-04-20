@@ -144,6 +144,7 @@ const SFollowView = props => {
                                             <div className="postcomments" >
                                             <Comment
                                                 postID={post.post_id}
+                                                session={session}
                                             />
                                             </div>
                                         </div>

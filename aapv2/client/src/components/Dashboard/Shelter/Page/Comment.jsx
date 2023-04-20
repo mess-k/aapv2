@@ -5,8 +5,8 @@ import TextareaAutosize from 'react-textarea-autosize';
 import moment from "moment"
 
 const Comment = props =>{
-    const {postID} = props
-    const [session, setSession] = useState()
+    const {postID,session} = props
+    // const [session, setSession] = useState()
     const [comment, setComment] = useState({
         postID:"",
         comment:"",
@@ -23,14 +23,15 @@ const Comment = props =>{
         })
     };
     
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/login`)
-        .then((res) => {
-            if (res.data.loggedIn === true) {
-                setSession(res.data.user[0]);
-            }
-        });
-    }, [props]);
+    // useEffect(() => {
+    //     axios.get(`http://localhost:8000/api/userlogin`)
+    //     .then((res) => {
+    //         if (res.data.loggedIn === true) {
+    //             setSession(res.data.user[0]);
+    //         }
+    //     });
+    // }, [props]);
+    
 
     const PostComment = e =>{
         axios.post('http://localhost:8000/api/user/postcomment', comment)
@@ -67,7 +68,7 @@ const Comment = props =>{
                         </div>
                     </form>
             </div>
-        </div>: <p>chill</p>
+        </div>: <p>hmmmm</p>
         
     )
 }

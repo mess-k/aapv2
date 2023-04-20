@@ -92,9 +92,9 @@ const Dashpage = props => {
                     </div>
                     <div className="propannelcontainer">
                         {
-                            profiles.map((p,k) => {
+                            profiles.map((p,g) => {
                                 return (
-                                    <div className="singlepro" key = {k}>
+                                    <div className="singlepro" key = {g}>
                                         <Link to={`/pet/profile/${p.id}`}
                                         profiles={profiles}
                                         session={session}
@@ -127,12 +127,12 @@ const Dashpage = props => {
                     posts ?
                     <div className="postPannel">
                         {
-                            posts.map((post,y) =>{
+                            posts.map((post,t) =>{
                                 return(
                                     <>
                                     {
                                     post.PID === null ?
-                                    <div className="posts" key={y}>
+                                    <div className="posts" key={t}>
                                         <div className="postpic">
                                             <Link to={`/dashboard`}
                                             className="postpic"
@@ -166,7 +166,7 @@ const Dashpage = props => {
                                         </div>
                                     </div>
                                     :
-                                    <div className="posts" key={y} >
+                                    <div className="posts" key={t} >
                                         <div className="postpic">
                                         <Link to={`/pet/profile/${post.PID}`}
                                             className="postpic"

@@ -35,7 +35,6 @@ const Comment = props =>{
     const PostComment = e =>{
         axios.post('http://localhost:8000/api/user/postcomment', comment)
             .then(res => {
-
             })
     }
     

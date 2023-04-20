@@ -26,7 +26,7 @@ const ShelterView = props => {
         axios.get(`http://localhost:8000/api/user/find`, {params:{id: pUid}})
         .then((res) => {
             setPuser([res.data[0]])
-            setUID(res.data[0].id)
+            setUID(res.data)
         });
     }, [puid]);
 
@@ -37,7 +37,7 @@ const ShelterView = props => {
             setPosts(res.data)
         })
     },[props])
-    console.log(props.userViewID)
+    console.log(props.id)
 
     return (
         <>
@@ -49,7 +49,7 @@ const ShelterView = props => {
             user={user}
             session={session}
             uid={uID}
-            userViewID={userViewID}
+            userViewID={props.id}
             posts={posts}
             />
         </> 

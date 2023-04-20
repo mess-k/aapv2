@@ -24,13 +24,12 @@ const U2U = props => {
     }, [props]);
 
     useEffect(() => {
-        const UID = 22
+        const UID = userViewID
         axios.get(`http://localhost:8000/api/user/find`,{params:{id: UID}})
         .then((res) => {
-                setPuser(res.data.user[0]);
-            
+                setPuser(res.data);
         });
-    }, [sid]);
+    }, [userViewID]);
 
 
     useEffect(() => {
@@ -40,12 +39,12 @@ const U2U = props => {
         });
     }, [props]);
 
-    console.log(puser)
     console.log(userViewID)
+    console.log(puser)
 
     
     return (
-        sid ? 
+        userViewID ? 
         <div>
             {
             puser.map((p,k)=>{
@@ -53,7 +52,7 @@ const U2U = props => {
                     <div className="profile" key={k}>
                         <div className="profileHeader">
                             <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="petProfilePic"/>
-                            <h1 className="petName">{p.name}</h1>
+                            <h1 className="petName">{p.first_name}</h1>
                             {/* <Follow
                             proID = {p.id}
                             sessionID = {session.id}
@@ -79,6 +78,7 @@ const U2U = props => {
                                                         <Link to={`/profile/view/${p.id}`}
                                                         profiles={profiles}
                                                         session={session}
+                                                        id={sid}
                                                         >
                                                             <img src={process.env.PUBLIC_URL+`${p.img_url}`} alt="" className="profilepannelpic"/>
                                                             <h6>{p.name}</h6>
