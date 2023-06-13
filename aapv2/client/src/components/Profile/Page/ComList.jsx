@@ -20,7 +20,6 @@ const ComList = props => {
             }) 
     },[postID])
 
-    console.log(comList)
 
     return (
         showCom?

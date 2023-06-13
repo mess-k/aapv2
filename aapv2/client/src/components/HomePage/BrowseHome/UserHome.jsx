@@ -37,6 +37,7 @@ const UserHome = props => {
         axios.get("http://localhost:8000/api/user/following/posts")
             .then(res => {
                 setFollowPosts(res.data)
+                console.log(res.data)
             })
     },[props])
     
@@ -52,7 +53,6 @@ const UserHome = props => {
         setPostPopUp(prev => !prev)
         console.log(postPopUp)
     }
-    console.log(followPosts)
 
     return (
         <>
