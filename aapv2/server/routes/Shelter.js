@@ -198,7 +198,7 @@ router.get("/find", (req,res)=>{
         const SID = req.query.id;
 
         db.query(
-            "SELECT * FROM shelters WHERE id=?",SID,(err,result)=>{
+            "SELECT * FROM shelters WHERE id=?",[SID],(err,result)=>{
                 if(result){
                     res.send(result)
                 }

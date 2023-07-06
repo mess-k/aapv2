@@ -8,29 +8,33 @@ import Follow from "./SFollow"
 import { Link } from '@reach/router';
 
 const ShelterPreView = props => {
-    const{shelter,posts,sid} = props
+    const{posts,sid} = props
     const [session, setSession] = useState()
     const [sProfiles, setSProfiles] = useState()
+    const [shelter,setShelter] = useState()
 
+
+    // console.log(sid)
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/user/login`)
+        axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.user[0]);
+                console.log(res.data)
+                setSession(res.data.shelter[0]);
             }
         });
     }, [props]);
     
     useEffect(() => {
         const s_ID = sid
-        axios.get(`http://localhost:8000/api/profile/find/shelter`,{params:{id: s_ID}})
+        axios.get(`http://localhost:8000/api/shelter/find`,{params:{id: s_ID}})
         .then((res) => {
-                setSProfiles(res.data);
-            
+                setShelter(res.data.shelter[0])
+                setSProfiles(res.data.profiles)
+                ;
         });
     }, [sid]);
 
-    console.log(sProfiles)
 
     
     return (

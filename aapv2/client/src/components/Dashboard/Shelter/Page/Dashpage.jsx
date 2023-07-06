@@ -103,7 +103,7 @@ const Dashpage = props => {
                                             <h6>{p.name}</h6>
                                         </Link>
                                     </div>
-                                )
+                                ) 
                             })
                         }
                     </div>
