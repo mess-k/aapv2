@@ -13,13 +13,10 @@ const ShelterPreView = props => {
     const [sProfiles, setSProfiles] = useState()
     const [shelter,setShelter] = useState()
 
-
-    // console.log(sid)
     useEffect(() => {
         axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                console.log(res.data)
                 setSession(res.data.shelter[0]);
             }
         });
@@ -29,8 +26,10 @@ const ShelterPreView = props => {
         const s_ID = sid
         axios.get(`http://localhost:8000/api/shelter/find`,{params:{id: s_ID}})
         .then((res) => {
-                setShelter(res.data.shelter[0])
-                setSProfiles(res.data.profiles)
+                setShelter(res.data)
+                // console.log(res.data[0])
+                // console.log(res.data[0])
+                setSProfiles(res.data)
                 ;
         });
     }, [sid]);
