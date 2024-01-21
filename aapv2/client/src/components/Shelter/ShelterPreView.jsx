@@ -17,7 +17,8 @@ const ShelterPreView = props => {
         axios.get(`http://localhost:8000/api/shelter/login`)
         .then((res) => {
             if (res.data.loggedIn === true) {
-                setSession(res.data.shelter[0]);
+                setSession(res.data.shelter[0])
+                setSProfiles(res.data.profiles);
             }
         });
     }, [props]);
@@ -29,12 +30,9 @@ const ShelterPreView = props => {
                 setShelter(res.data)
                 // console.log(res.data[0])
                 // console.log(res.data[0])
-                setSProfiles(res.data)
                 ;
         });
     }, [sid]);
-
-
     
     return (
         shelter ? 

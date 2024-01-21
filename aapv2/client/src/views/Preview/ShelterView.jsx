@@ -16,8 +16,9 @@ const ShelterView = props => {
         const SID = props.id
         axios.get(`http://localhost:8000/api/shelter/find`, {params:{id: SID}})
         .then((res) => {
-            setShelter([res.data[0]])
             setSID(res.data[0].id)
+            setShelter(res.data[0])
+            console.log(res.data)
         });
     }, [props]);
 
@@ -34,12 +35,12 @@ const ShelterView = props => {
             <Nav/>
             <Page>
             </Page>
-            <ShelterCom
+            <ShelterCom>
             shelter={shelter}
             session={session}
             sid={sID}
             posts={posts}
-            />
+            </ShelterCom>
         </> 
     );
 

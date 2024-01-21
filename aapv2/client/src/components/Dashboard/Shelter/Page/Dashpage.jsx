@@ -41,7 +41,7 @@ const Dashpage = props => {
         console.log(postPopUp)
     }
 
-    console.log(posts)
+    console.log(profiles)
 
     return(
         session ?  
@@ -115,7 +115,7 @@ const Dashpage = props => {
                         </div>
                         <div className="postInput">
                             <button
-                            session={session}
+                            session={session} 
                             // profile={profile}
                             onClick={createPost}
                             >

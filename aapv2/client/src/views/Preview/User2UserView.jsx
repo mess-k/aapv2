@@ -21,6 +21,7 @@ const ShelterView = props => {
             setUID(res.data[0].id)
         });
     }, [props]);
+    
     useEffect(() => {
         const pUid = puid
         axios.get(`http://localhost:8000/api/user/find`, {params:{id: pUid}})
@@ -54,9 +55,6 @@ const ShelterView = props => {
             />
         </> 
     );
-
 }
-
-
 
 export default ShelterView;

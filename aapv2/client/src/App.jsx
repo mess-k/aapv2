@@ -43,7 +43,6 @@ function App() {
       <FLpreview path="/pet/follow/list"/>
       <SLpreview path="/shelter/follow/list"/>
       <ShelterPreview path="/shelter/view/:id"/>
-
     </Router>
     </>
   );
